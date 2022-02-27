@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# transcribe_streaming_mic.py 
+
 """Google Cloud Speech API sample application using the streaming API.
 
 NOTE: This module requires the additional dependency `pyaudio`. To install
