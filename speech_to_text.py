@@ -14,8 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# transcribe_streaming_mic.py 
-
 """Google Cloud Speech API sample application using the streaming API.
 
 NOTE: This module requires the additional dependency `pyaudio`. To install
@@ -32,17 +30,30 @@ from __future__ import division
 
 import re
 import sys
-import time
-import datetime
 
 from google.cloud import speech
 
 import pyaudio
 from six.moves import queue
 
-# Audio recording parameters
-import scenario_1
+###############################
+from ctypes import *
 
+ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
+
+
+def py_error_handler(filename, line, function, err, fmt):
+    return
+
+
+c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
+asound = cdll.LoadLibrary('libasound.so')
+# Set error handler
+asound.snd_lib_error_set_handler(c_error_handler)
+# Initialize PyAudio
+###############################
+
+# Audio recording parameters
 RATE = 16000
 CHUNK = int(RATE / 10)  # 100ms
 
@@ -57,7 +68,6 @@ class MicrophoneStream(object):
         # Create a thread-safe buffer of audio data
         self._buff = queue.Queue()
         self.closed = True
-
 
     def __enter__(self):
         self._audio_interface = pyaudio.PyAudio()
@@ -114,69 +124,32 @@ class MicrophoneStream(object):
             yield b''.join(data)
 
 
-def start_time():
-    start = time.time()
-    return start
-
-
 def listen_print_loop(responses):
-    """Iterates through server responses and prints them.
-
-    The responses passed is a generator that will block until a response
-    is provided by the server.
-
-    Each response may contain multiple results, and each result may contain
-    multiple alternatives; for details, see https://goo.gl/tjCPAU.  Here we
-    print only the transcription for the top alternative of the top result.
-
-    In this case, responses are provided for interim results as well. If the
-    response is an interim one, print a line feed at the end of it, to allow
-    the next result to overwrite it, until the response is a final one. For the
-    final one, print a newline to preserve the finalized transcription.
-    """
-
+    text = ''
     num_chars_printed = 0
     for response in responses:
         if not response.results:
             continue
 
-        # The `results` list is consecutive. For streaming, we only care about
-        # the first result being considered, since once it's `is_final`, it
-        # moves on to considering the next utterance.
         result = response.results[0]
         if not result.alternatives:
             continue
 
-        # Display the transcription of the top alternative.
         transcript = result.alternatives[0].transcript
-
-        # Display interim results, but with a carriage return at the end of the
-        # line, so subsequent lines will overwrite them.
-        #
-        # If the previous result was longer than this one, we need to print
-        # some extra spaces to overwrite the previous result
         overwrite_chars = ' ' * (num_chars_printed - len(transcript))
 
         if not result.is_final:
             sys.stdout.write(transcript + overwrite_chars + '\r')
-            stt_out = transcript + overwrite_chars + '\r'
             sys.stdout.flush()
-            stt_out += '\n'
-
             num_chars_printed = len(transcript)
-
         else:
-            print(transcript + overwrite_chars)
-            stt_out = transcript + overwrite_chars
-
-            # Exit recognition if any of the transcribed phrases could be
-            # one of our keywords.
-            if input() == '':  # re.search(r'\b(exit|quit)\b', transcript, re.I):
-                print('답변 완료')  # Exiting..')
+            text = transcript + overwrite_chars
+            break
+            if re.search(r'\b(exit|quit)\b', transcript, re.I):
+                print('Exiting..')
                 break
-
             num_chars_printed = 0
-    return stt_out
+    return text
 
 
 def speech_to_text():
@@ -195,7 +168,7 @@ def speech_to_text():
 
     with MicrophoneStream(RATE, CHUNK) as stream:
         audio_generator = stream.generator()
-        print("답변 시작")
+        print("\n 답변을 시작해주세요. ")
         requests = (speech.StreamingRecognizeRequest(audio_content=content)
                     for content in audio_generator)
 
@@ -203,10 +176,10 @@ def speech_to_text():
 
         # Now, put the transcription responses to use.
         stt_out = listen_print_loop(responses)
+        print('\n')
     return stt_out
 
 
-# 이쪽 주석 풀어서 음성 입력 후 엔터 가능해짐
 if __name__ == '__main__':
     speech_to_text()
 # [END speech_transcribe_streaming_mic]
