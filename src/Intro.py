@@ -62,7 +62,7 @@ class Intro:
 
             #user_said = speech_to_text()
             #answer = NLP.nlp_number(user_said=user_said, dic=Dic)
-            user_said = input("입력: ")
+            answer = input("입력: ")
             
             if answer == '1':
                 behavior_list.do_suggestion_S()
