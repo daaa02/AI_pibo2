@@ -22,6 +22,7 @@ tts = TextToSpeech()
 
 def text_to_speech(string):
     filename = "tts.wav"
+    print("\n" + string + "\n")
     tts.tts_connection(f"<speak>\
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
                 </speak>", filename)
