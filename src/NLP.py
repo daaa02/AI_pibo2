@@ -59,7 +59,7 @@ class NLP:
         """
         a_list = re.split('[ 가을를]', user_input)  # ' ', 가, 랑, 을, 를 제거하고 리스트
 
-        answer = [i for i in a_list if i in dic.animal]
+        answer = [i for i in a_list if i in dic.Animal]
         return answer[0]
     
     
