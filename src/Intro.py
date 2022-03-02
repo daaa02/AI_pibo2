@@ -60,9 +60,10 @@ class Intro:
             text_to_speech("오늘은 누구랑 놀까?"
                            "파이보랑 둘이 놀고 싶으면 1번, 엄마나 친구랑 같이 놀고 싶으면 2번을 골라줘")
 
-            user_said = speech_to_text()
-            answer = NLP.nlp_number(user_said=user_said, dic=Dic)
-
+            #user_said = speech_to_text()
+            #answer = NLP.nlp_number(user_said=user_said, dic=Dic)
+            user_said = input("입력: ")
+            
             if answer == '1':
                 behavior_list.do_suggestion_S()
                 while True:
