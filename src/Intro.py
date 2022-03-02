@@ -25,19 +25,12 @@ tts = TextToSpeech()
 
 def text_to_speech(string):
     filename = "tts.wav"
+    print("\n" + string + "\n")
     tts.tts_connection(f"<speak>\
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
                 </speak>", filename)
     tts.play(filename, 'local', '0', False)
-
-
-Scenario_List = {
-    "com_1": ["사자와 쥐", "훌라후프에 동물 넣기"],
-    "soc_1": ["늑대 대장의 법", "나는 왕"],
-    "cog_1": ["외나무다리", "휴지길 놀이"],
-    "mus_1": ["나와 우리의 차이", "풍선 축구"]
-}
-
+    
 
 class Scenario_List:
     com_1 = ["사자와 쥐", "훌라후프에 동물 넣기"]
@@ -57,26 +50,26 @@ class Intro:
     def Intro_Scenario(self):
 
         # 1.1 이야기
-        behavior_list.do_suggestion()
+        behavior_list.do_suggestion_S()
         while True:
             text_to_speech(f"오늘은 {self.story_name} 이야기를 들려줄게")
             break
 
-        behavior_list.do_question()
+        behavior_list.do_question_L()
         while True:
-            text_to_speech("오늘은 누구랑 놀까?" 
+            text_to_speech("오늘은 누구랑 놀까?"
                            "파이보랑 둘이 놀고 싶으면 1번, 엄마나 친구랑 같이 놀고 싶으면 2번을 골라줘")
 
             user_said = speech_to_text()
             answer = NLP.nlp_number(user_said=user_said, dic=Dic)
 
             if answer == '1':
-                behavior_list.do_suggestion()
+                behavior_list.do_suggestion_S()
                 while True:
                     text_to_speech(f"좋아 파이보랑 놀자! 이번에는 {self.play_name} 놀이를 하자. 너는 어때?")
                     break
             elif answer == '2':
-                behavior_list.do_suggestion()
+                behavior_list.do_suggestion_S()
                 while True:
                     text_to_speech(f"좋아 다같이 놀자! 이번에는 {self.play_name} 놀이를 하자. 너는 어때?")
                     break
@@ -85,7 +78,7 @@ class Intro:
                 continue
             break
 
-        behavior_list.do_waiting()
+        behavior_list.do_waiting_A()
         while True:
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
@@ -97,7 +90,7 @@ class Intro:
                     break
                 Play_Hoop(user_name)        # 나중에 방법 좀 다시 찾아봐
             else:
-                behavior_list.do_question()
+                behavior_list.do_question_S()
                 while True:
                     text_to_speech(f"그럼 {self.re_play_name} 놀이를 할까?")
                     continue
