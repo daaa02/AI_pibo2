@@ -39,6 +39,13 @@ Scenario_List = {
 }
 
 
+class Scenario_List:
+    com_1 = ["사자와 쥐", "훌라후프에 동물 넣기"]
+    soc_1 = ["늑대 대장의 법", "나는 왕"]
+    cog_1 = ["외나무다리", "휴지길 놀이"]
+    mus_1 = ["나와 우리의 차이", "풍선 축구"]
+
+
 class Intro:
 
     def __init__(self, user_name, story_name, play_name, re_play_name):
@@ -57,7 +64,8 @@ class Intro:
 
         behavior_list.do_question()
         while True:
-            text_to_speech("오늘은 누구랑 놀까? 파이보랑 둘이 놀고 싶으면 1번, 엄마나 친구랑 같이 놀고 싶으면 2번을 골라줘")
+            text_to_speech("오늘은 누구랑 놀까?" 
+                           "파이보랑 둘이 놀고 싶으면 1번, 엄마나 친구랑 같이 놀고 싶으면 2번을 골라줘")
 
             user_said = speech_to_text()
             answer = NLP.nlp_number(user_said=user_said, dic=Dic)
