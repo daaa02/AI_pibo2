@@ -1,10 +1,10 @@
+# openpibo module
 import openpibo
 from openpibo.oled import Oled
 
 o = Oled()
 
 # draw_image 하고 바로 show 해야 안 사라짐
-
 
 def run():
     o.draw_image("/home/pi/AI_pibo2/src/data/icon/화면_물음표1.png")
