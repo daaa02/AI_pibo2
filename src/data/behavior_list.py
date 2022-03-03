@@ -1,16 +1,19 @@
 # behavior = motion + eye + oled + sound
 
+# python module
 import os
 import sys
 import time
 import json
 from threading import Thread
 
+# openpibo module
 import openpibo
 from openpibo.motion import Motion
 from openpibo.device import Device
 from openpibo.oled import Oled
 
+# my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 # import eye_list
 import src.data.oled_list as oled_list
