@@ -7,61 +7,79 @@ import time
 
 # openpibo module
 import openpibo
+from openpibo.oled import Oled
 from openpibo.motion import Motion
 
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
+oled = Oled()
 motion = Motion()
 
 
 def motion_test():
-    print("***질문하기_Long***")
+    oled.draw_text((10, 10), "질문하기_Long")
+    oled.show()
     motion.set_motion(name="m_question_L", cycle=1)
 
-    print("***질문하기_Short***")
+    oled.draw_text((10, 10), "질문하기_Short")
+    oled.show()
     motion.set_motion(name="m_question_S", cycle=1)
 
-    print("***제안하기_Long***")
+    oled.draw_text((10, 10), "제안하기_Long")
+    oled.show()
     motion.set_motion(name="m_suggestion_L", cycle=1)
 
-    print("***제안하기_Short***")
+    oled.draw_text((10, 10), "제안하기_Short")
+    oled.show()
     motion.set_motion(name="m_suggestion_S", cycle=1)
 
-    print("***설명하기_type-A***")
+    oled.draw_text((10, 10), "설명하기_type-A")
+    oled.show()
     motion.set_motion(name="m_explain_A", cycle=1)
 
-    print("***설명하기_type-B***")
+    oled.draw_text((10, 10), "설명하기_type-B")
+    oled.show()
     motion.set_motion(name="m_explain_B", cycle=1)
 
-    print("***사진찍기***")
+    oled.draw_text((10, 10), "사진찍기")
+    oled.show()
     motion.set_motion(name="m_photo", cycle=1)
 
-    print("***스탬프찍기***")
+    oled.draw_text((10, 10), "스탬프찍기")
+    oled.show()
     motion.set_motion(name="m_stamp", cycle=1)
 
-    print("***기다리기_type-A***")
+    oled.draw_text((10, 10), "기다리기_type-A")
+    oled.show()
     motion.set_motion(name="m_waiting_A", cycle=1)
 
-    print("***기다리기_type-B***")
+    oled.draw_text((10, 10), "기다리기_type-B")
+    oled.show()
     motion.set_motion(name="m_waiting_B", cycle=1)
 
-    print("***기다리기_type-C***")
+    oled.draw_text((10, 10), "기다리기_type-C")
+    oled.show()
     motion.set_motion(name="m_waiting_C", cycle=1)
 
-    print("***칭찬하기_Long***")
+    oled.draw_text((10, 10), "칭찬하기_Long")
+    oled.show()
     motion.set_motion(name="m_praise_L", cycle=1)
 
-    print("***칭찬하기_Short***")
+    oled.draw_text((10, 10), "칭찬하기_Short")
+    oled.show()
     motion.set_motion(name="m_praise_S", cycle=1)
 
-    print("***동의하기***")
+    oled.draw_text((10, 10), "동의하기")
+    oled.show()
     motion.set_motion(name="m_agree", cycle=1)
 
-    print("***기쁨***")
+    oled.draw_text((10, 10), "기쁨")
+    oled.show()
     motion.set_motion(name="m_joy", cycle=1)
 
-    print("***슬픔***")
+    oled.draw_text((10, 10), "슬픔")
+    oled.show()
     motion.set_motion(name="m_sad", cycle=1)
 
 
