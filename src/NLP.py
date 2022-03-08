@@ -1,5 +1,5 @@
+# python module
 import re
-
 from konlpy.tag import Kkma
 from konlpy.tag import Komoran
 from konlpy.tag import Okt
@@ -19,10 +19,10 @@ class Dictionary:
         self.Again = ['again', '다시', '또', '같은', '한 번 더', '한번 더', '계속']
 
         self.Animal = ['치타', '타조', '돌고래', '사슴', '호랑이', '고양이', '강아지', '수달', '코끼리', '토끼', '사자', '표범']
-        
+
         self.Number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-        
-        self.Number_word = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구', '십']
+
+        self.Number_Word = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구', '십']
 
 
 class NLP:
@@ -34,7 +34,7 @@ class NLP:
         self.temp = {}
         self.n = 0
 
-        
+
     def nlp_answer(self, user_said, dic):
         answer = ''
         for i in range(len(dic.Yes)):
@@ -49,33 +49,43 @@ class NLP:
         for n in range(len(dic.Again)):
             if dic.Again[n] in user_said:
                 answer = 'AGAIN'
+        print(answer)
         return answer
 
-    
-    def nlp_animal(self, user_input, dic):
-        """
-        기존에는 '가, 랑, 을, 를, ( )' 을 split 했는데, 이러면 삭제되는 동물들이 있움 ex.호랑이
-        그래서 공백, 가, 을, 를 제거하고 리스트화 ... 나중에 수정하기
-        """
-        a_list = re.split('[ 가을를]', user_input)  # ' ', 가, 랑, 을, 를 제거하고 리스트
 
-        answer = [i for i in a_list if i in dic.Animal]
-        return answer[0]
-    
-    
+    def nlp_animal(self, user_said, dic):
+        """
+        공백, 가, 을, 를 split 해서 리스트화
+        ex. input: 나는 호랑이가 좋아! ==> animal: 호랑이   ... 나중에 수정하기
+        """
+        a_list = re.split('[ 가을를]', user_said)  # ' ', 가, 을, 를 제거하고 리스트
+
+        animal = [i for i in a_list if i in dic.animal]
+        return animal[0]
+
+
+    def nlp_name(self, user_said):
+        """
+        공백, 이, 가 split 해서 한 단어씩 리스트화
+        ex. input: 두준이가 왕이 됐어! ==> name: 두준   ... 나중에 수정하기 2
+        """
+        a_list = re.split('[ 이가]', user_said)  # 공백 기준으로 리스트화 (단어 단위)
+        name = a_list[0]
+        return name
+
+
     def nlp_number(self, user_said, dic):
         answer = -1
         ko = -1
         nb = -1
-        for i, j in enumerate(dic.Number_word):
+        for i, j in enumerate(dic.Number):
             x = user_said.find(j)
             if x != -1:
                 ko = i
-        for i, j in enumerate(dic.Number):
+        for i, j in enumerate(dic.Number_Word):
             x = user_said.find(j)
             if x != -1:
                 nb = i
         answer = max(ko, nb)
         return answer
-    
-    
+
