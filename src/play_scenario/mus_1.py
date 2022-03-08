@@ -49,14 +49,14 @@ def Play_Balloon(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'Done':
             behavior_list.do_joy()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
         else:
-            print("*** Yes 기다리는 중 ***")
+            print("*** Done 기다리는 중 ***")
             continue
         break
 
