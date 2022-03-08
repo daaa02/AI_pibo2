@@ -193,27 +193,26 @@ def Play_Balloon(user_name):
             break
 
 
-        # 2.4 놀이 완료
-        behavior_list.do_question_L()
-        while True:
-            text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
+    # 2.4 놀이 완료
+    behavior_list.do_question_L()
+    while True:
+        text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-            user_said = speech_to_text()
-            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+        user_said = speech_to_text()
+        answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'AGAIN':
-                behavior_list.do_agree()
-                while True:
-                    text_to_speech("그래 또 하자!")
-                    start()
-            else:
-                behavior_list.do_praise_L()
-                while True:
-                    text_to_speech(f"열심히 놀이한 {user_name}이가 최고야~ 정말 신났어!")
-                    break
-            break
+        if answer == 'AGAIN':
+            behavior_list.do_agree()
+            while True:
+                text_to_speech("그래 또 하자!")
+                start()
+        else:
+            behavior_list.do_praise_L()
+            while True:
+                text_to_speech(f"열심히 놀이한 {user_name}이가 최고야~ 정말 신났어!")
+                break
+        break
 
-    start()
 
     # 2.5 마무리 대화
     behavior_list.do_question_L()
