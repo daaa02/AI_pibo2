@@ -211,7 +211,7 @@ def do_praise_S():
 
 
 def do_agree():
-    audio.play(filename="/home/pi/AI_pibo2/src/data/audio/딩동댕3.mp3", out='local', volume=-1000, background=False)
+    audio.play(filename="/home/pi/AI_pibo2/src/data/audio/딩동댕3.wav", out='local', volume=-1000, background=False)
     # e = Thread(target=eye_list.e_agree(), args=())
     m = Thread(target=motion.set_motion, args=("m_agree", 1))
     o = Thread(target=oled_list.o_agree(), args=())
