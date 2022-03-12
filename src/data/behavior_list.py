@@ -122,6 +122,8 @@ def do_photo():
     # e.start()
     m.start()
     o.start()
+    
+    
 
 
 def do_stamp():
