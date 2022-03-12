@@ -123,7 +123,7 @@ def do_photo():
     m.start()
     o.start()
     
-    
+    time.sleep(2)
 
 
 def do_stamp():
