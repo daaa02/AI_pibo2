@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # communication: 의사소통/언어표현
 
 # python module
