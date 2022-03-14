@@ -175,6 +175,8 @@ def Play_King(user_name):
                         continue
             start_2()
 
+    start()
+
     # 2.4 놀이 완료
     behavior_list.do_question_L()
     while True:
