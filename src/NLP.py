@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # python module
 import re
 from konlpy.tag import Kkma
