@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # social: 사회성/정서
 
 # python module
