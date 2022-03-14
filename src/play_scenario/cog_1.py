@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # cognition: 인지/지각/사고
 
 # python module
