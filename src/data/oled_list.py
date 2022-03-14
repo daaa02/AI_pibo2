@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # openpibo module
 import openpibo
 from openpibo.oled import Oled
