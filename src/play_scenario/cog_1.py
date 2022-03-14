@@ -159,6 +159,8 @@ def Play_Tissue(user_name):
                 continue
             break
 
+    start()
+
 
     # 2.4 놀이 완료
     behavior_list.do_question_L()
@@ -256,4 +258,3 @@ def Play_Tissue(user_name):
                 text_to_speech("다음에 또 놀자!")
                 break
         break
-
