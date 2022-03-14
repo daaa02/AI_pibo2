@@ -192,6 +192,7 @@ def Play_Balloon(user_name):
             text_to_speech("정말 축구 선수 같은 걸? 멋지다!")
             break
 
+    start()
 
     # 2.4 놀이 완료
     behavior_list.do_question_L()
