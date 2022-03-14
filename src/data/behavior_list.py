@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # behavior = motion + eye + oled + sound
 
 # python module
