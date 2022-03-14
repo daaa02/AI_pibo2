@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # muscle: 대근육/소근육
 
 # python module
