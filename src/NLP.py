@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 # python module
 import re
 from konlpy.tag import Kkma
@@ -21,6 +19,10 @@ class Dictionary:
         self.Again = ['again', '다시', '또', '같은', '한 번 더', '한번 더', '계속']
 
         self.Animal = ['치타', '타조', '돌고래', '사슴', '호랑이', '고양이', '강아지', '수달', '코끼리', '토끼', '사자', '표범']
+
+        self.One = ['1', '일', '첫']
+
+        self.Two = ['2', '이', '두']
 
         self.Number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
@@ -77,6 +79,18 @@ class NLP:
 
 
     def nlp_number(self, user_said, dic):
+        answer = ''
+        for i in range(len(dic.One)):
+            if dic.One[i] in user_said:
+                answer = '1'
+        for j in range(len(dic.Two)):
+            if dic.Two[j] in user_said:
+                answer = '2'
+        print(answer)
+        return answer
+
+    """
+    def nlp_number(self, user_said, dic):
         answer = -1
         ko = -1
         nb = -1
@@ -90,4 +104,4 @@ class NLP:
                 nb = i
         answer = max(ko, nb)
         return answer
-
+    """
