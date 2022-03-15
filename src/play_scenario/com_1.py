@@ -48,14 +48,14 @@ def Play_Hoop(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'DONE':
             behavior_list.do_joy()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
         else:
-            print("*** Yes 기다리는 중 ***")
+            print("*** DONE 기다리는 중 ***")
             continue
         break
 
@@ -143,7 +143,8 @@ def Play_Hoop(user_name):
         behavior_list.do_waiting_A()
         while True:
             text_to_speech("시간을 5분 줄게 자유롭게 그려봐. 다 그렸으면 다 그렸다고 말해줘.")
-            time.sleep(5)
+            time.sleep(5)   # test 하려고 5초로 함
+            # time.sleep(300)
 
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
@@ -170,6 +171,7 @@ def Play_Hoop(user_name):
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("그럼 이제 훌라후프를 바닥에 놓고 주변에 동물그림을 뿌려놓자.")
+                    time.sleep(1)
                     text_to_speech("내가 시~작! 하면 입으로 바람을 불어서 동물들을 훌라후프 안에 날려 넣는거야.")
                     break
             else:
@@ -180,8 +182,8 @@ def Play_Hoop(user_name):
         text_to_speech("준비~~~~~ 시작!")
         behavior_list.do_joy()
         while True:
-            text_to_speech("바람 소리 10초.mp4")     # 효과음 넣기!!!!!
-            time.sleep(1)
+            text_to_speech("후우우우~~~~")     # 효과음 넣기!!!!! ;마땅한 거 못 찾음
+            time.sleep(7)
             break
 
         behavior_list.do_question_S()
@@ -263,11 +265,13 @@ def Play_Hoop(user_name):
     behavior_list.do_stamp()
     while True:
         text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 술술 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
         break
 
     behavior_list.do_suggestion_L()
     while True:
         text_to_speech("사진을 찍어 줄게. 가장 마음에 드는 동물 그림을 들고 브이해봐!")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
         break
 
     behavior_list.do_photo()
