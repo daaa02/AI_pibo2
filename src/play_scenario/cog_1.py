@@ -49,14 +49,14 @@ def Play_Tissue(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'DONE':
             behavior_list.do_joy()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
         else:
-            print("*** Yes 기다리는 중 ***")
+            print("*** DONE 기다리는 중 ***")
             continue
         break
 
@@ -107,7 +107,7 @@ def Play_Tissue(user_name):
         behavior_list.do_suggestion_S()
         while True:
             time.sleep(1)
-            text_to_speech("먼저 곳곳에 휴지 섬을 만들자. 휴지를 통째로 놓고 쌓아줘.")
+            text_to_speech("먼저 곳곳에 휴지 섬을 만들자. ")
             break
 
         behavior_list.do_explain_B()
@@ -228,11 +228,13 @@ def Play_Tissue(user_name):
     behavior_list.do_stamp()
     while True:
         text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
-        break
+        audio.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        break     
 
     behavior_list.do_suggestion_S()
     while True:
         text_to_speech("사진을 찍어 줄게. 휴지섬 앞에 서서 포즈를 취해봐!")
+        audio.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
         break
 
     behavior_list.do_photo()
