@@ -50,14 +50,14 @@ def Play_Balloon(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'Done':
+        if answer == 'DONE':
             behavior_list.do_joy()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
         else:
-            print("*** Done 기다리는 중 ***")
+            print("*** DONE 기다리는 중 ***")
             continue
         break
 
@@ -65,6 +65,7 @@ def Play_Balloon(user_name):
     behavior_list.do_explain_B()
     while True:
         text_to_speech("풍선은 바람을 넣으면 재밌는 소리를 내고 높이 날아가기도 해")
+        time.sleep(1)
         text_to_speech("풍선 꼭지를 묶으면 공처럼 놀 수도 있어.")
         break
 
@@ -108,15 +109,14 @@ def Play_Balloon(user_name):
     def start():
         behavior_list.do_suggestion_S()
         while True:
-            time.sleep(1)
             text_to_speech("자, 이제 풍선을 불어봐~")
             time.sleep(5)
             break
 
         behavior_list.do_suggestion_L()
         while True:
-            time.sleep(1)
-            text_to_speech("풍선을 묶지 말고 멀리 날려보자~ (웃음 소리 : 3초)")
+            text_to_speech("풍선을 묶지 말고 멀리 날려보자~")
+            time.sleep(3)
             text_to_speech("이제 풍선을 쫓아가서 잡아 오자.")
             break
 
@@ -134,7 +134,8 @@ def Play_Balloon(user_name):
 
         behavior_list.do_explain_A()
         while True:
-            text_to_speech("풍선으로 공을 만들어 축구 선수들처럼 멋지게 차보자~")
+            text_to_speech("풍선으로 공을 만들어 축구 선수들처럼 멋지게 차보자~")           
+            time.sleep(1)
             text_to_speech("발이나 무릎으로 풍선을 차 올리는 거야.")
             break
 
@@ -150,7 +151,7 @@ def Play_Balloon(user_name):
                 while True:
                     text_to_speech("자, 그럼 시~작! 내가 열을 셀 동안 해봐. ")
                     time.sleep(1)
-                    text_to_speech("하나, 둘, 셋, 넷, 다섯, 여섯, 일곱, 여덟, 아홉, 열!")
+                    text_to_speech("하나, 두울, 세엣, 네엣, 다섯, 여섯, 일곱, 여덟, 아홉, 열!")    # 둘, 셋 하면 너무 빠르게 느껴짐
                     break
             else:
                 print("*** Done 기다리는 중 ***")
@@ -181,7 +182,7 @@ def Play_Balloon(user_name):
                 while True:
                     text_to_speech("자, 그럼 시~작! 내가 열을 셀 동안 해봐. ")
                     time.sleep(1)
-                    text_to_speech("하나, 둘, 셋, 넷, 다섯, 여섯, 일곱, 여덟, 아홉, 열!")
+                    text_to_speech("하나, 두울, 세엣, 네엣, 다섯, 여섯, 일곱, 여덟, 아홉, 열!")
                     break
             else:
                 print("*** Done 기다리는 중 ***")
@@ -253,11 +254,13 @@ def Play_Balloon(user_name):
     behavior_list.do_stamp()
     while True:
         text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 튼튼 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
         break
 
     behavior_list.do_suggestion_S()
     while True:
         text_to_speech("사진을 찍어 줄게. 축구 선수처럼 포즈를 취해봐!")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
         break
 
     behavior_list.do_photo()
