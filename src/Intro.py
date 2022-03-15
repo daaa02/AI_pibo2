@@ -53,13 +53,13 @@ class Intro:
 
     def recommended_play(self, play_name):
         if play_name is Scenario_List.com_1[1]:
-            Play_Hoop(user_name=user_name)
+            Play_Hoop(user_name)
         elif play_name is Scenario_List.soc_1[1]:
-            Play_King(user_name=user_name)
+            Play_King(user_name)
         elif play_name is Scenario_List.cog_1[1]:
-            Play_Tissue(user_name=user_name)
+            Play_Tissue=(user_name)
         elif play_name is Scenario_List.mus_1[1]:
-            Play_Balloon(user_name=user_name)
+            Play_Balloon(user_name)
 
     def Intro_Scenario(self):
 
@@ -134,7 +134,8 @@ story_name = recommendation_list[0]
 play_name = recommendation_list[0]
 re_play_name = recommendation_list[1]
 
+
 if __name__ == "__main__":
     user_name = input("이름 입력: ")
-    run = Intro(user_name, story_name[0], play_name[1], re_play_name[1])
+    run = Intro(user_name, story_name[0], play_name[1], re_play_name[1])    # 하나씩 테스트 할 때는 지정해서 함
     run.Intro_Scenario()
