@@ -23,11 +23,11 @@ motion = Motion()
 audio = TextToSpeech()
 
 
-# 스탬프 찍기, 사진 찍기는 말 하고 나서 효과음 재생
+# 효과음 중 스탬프 찍기, 사진 찍기는 TTS 끝나고 재생 => 놀이 스크립트에서 효과음 재생!
 
 def do_question_L():
     audio.play(filename="/home/pi/AI_pibo2/src/data/audio/물음표소리1.wav", out='local', volume=-1000, background=False)
-    m = Thread(target=motion.set_motion, args=("m_question_L", 10))
+    m = Thread(target=motion.set_motion, args=("m_question_L", 1))
     o = Thread(target=oled.o_question(), args=())
 
     m.daemon = True
@@ -37,13 +37,13 @@ def do_question_L():
     o.start()
     
     while True:
-        eye.e_question()
+        eye.e_question()    # motion, oled 돌아가는 동안 eyes on
         break
 
 
 def do_question_S():
     audio.play(filename="/home/pi/AI_pibo2/src/data/audio/물음표소리1.wav", out='local', volume=-1000, background=False)
-    m = Thread(target=motion.set_motion, args=("m_question_S", 10))
+    m = Thread(target=motion.set_motion, args=("m_question_S", 1))
     o = Thread(target=oled.o_question(), args=())
 
     m.daemon = True
@@ -58,7 +58,7 @@ def do_question_S():
 
 
 def do_suggestion_L():
-    m = Thread(target=motion.set_motion, args=("m_suggestion_L", 10))
+    m = Thread(target=motion.set_motion, args=("m_suggestion_L", 1))
     o = Thread(target=oled.o_suggestion, args=())
 
     m.daemon = True
@@ -73,7 +73,7 @@ def do_suggestion_L():
 
 
 def do_suggestion_S():
-    m = Thread(target=motion.set_motion, args=("m_suggestion_S", 10))
+    m = Thread(target=motion.set_motion, args=("m_suggestion_S", 1))
     o = Thread(target=oled.o_suggestion, args=())
 
     m.daemon = True
@@ -88,7 +88,7 @@ def do_suggestion_S():
 
 
 def do_explain_A():
-    m = Thread(target=motion.set_motion, args=("m_explain_A", 10))
+    m = Thread(target=motion.set_motion, args=("m_explain_A", 5))
     o = Thread(target=oled.o_explain, args=())
 
     m.daemon = True
@@ -103,7 +103,7 @@ def do_explain_A():
 
 
 def do_explain_B():
-    m = Thread(target=motion.set_motion, args=("m_explain_B", 10))
+    m = Thread(target=motion.set_motion, args=("m_explain_B", 5))
     o = Thread(target=oled.o_explain, args=())
 
     m.daemon = True
@@ -194,7 +194,7 @@ def do_waiting_C():
 
 def do_praise_L():
     audio.play(filename="/home/pi/AI_pibo2/src/data/audio/경쾌한음악.wav", out='local', volume=-1000, background=False)
-    m = Thread(target=motion.set_motion, args=("m_praise_L", 10))
+    m = Thread(target=motion.set_motion, args=("m_praise_L", 1))
     o = Thread(target=oled.o_compliment, args=())
 
     m.daemon = True
@@ -210,7 +210,7 @@ def do_praise_L():
 
 def do_praise_S():
     audio.play(filename="/home/pi/AI_pibo2/src/data/audio/경쾌한음악.wav", out='local', volume=-1000, background=False)
-    m = Thread(target=motion.set_motion, args=("m_praise_S", 10))
+    m = Thread(target=motion.set_motion, args=("m_praise_S", 1))
     o = Thread(target=oled.o_compliment, args=())
 
     m.daemon = True
@@ -226,7 +226,7 @@ def do_praise_S():
 
 def do_agree():
     audio.play(filename="/home/pi/AI_pibo2/src/data/audio/딩동댕3.wav", out='local', volume=-1000, background=False)
-    m = Thread(target=motion.set_motion, args=("m_agree", 10))
+    m = Thread(target=motion.set_motion, args=("m_agree", 1))
     o = Thread(target=oled.o_agree(), args=())
 
     m.daemon = True
@@ -242,7 +242,7 @@ def do_agree():
 
 def do_joy():
     audio.play(filename="/home/pi/AI_pibo2/src/data/audio/기분좋음.mp3", out='local', volume=-1000, background=False)
-    m = Thread(target=motion.set_motion, args=("m_joy", 10))
+    m = Thread(target=motion.set_motion, args=("m_joy", 2))
     o = Thread(target=oled.o_joy(), args=())
 
     m.daemon = True
@@ -258,7 +258,7 @@ def do_joy():
 
 def do_sad():
     audio.play(filename="/home/pi/AI_pibo2/src/data/audio/슬픈소리.wav", out='local', volume=-1000, background=False)
-    m = Thread(target=motion.set_motion, args=("m_sad", 10))
+    m = Thread(target=motion.set_motion, args=("m_sad", 1))
     o = Thread(target=oled.o_sad(), args=())
 
     m.daemon = True
