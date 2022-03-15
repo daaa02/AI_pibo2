@@ -47,31 +47,25 @@ def Play_King(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'DONE':
             behavior_list.do_joy()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
         else:
-            print("*** Yes 기다리는 중 ***")
+            print("*** DONE 기다리는 중 ***")
             continue
         break
 
     # 2.2 놀이 설명
-    behavior_list.do_explain_B()
-    while True:
-        text_to_speech("풍선은 바람을 넣으면 재밌는 소리를 내고 높이 날아가기도 해")
-        text_to_speech("풍선 꼭지를 묶으면 공처럼 놀 수도 있어.")
-        break
-
     behavior_list.do_question_L()
     while True:
         time.sleep(1)
-        text_to_speech("파이보가 ")
-        text_to_speech("왕이다!")
+        text_to_speech("파이보가 왕이다!")
         text_to_speech("를 외치면 달려가서 왕관을 먼저 쓴 친구가 왕이 되는거야.")
         text_to_speech("시민들은 왕이 하는 행동을 똑같이 따라해야 해.")
+        time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있다고 말해줘~")
 
         user_said = speech_to_text()
@@ -158,22 +152,11 @@ def Play_King(user_name):
                 behavior_list.do_suggestion_S()
                 while True:
                     text_to_speech("벌써 시간이 다 됐어. 다시 새로운 왕을 뽑아보자.")
-                    break
-
-                behavior_list.do_waiting_A()
-                while True:
-                    text_to_speech("왕관을 친구들 가운데 놓고 준비가 됐으면 시작 이라고 말해줘.")
-
-                    user_said = speech_to_text()
-                    answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-                    if answer == 'DONE':
-                        print("*** 2회차 ***")
-                        start_2()
-                        break
-                    else:
-                        print("*** Done 기다리는 중 ***")
-                        continue
+                    break                
+                print("*** 2회차 ***")
+                start_2()
+                break
+                
             start_2()
 
     start()
@@ -237,11 +220,13 @@ def Play_King(user_name):
     behavior_list.do_stamp()
     while True:
         text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
         break
 
     behavior_list.do_suggestion_S()
     while True:
         text_to_speech("사진을 찍어 줄게. 왕관을 쓰고 브이해봐!")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
         break
 
     behavior_list.do_photo()
