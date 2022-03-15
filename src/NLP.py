@@ -9,7 +9,7 @@ import pandas as pd
 
 class Dictionary:
     def __init__(self):
-        self.Yes = ['yes', '네', '예', '응', '어', '있어', '좋아', '그래', '맞아', '알았어', '알겠어', '당연', '됐어']
+        self.Yes = ['yes', '네', '예', '응', '어', '있어', '좋아', '좋은', '좋다', '그래', '맞아', '알았어', '알겠어', '당연', '됐어']
 
         self.No = ['no', '아니', '안', '별로', '글쎄', '싫어', '싫', '못 하', '못 하겠어', '못해', '없었어', '없어', '없네',
                    '없는', '몰라', '모르', '몰라', '그만']
@@ -40,10 +40,14 @@ class NLP:
 
 
     def nlp_answer(self, user_said, dic):
+        """
+        사용자가 발화한 내용에 포함되는 단어가 있다면 return answer '_'
+        ex. input: 좋은 것 같아 ==> Yes=[..'좋은'..] ==> answer: YES
+        """
         answer = ''
         for i in range(len(dic.Yes)):
-            if dic.Yes[i] in user_said:
-                answer = 'YES'
+            if dic.Yes[i] in user_said:     
+                answer = 'YES'              
         for j in range(len(dic.No)):
             if dic.No[j] in user_said:
                 answer = 'NO'
@@ -62,7 +66,7 @@ class NLP:
         공백, 가, 을, 를 split 해서 리스트화
         ex. input: 나는 호랑이가 좋아! ==> animal: 호랑이   ... 나중에 수정하기
         """
-        a_list = re.split('[ 가을를]', user_said)  # ' ', 가, 을, 를 제거하고 리스트
+        a_list = re.split('[ 가을를]', user_said)  
 
         animal = [i for i in a_list if i in dic.Animal]
         return animal[0]
@@ -73,7 +77,7 @@ class NLP:
         공백, 이, 가 split 해서 한 단어씩 리스트화
         ex. input: 두준이가 왕이 됐어! ==> name: 두준   ... 나중에 수정하기 2
         """
-        a_list = re.split('[ 이가]', user_said)  # 공백 기준으로 리스트화 (단어 단위)
+        a_list = re.split('[ 이가]', user_said)  
         name = a_list[0]
         return name
 
