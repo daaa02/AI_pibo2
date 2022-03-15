@@ -228,13 +228,13 @@ def Play_Tissue(user_name):
     behavior_list.do_stamp()
     while True:
         text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
-        audio.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
         break     
 
     behavior_list.do_suggestion_S()
     while True:
         text_to_speech("사진을 찍어 줄게. 휴지섬 앞에 서서 포즈를 취해봐!")
-        audio.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
         break
 
     behavior_list.do_photo()
