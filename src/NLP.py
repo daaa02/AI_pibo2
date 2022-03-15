@@ -64,7 +64,7 @@ class NLP:
         """
         a_list = re.split('[ 가을를]', user_said)  # ' ', 가, 을, 를 제거하고 리스트
 
-        animal = [i for i in a_list if i in dic.animal]
+        animal = [i for i in a_list if i in dic.Animal]
         return animal[0]
 
 
