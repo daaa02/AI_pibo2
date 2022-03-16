@@ -30,8 +30,7 @@ wpa_supplicant.conf 파일의 network 부분이 입력한 정보와 같다면 wi
 시스템 재시작 후, wi-fi 연결 확인 (wlan0)
 	
 	$ ifconfig	
-	* ip 주소: inet xxx.xxx.xxx.xxx
-	
+	* ip 주소: inet xxx.xxx.xxx.xxx	
   
 
 ## 1-2. 원격 접속 하기	
@@ -39,6 +38,7 @@ wpa_supplicant.conf 파일의 network 부분이 입력한 정보와 같다면 wi
 ### 1-2-1. 프로그램 다운로드
 
 xming: <https://xming.softonic.kr/>
+
 putty: <https://www.putty.org/>
 
 ### 1-2-2. 원격 접속
