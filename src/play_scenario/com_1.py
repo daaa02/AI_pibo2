@@ -27,7 +27,7 @@ def text_to_speech(string):
     tts.tts_connection(f"<speak>\
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
                 </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    tts.play(filename, 'local', '-1000', False)
 
 
 def Play_Hoop(user_name):
@@ -65,7 +65,7 @@ def Play_Hoop(user_name):
         text_to_speech("종이에 동물을 그리고 오린 다음에, 입으로 바람을 불어서 훌라후프 안에 넣을거야.")
         break
 
-    behavior_list.do_question_L()
+    behavior_list.do_question_S()
     while True:
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있다고 말해줘~")
@@ -74,7 +74,7 @@ def Play_Hoop(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
-            behavior_list.do_explain_C()
+            behavior_list.do_explain_B()
             while True:
                 text_to_speech("입으로 바람을 불기 힘들면 도구를 사용해서 바람을 일으켜도 좋아")
                 break
@@ -103,7 +103,7 @@ def Play_Hoop(user_name):
 
     # 2.3 놀이 시작
     def start():
-        behavior_list.do_question_L()
+        behavior_list.do_question_S()
         while True:
             time.sleep(1)
             text_to_speech(f"{user_name} 이가 좋아하는 동물 카드를 보여줘")
@@ -210,7 +210,7 @@ def Play_Hoop(user_name):
             break
 
         # 2.4 놀이 완료
-        behavior_list.do_question_L()
+        behavior_list.do_question_S()
         while True:
             text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
