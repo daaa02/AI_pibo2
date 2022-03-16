@@ -234,10 +234,10 @@ def Play_Tissue(user_name):
     behavior_list.do_suggestion_S()
     while True:
         text_to_speech("사진을 찍어 줄게. 휴지섬 앞에 서서 포즈를 취해봐!")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
         break
 
     behavior_list.do_photo()
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
