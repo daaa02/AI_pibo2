@@ -27,7 +27,7 @@ def text_to_speech(string):
     tts.tts_connection(f"<speak>\
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
                 </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    tts.play(filename, 'local', '-1000', False)
 
 
 def Play_Balloon(user_name):
@@ -69,7 +69,7 @@ def Play_Balloon(user_name):
         text_to_speech("풍선 꼭지를 묶으면 공처럼 놀 수도 있어.")
         break
 
-    behavior_list.do_question_L()
+    behavior_list.do_question_S()
     while True:
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있다고 말해줘~")
@@ -197,7 +197,7 @@ def Play_Balloon(user_name):
     start()
 
     # 2.4 놀이 완료
-    behavior_list.do_question_L()
+    behavior_list.do_question_S()
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
@@ -210,7 +210,7 @@ def Play_Balloon(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_L()
+            behavior_list.do_praise_S()
             while True:
                 text_to_speech(f"열심히 놀이한 {user_name}이가 최고야~ 정말 신났어!")
                 break
@@ -218,7 +218,7 @@ def Play_Balloon(user_name):
 
 
     # 2.5 마무리 대화
-    behavior_list.do_question_L()
+    behavior_list.do_question_S()
     while True:
         time.sleep(1)
         text_to_speech("풍선으로 하는 축구 놀이 재미있었어?")
@@ -259,11 +259,11 @@ def Play_Balloon(user_name):
 
     behavior_list.do_suggestion_S()
     while True:
-        text_to_speech("사진을 찍어 줄게. 축구 선수처럼 포즈를 취해봐!")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+        text_to_speech("사진을 찍어 줄게. 축구 선수처럼 포즈를 취해봐!")        
         break
 
     behavior_list.do_photo()
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
