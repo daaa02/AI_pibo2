@@ -27,7 +27,7 @@ def text_to_speech(string):
     tts.tts_connection(f"<speak>\
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
                 </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    tts.play(filename, 'local', '-1000', False)
 
 
 def Play_King(user_name):
