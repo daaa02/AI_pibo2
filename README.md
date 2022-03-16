@@ -38,6 +38,7 @@ wpa_supplicant.conf 파일의 network 부분이 입력한 정보와 같다면 wi
 ### 1-2-1. 프로그램 다운로드
 
 xming: <https://xming.softonic.kr/>
+
 putty: <https://www.putty.org/>
 
 ### 1-2-2. 원격 접속
