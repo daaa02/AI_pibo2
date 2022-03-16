@@ -42,7 +42,6 @@ wpa_supplicant.conf 파일의 network 부분이 입력한 정보와 같다면 wi
 * xming: https://xming.softonic.kr/
 * putty: https://www.putty.org/
 
-원격 접속
 
 	1. xming 실행
 	2. putty 실행	 
