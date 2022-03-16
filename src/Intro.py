@@ -33,7 +33,7 @@ def text_to_speech(string):
     tts.tts_connection(f"<speak>\
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
                 </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    tts.play(filename, 'local', '-1000', False)
 
 
 class Scenario_List:
@@ -53,13 +53,15 @@ class Intro:
 
     def recommended_play(self, play_name):
         if play_name is Scenario_List.com_1[1]:
-            Play_Hoop(user_name)
+            return Play_Hoop(user_name)
         elif play_name is Scenario_List.soc_1[1]:
-            Play_King(user_name)
+            return Play_King(user_name)
         elif play_name is Scenario_List.cog_1[1]:
-            Play_Tissue=(user_name)
+            return Play_Tissue(user_name)
         elif play_name is Scenario_List.mus_1[1]:
-            Play_Balloon(user_name)
+            return Play_Balloon(user_name)
+        else:
+            print("111")
 
     def Intro_Scenario(self):
 
@@ -130,12 +132,12 @@ class Intro:
 recommendation = [Scenario_List.com_1, Scenario_List.soc_1, Scenario_List.cog_1, Scenario_List.mus_1]
 recommendation_list = random.sample(recommendation, 2)
 
-story_name = recommendation_list[0]
-play_name = recommendation_list[0]
-re_play_name = recommendation_list[1]
+story_name = recommendation_list[0][0]
+play_name = recommendation_list[0][1]
+re_play_name = recommendation_list[1][1]
 
 
 if __name__ == "__main__":
     user_name = input("이름 입력: ")
-    run = Intro(user_name, story_name[0], play_name[1], re_play_name[1])    # 하나씩 테스트 할 때는 지정해서 함
+    run = Intro(user_name, story_name, play_name, re_play_name) 
     run.Intro_Scenario()
