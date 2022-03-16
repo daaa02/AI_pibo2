@@ -110,10 +110,6 @@ wpa_supplicant.conf 파일의 network 부분이 입력한 정보와 같다면 wi
 
 * 방법 1) 터미널에서 수정하기
 			
-		$ cd <수정할 파일이 있는 경로>
-		ex. 현재 위치가 /AI_pibo2/src 일 경우 $ cd play_scenario
-
-		$ nano <수정할 파일>
 
 * 방법 2) 조금 편하게 수정하기
 
