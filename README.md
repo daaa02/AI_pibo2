@@ -42,14 +42,15 @@ wpa_supplicant.conf 파일의 network 부분이 입력한 정보와 같다면 wi
 
 ### 1-2-2. 원격 접속
 
-* xming 실행
-* putty 실행
+1. xming 실행
+2. putty 실행
 		 
 		1) Category-SSH-X11: [v]Enable X11 forwarding
 		2) Category-Session: Host Name에 ip 주소 입력
 		3) Saved Session은 선택 사항
 		4) Open
-* ID/PW 입력
+
+3. ID/PW 입력
 		
 		login: pi
 		password: 1234
