@@ -139,7 +139,7 @@ def Play_King(user_name):
                 time.sleep(10)
                 break
 
-            behavior_list.do_praise_L()
+            behavior_list.do_praise_S()
             while True:
                 text_to_speech("정말 잘 따라하는 걸?")
                 time.sleep(10)
@@ -211,7 +211,7 @@ def Play_King(user_name):
         text_to_speech("그런 생각을 가지고 있구나.")
         break
 
-    behavior_list.do_praise_L()
+    behavior_list.do_praise_S()
     while True:
         text_to_speech(f"{user_name}이는 멋진 왕을 할 수 있을 것 같아!")
         break
