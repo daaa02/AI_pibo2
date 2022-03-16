@@ -164,7 +164,7 @@ def Play_Tissue(user_name):
 
 
     # 2.4 놀이 완료
-    behavior_list.do_question_L()
+    behavior_list.do_question_S()
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
@@ -177,7 +177,7 @@ def Play_Tissue(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_L()
+            behavior_list.do_praise_S()
             while True:
                 text_to_speech(f"열심히 따라해준 {user_name}이가 최고야~ 정말 신났어!")
                 break
@@ -190,7 +190,7 @@ def Play_Tissue(user_name):
         text_to_speech("이제 입으로 바람을 만들어서 휴지를 날려보자.")
         time.sleep(5)
 
-        text_to_speech("길이었던 휴지를 찢어서 휴지 섬에 눈을 내려보자.")
+        text_to_speech("길 이었던 휴지를 찢어서 휴지 섬에 눈을 내려보자.")
         text_to_speech("끝났으면 끝났다고 말해줘~")
 
         user_said = speech_to_text()
