@@ -141,7 +141,7 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 
 ## 3-2. 코드 수정하기
 
-* 방법 1) 터미널에서 수정하기
+### 3-2-1. 방법 1: 터미널에서 수정하기
 
      수정하고자 하는 파일이 위치한 경로로 접속 (cd 명령어 사용)   
     
@@ -152,7 +152,7 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
     nano 편집기 사용 방법은 검색 필요 (간단)
 
 
-* 방법 2) 조금 편하게 수정하기
+### 3-2-2. 방법 2: 조금 편하게 수정하기
     
     프로그램 다운로드
     * WinSCP: https://winscp.net/eng/docs/lang:ko
