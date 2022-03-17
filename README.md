@@ -9,13 +9,13 @@
     pi@themaker: ~/AI_pibo2 $ <명령어>  
     // 현재 경로: (/home/pi)/AI_pibo2  
 
-## 1. 환경 설정
+# 1. 환경 설정
 
-### 1-1. wi-fi 연결하기
+## 1-1. wi-fi 연결하기
 
 * 준비물
     * 파이보 뒷면(등) 분리를 위한 드라이버, 
-    * Micro HDMI to HDMI 또는 MicroSD카드 리더기(노트북에 내장되어있을 수 있음)
+    * Micro HDMI to HDMI 또는 MicroSD카드 리더기(노트북에 내장되어있을 수 있음)    * 
 
 ### 1-1-1. 방법 1: HDMI 연결
 
@@ -74,7 +74,7 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 	[S] WIFI_NAME
   
 
-### 1-2. 원격 접속하기	
+## 1-2. 원격 접속하기	
 
 프로그램 다운로드
 
@@ -93,7 +93,7 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 			password: 1234
 	
 
-### 1-3. 마이크, 스피커 확인하기
+## 1-3. 마이크, 스피커 확인하기
 
 녹음 및 재생 장치 연결 확인 
 
@@ -125,21 +125,21 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 	$ aplay --format=S16_LE --rate=16000 out.raw
 
 
-## 2. 코드 실행
+# 2. 코드 실행
 
 단축 명령어
 
 	$ pibo
-    // 놀이 도입 시나리오(src/Intro.py) → 놀이 수행(src/play_scenario/<play_name>.py) →  종료
+    	// 놀이 도입 시나리오(src/Intro.py) → 놀이 수행(src/play_scenario/<play_name>.py) →  종료
     
-## 3. 기타
+# 3. 기타
 
-### 3-1. 파일 업데이트하기 
+## 3-1. 파일 업데이트하기 
 
 	$ cd
 	$ ./update.sh
 
-### 3-2. 코드 수정하기
+## 3-2. 코드 수정하기
 
 * 방법 1) 터미널에서 수정하기
 
