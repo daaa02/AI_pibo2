@@ -4,19 +4,22 @@
 
 환경 설정만 해도 거의 끄읕
 
+*'$' 뒤의 명령어*를 터미널에 한 줄씩 복붙하면 됩니다.
 
 ## 1. 환경 설정
 
 ### 1-1. wi-fi 연결하기
 
-* 준비물: Micro HDMI to HDMI 케이블 또는 Micro SD카드 리더기(노트북에 내장되어있을 수 있음)
+* 준비물
+    * 파이보 뒷면(등) 분리를 위한 드라이버, 
+    * Micro HDMI to HDMI 또는 MicroSD카드 리더기(노트북에 내장되어있을 수 있음), 
 
-### 1-1-1. 방법 1: HDMI 연결
+#### 1-1-1. 방법 1: HDMI 연결
 
 부팅 후 로그인하기 (ID/PW 입력)
 
-    login: pi
-    password: 1234
+    $ login: pi
+    $ password: 1234
 
 wi-fi 정보 입력
 
@@ -26,7 +29,7 @@ wi-fi 정보 입력
 wi-fi 연결 확인
 
 	$ nano /etc/wpa_supplicant/wpa_supplicant.conf
-	
+	 
 	country=GB 
 	ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 	network={
@@ -39,8 +42,13 @@ wpa_supplicant.conf 파일의 network 부분이 입력한 정보와 같다면 wi
 
 	$ sudo reboot
 
+시스템 재시작 후, wi-fi 연결 확인 (wlan0)
+	
+	$ ifconfig	
+	* ip 주소: inet xxx.xxx.xxx.xxx	
 
-### 1-1-2. 방법 2: SD카드
+
+#### 1-1-2. 방법 2: SD카드
 
 전원 꺼진 상태에서 라즈베리파이 보드의 SD카드 제거 후
 PC에 SD카드 삽입 (또는 리더기 연결)
@@ -52,14 +60,15 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 	ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 	network={
         ssid="WIFI_NAME"
-        #psk="WIFI_PASSWD"
-        key_mgmt=WPA-PSK        // 비밀번호 없는 경우 WPA-SPK 대신 NONE
+        psk="WIFI_PASSWD"       // 비밀번호 없는 경우 psk 입력하지 말고,
+        key_mgmt=WPA-PSK        // WPA-SPK 대신 NONE 입력하기
     }
 
-시스템 재시작 후, wi-fi 연결 확인 (wlan0)
+파이보 부팅 후, OLED에서 wi-fi 연결 확인 (W, S)
 	
-	$ ifconfig	
-	* ip 주소: inet xxx.xxx.xxx.xxx	
+	#NETWORK	
+	[W] xxx.xxx.xxx.xxx
+	[S] WIFI_NAME
   
 
 ### 1-2. 원격 접속하기	
@@ -90,7 +99,7 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 	$ aplay -l		 
 
 장치 사용 설정 
-(장치가 연결 되어있지만 안 될 경우 수정!)
+*(장치가 연결 되어있지만 안 될 경우 수정!)*
 
 	$ nano .asoundrc
 	
@@ -115,16 +124,11 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 
 ## 2. 코드 실행
 
-디렉토리에서 실행
-
-	$ cd AI_pibo2/src
-	$ py Intro.py
-
-또는 단축 명령어
+단축 명령어
 
 	$ pibo
-
-
+    // 놀이 도입 시나리오(src/Intro.py) → 놀이 수행(src/play_scenario/<play_name>.py) →  종료
+    
 ## 3. 기타
 
 ### 3-1. 파일 업데이트하기 
