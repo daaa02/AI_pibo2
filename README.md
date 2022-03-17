@@ -4,8 +4,10 @@
 
 환경 설정만 해도 거의 끄읕
 
-**'$' 뒤의 명령어** 를 터미널에 한 줄씩 복붙하면 됩니다.
+**'$' 뒤의 명령어**를 터미널에 한 줄씩 복붙하면 됩니다.
 
+    pi@themaker: ~/AI_pibo2 $ <명령어>  
+    // 현재 경로: (/home/pi)/AI_pibo2  
 
 ## 1. 환경 설정
 
@@ -13,9 +15,9 @@
 
 * 준비물
     * 파이보 뒷면(등) 분리를 위한 드라이버, 
-    * Micro HDMI to HDMI 또는 MicroSD카드 리더기(노트북에 내장되어있을 수 있음)
+    * Micro HDMI to HDMI 또는 MicroSD카드 리더기(노트북에 내장되어있을 수 있음), 
 
-### 1-1-1. 방법 1: HDMI 연결
+#### 1-1-1. 방법 1: HDMI 연결
 
 부팅 후 로그인하기 (ID/PW 입력)
 
@@ -46,10 +48,10 @@ wpa_supplicant.conf 파일의 network 부분이 입력한 정보와 같다면 wi
 시스템 재시작 후, wi-fi 연결 확인 (wlan0)
 	
 	$ ifconfig	
-	* ip 주소: inet xxx.xxx.xxx.xxx	
+	// ip 주소: inet xxx.xxx.xxx.xxx	
 
 
-### 1-1-2. 방법 2: SD카드
+#### 1-1-2. 방법 2: SD카드
 
 전원 꺼진 상태에서 라즈베리파이 보드의 SD카드 제거 후
 PC에 SD카드 삽입 (또는 리더기 연결)
@@ -140,8 +142,26 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 ### 3-2. 코드 수정하기
 
 * 방법 1) 터미널에서 수정하기
-			
+
+     수정하고자 하는 파일이 위치한 경로로 접속 (cd 명령어 사용)   
+    
+        // 현재 위치한 디렉토리를 기준으로 (상대경로)
+        ~/AI_pibo2 $ cd src/data
+                   $ nano <수정할 파일명>.py
+                   
+    nano 편집기 사용 방법은 검색 필요 (간단)
+
 
 * 방법 2) 조금 편하게 수정하기
+    
+    프로그램 다운로드
+    * WinSCP: https://winscp.net/eng/docs/lang:ko
+    
+            1. WinSCP 실행
+            2. ip 주소, ID/PW 입력
+            3. 수정할 파일 경로로 들어가서 편집
+    
+    
+    
 
 		 
