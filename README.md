@@ -13,7 +13,7 @@
 
 * 준비물
     * 파이보 뒷면(등) 분리를 위한 드라이버, 
-    * Micro HDMI to HDMI 또는 MicroSD카드 리더기(노트북에 내장되어있을 수 있음), 
+    * Micro HDMI to HDMI 또는 MicroSD카드 리더기(노트북에 내장되어있을 수 있음)
 
 #### 1-1-1. 방법 1: HDMI 연결
 
