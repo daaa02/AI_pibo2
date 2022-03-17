@@ -9,6 +9,15 @@
 
 ### 1-1. wi-fi 연결하기
 
+* 준비물: Micro HDMI to HDMI 케이블 또는 Micro SD카드 리더기(노트북에 내장되어있을 수 있음)
+
+### 1-1-1. 방법 1: HDMI 연결
+
+부팅 후 로그인하기 (ID/PW 입력)
+
+    login: pi
+    password: 1234
+
 wi-fi 정보 입력
 
 	$ sudo su
@@ -29,6 +38,23 @@ wi-fi 연결 확인
 wpa_supplicant.conf 파일의 network 부분이 입력한 정보와 같다면 wi-fi 인증 성공 
 
 	$ sudo reboot
+
+
+### 1-1-2. 방법 2: SD카드
+
+전원 꺼진 상태에서 라즈베리파이 보드의 SD카드 제거 후
+PC에 SD카드 삽입 (또는 리더기 연결)
+
+MicroSD카드/boot/wpa_supplicant.conf 파일 수정
+(확장자 .txt로 잠깐 변경한 후 수정 가능)
+
+	country=GB 
+	ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+	network={
+        ssid="WIFI_NAME"
+        #psk="WIFI_PASSWD"
+        key_mgmt=WPA-PSK        // 비밀번호 없는 경우 WPA-SPK 대신 NONE
+    }
 
 시스템 재시작 후, wi-fi 연결 확인 (wlan0)
 	
