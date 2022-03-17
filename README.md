@@ -51,7 +51,7 @@ wpa_supplicant.conf 파일의 network 부분이 입력한 정보와 같다면 wi
 	// ip 주소: inet xxx.xxx.xxx.xxx	
 
 
-#### 1-1-2. 방법 2: SD카드
+### 1-1-2. 방법 2: SD카드
 
 전원 꺼진 상태에서 라즈베리파이 보드의 SD카드 제거 후
 PC에 SD카드 삽입 (또는 리더기 연결)
