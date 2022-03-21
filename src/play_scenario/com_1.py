@@ -275,6 +275,7 @@ def Play_Hoop(user_name):
         break
 
     behavior_list.do_photo()
+    time.sleep(5)
     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
 
     # 2.7 다음 놀이 제안
