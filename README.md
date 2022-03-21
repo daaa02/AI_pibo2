@@ -97,7 +97,6 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 
 녹음 및 재생 장치 연결 확인 
 
-	$ cd
 	$ arecord -l
 	$ aplay -l		 
 
