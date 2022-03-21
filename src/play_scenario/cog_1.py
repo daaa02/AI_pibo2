@@ -26,12 +26,12 @@ def text_to_speech(string):
     print("\n" + string + "\n")
     tts.tts_connection(f"<speak>\
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '-1000', False)
+                </speak>", filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1000', False)     # tts 파일 재생
 
 
 def Play_Tissue(user_name):
-
+    
     print(f"user name: {user_name} \n")
 
     # 2.1 준비물 설명
@@ -46,8 +46,8 @@ def Play_Tissue(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = speech_to_text()
-        answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+        user_said = speech_to_text()    # stt open
+        answer = NLP.nlp_answer(user_said=user_said, dic=Dic)   # stt 결과 처리 (NLP.py 참고)
 
         if answer == 'DONE':
             behavior_list.do_joy()
@@ -56,7 +56,7 @@ def Play_Tissue(user_name):
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
         else:
-            print("*** DONE 기다리는 중 ***")
+            print("*** DONE 기다리는 중 ***")    # DONE 답변 들어올 때까지 stt open 반복
             continue
         break
 
@@ -162,7 +162,6 @@ def Play_Tissue(user_name):
 
     start()
 
-
     # 2.4 놀이 완료
     behavior_list.do_question_S()
     while True:
@@ -182,7 +181,6 @@ def Play_Tissue(user_name):
                 text_to_speech(f"열심히 따라해준 {user_name}이가 최고야~ 정말 신났어!")
                 break
         break
-
 
     # 2.5 마무리 대화
     behavior_list.do_suggestion_L()
@@ -229,7 +227,7 @@ def Play_Tissue(user_name):
     while True:
         text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
         tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
-        break     
+        break
 
     behavior_list.do_suggestion_S()
     while True:
@@ -249,7 +247,7 @@ def Play_Tissue(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'AGAIN':
+        if answer == 'AGAIN':       # 지금은 어떤 답변이라도 프로그램 종료됨
             behavior_list.do_joy()
             while True:
                 text_to_speech("그래 좋아!")
