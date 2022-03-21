@@ -32,8 +32,8 @@ def text_to_speech(string):
     print("\n" + string + "\n")
     tts.tts_connection(f"<speak>\
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '-1000', False)
+                </speak>", filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1000', False)     # tts 파일 재생
 
 
 class Scenario_List:
@@ -73,11 +73,11 @@ class Intro:
 
         behavior_list.do_question_L()
         while True:
-            text_to_speech("오늘은 누구랑 놀까?"
-                           "파이보랑 둘이 놀고 싶으면 1번, 엄마나 친구랑 같이 놀고 싶으면 2번을 골라줘")
+            text_to_speech("오늘은 누구랑 놀까?")
+            text_to_speech("파이보랑 둘이 놀고 싶으면 1번, 엄마나 친구랑 같이 놀고 싶으면 2번을 골라줘")
 
-            user_said = speech_to_text()
-            answer = NLP.nlp_number(user_said=user_said, dic=Dic)
+            user_said = speech_to_text()        # stt open
+            answer = NLP.nlp_number(user_said=user_said, dic=Dic)   # stt 결과 처리 (NLP.py 참고)
 
             if answer == '1':
                 behavior_list.do_suggestion_S()
@@ -104,7 +104,7 @@ class Intro:
                 while True:
                     text_to_speech("재미있겠다!")
                     break
-                self.recommended_play(play_name=play_name)
+                self.recommended_play(play_name=play_name)      # 처음 제안한 놀이 수행
             else:
                 behavior_list.do_question_S()
                 while True:
@@ -118,7 +118,7 @@ class Intro:
                         while True:
                             text_to_speech("재미있겠다!")
                             break
-                        self.recommended_play(play_name=re_play_name)
+                        self.recommended_play(play_name=re_play_name)   # 다시 제안하는 놀이 수행
                     elif answer == 'NO':
                         sys.exit(0)  # 어차피 지금 단계는 (제안하는 놀이, 다시 제안하는 놀이) 두 개 밖에 없음
                     else:
@@ -139,5 +139,5 @@ re_play_name = recommendation_list[1][1]
 
 if __name__ == "__main__":
     user_name = input("이름 입력: ")
-    run = Intro(user_name, story_name, play_name, re_play_name) 
+    run = Intro(user_name, story_name, play_name, re_play_name)
     run.Intro_Scenario()
