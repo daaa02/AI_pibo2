@@ -128,7 +128,6 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 
 단축 명령어
 
-	$ cd
 	$ pibo
 	// 놀이 도입 시나리오(src/Intro.py) → 놀이 수행(src/play_scenario/<play_name>.py) →  종료
     
