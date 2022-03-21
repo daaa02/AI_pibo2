@@ -26,8 +26,13 @@ audio = TextToSpeech()
 # 효과음 중 스탬프 찍기, 사진 찍기는 TTS 끝나고 재생 => 놀이 스크립트에서 효과음 재생!
 
 def do_question_L():
+    """
+    Multi Thread: 병렬 실행을 위해 사용
+    ex_1. Thread motion, Thread oled ==> motion + oled 동시 실행
+    ex_2. Thread(target=<어디 스크립트.어느 함수>, args=(있으면))
+    """
     audio.play(filename="/home/pi/AI_pibo2/src/data/audio/물음표소리1.wav", out='local', volume=-1000, background=False)
-    m = Thread(target=motion.set_motion, args=("m_question_L", 1))
+    m = Thread(target=motion.set_motion, args=("m_question_L", 1))      # "동작 이름", n번 반복
     o = Thread(target=oled.o_question(), args=())
 
     m.daemon = True
@@ -35,9 +40,9 @@ def do_question_L():
 
     m.start()
     o.start()
-    
+
     while True:
-        eye.e_question()    # motion, oled 돌아가는 동안 eyes on
+        eye.e_question()  # motion, oled 돌아가는 동안 eyes on
         break
 
 
@@ -51,7 +56,7 @@ def do_question_S():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_question()
         break
@@ -66,7 +71,7 @@ def do_suggestion_L():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_suggestion()
         break
@@ -81,7 +86,7 @@ def do_suggestion_S():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_suggestion()
         break
@@ -96,7 +101,7 @@ def do_explain_A():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_explain()
         break
@@ -111,7 +116,7 @@ def do_explain_B():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_explain()
         break
@@ -126,7 +131,7 @@ def do_photo():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_photo()
         break
@@ -141,7 +146,7 @@ def do_stamp():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_stamp()
         break
@@ -156,7 +161,7 @@ def do_waiting_A():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_waiting()
         break
@@ -171,7 +176,7 @@ def do_waiting_B():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_waiting()
         break
@@ -186,7 +191,7 @@ def do_waiting_C():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_waiting()
         break
@@ -202,7 +207,7 @@ def do_praise_L():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_praise()
         break
@@ -218,7 +223,7 @@ def do_praise_S():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_praise()
         break
@@ -234,7 +239,7 @@ def do_agree():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_agree()
         break
@@ -250,7 +255,7 @@ def do_joy():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_joy()
         break
@@ -266,7 +271,7 @@ def do_sad():
 
     m.start()
     o.start()
-    
+
     while True:
         eye.e_sad()
         break
