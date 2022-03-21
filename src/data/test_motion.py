@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 # motion test
 
 # python module
@@ -19,6 +18,18 @@ motion = Motion()
 
 
 def motion_test():
+    """
+    <현재 사용 방법>
+    /usr/local/lib/python3.7/.../openpibo/motion.py 에서
+    사용할 모션 파일 경로를 /home/pi/AI_pibo2/data/motion_db.json 로 지정하고
+    set_motion(name="", cycle=n) 함수 사용해서 모션 실행
+
+    <다른 방법>
+    (example.json 이라는 새로운 모션 파일을 만든다는 가정 하에)
+    motion.set_motion("<name>", path="/path/to/example.json") 으로
+    라이브러리에 설정된 경로 말고 내 임의의 경로에서 모션 파일 실행 및 동작 가능할 듯
+    """
+
     oled.set_font(size=20)
     oled.draw_text((10, 10), "질문하기_L")
     oled.show()
