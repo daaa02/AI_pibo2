@@ -5,6 +5,7 @@
 환경 설정만 해도 거의 끄읕 ☆ヾ(*´・∀・)ﾉヾ(・∀・`*)ﾉ☆
 
 **'$' 뒤의 명령어**를 터미널에 한 줄씩 복붙하면 됩니다.
+'// ~~' 는 코드나 명령어 설명을 위해 덧붙인 주석이니 터미널에 붙여넣지 않아도 돼요.
 
     pi@themaker: ~/AI_pibo2 $ <명령어>  
     // 현재 경로: (/home/pi)/AI_pibo2  
@@ -26,7 +27,7 @@
 부팅 후 로그인하기 (ID/PW 입력)
 
     $ login: pi
-    $ password: 1234
+    $ password: 1234	// 치고 엔터!
 
 wi-fi 정보 입력
 
@@ -57,7 +58,7 @@ wpa_supplicant.conf 파일의 network 부분이 입력한 정보와 같다면 wi
 
 ### 1-1-2. 방법 2: SD카드
 
-전원 꺼진 상태에서 라즈베리파이 보드의 SD카드 제거 후
+전원 꺼진 상태에서 라즈베리파이 보드의 SD카드 제거 후,
 PC에 SD카드 삽입 (또는 리더기 연결)
 
 MicroSD카드/boot/wpa_supplicant.conf 파일 수정
@@ -71,11 +72,11 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
         key_mgmt=WPA-PSK        // WPA-SPK 대신 NONE 입력하기
 	}
 
-파이보 부팅 후, OLED에서 wi-fi 연결 확인 (W, S)
+파이보 부팅 후, OLED에서 wi-fi 연결 확인
 	
 	#NETWORK	
-	[W] xxx.xxx.xxx.xxx
-	[S] WIFI_NAME
+	[W] IP		// xxx.xxx.xxx.xxx
+	[S] WIFI_NAME	// kiro_wifi
   
 
 ## 1-2. 원격 접속하기	
@@ -85,16 +86,16 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 * xming: https://xming.softonic.kr/
 * putty: https://www.putty.org/
 
-		1. xming 실행
+		1. xming 실행	// 아무 일 안 일어남
 		2. putty 실행	 
 			1) Category-SSH-X11: [v]Enable X11 forwarding
 			2) Category-Session: Host Name에 ip 주소 입력
-			3) Saved Session은 선택 사항
+			3) Saved Session은 선택 사항 (추천)	// save 해두면 1), 2) 과정 생략하고 바로 접속
 			4) Open
 
 		3. ID/PW 입력		
 			login: pi
-			password: 1234
+			password: 1234	// 치고 엔터!
 	
 
 ## 1-3. 마이크, 스피커 확인하기
@@ -107,7 +108,7 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 	$ aplay -l		
 	card: 1 <장치 이름>, device: 0 <장치 이름>	//card, device 숫자 기억!
 
-장치 사용 설정 
+장치 사용 설정: 위 과정에서 확인한 card/device number 와 .asoundrc 파일의 card/device number 같아야 함
 *(장치가 연결 되어있지만 안 될 경우 **card number, device number** 수정!)*
 
 	$ nano .asoundrc
