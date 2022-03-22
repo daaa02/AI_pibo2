@@ -109,6 +109,7 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 	card: 1 <장치 이름>, device: 0 <장치 이름>	//card, device 숫자 기억!
 
 장치 사용 설정: 위 과정에서 확인한 card/device number 와 .asoundrc 파일의 card/device number 같아야 함
+
 *(장치가 연결 되어있지만 안 될 경우 **card number, device number** 수정!)*
 
 	$ nano .asoundrc
