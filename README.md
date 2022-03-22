@@ -69,7 +69,7 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
         ssid="WIFI_NAME"
         psk="WIFI_PASSWD"       // 비밀번호 없는 경우 psk 입력하지 말고,
         key_mgmt=WPA-PSK        // WPA-SPK 대신 NONE 입력하기
-    }
+    	}
 
 파이보 부팅 후, OLED에서 wi-fi 연결 확인 (W, S)
 	
@@ -102,10 +102,13 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 녹음 및 재생 장치 연결 확인 
 
 	$ arecord -l
-	$ aplay -l		 
+	card: 1 <장치 이름>, device: 0 <장치 이름>	//card, device 숫자 기억!
+	
+	$ aplay -l		
+	card: 1 <장치 이름>, device: 0 <장치 이름>	//card, device 숫자 기억!
 
 장치 사용 설정 
-*(장치가 연결 되어있지만 안 될 경우 수정!)*
+*(장치가 연결 되어있지만 안 될 경우 **card number, device number**수정!)*
 
 	$ nano .asoundrc
 	
