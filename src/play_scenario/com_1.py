@@ -144,7 +144,7 @@ def Play_Hoop(user_name):
         while True:
             text_to_speech("시간을 5분 줄게 자유롭게 그려봐. 다 그렸으면 다 그렸다고 말해줘.")
             #time.sleep(5)      # test 하려고 5초로 함
-            prinf("300sec ...")
+            print("300sec ...")
             time.sleep(300)     # 진짜진짜진짜 5분임
 
             user_said = speech_to_text()
