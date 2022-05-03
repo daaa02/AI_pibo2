@@ -27,7 +27,7 @@ def text_to_speech(string):
     tts.tts_connection(f"<speak>\
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
                 </speak>", filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
-    tts.play(filename, 'local', '-1000', False)     # tts 파일 재생
+    tts.play(filename, 'local', '0', False)     # tts 파일 재생
 
 
 def Play_Tissue(user_name):
