@@ -33,7 +33,7 @@ def text_to_speech(string):
     tts.tts_connection(f"<speak>\
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
                 </speak>", filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
-    tts.play(filename, 'local', '-1000', False)     # tts 파일 재생
+    tts.play(filename, 'local', '0', False)     # tts 파일 재생
 
 
 class Scenario_List:
@@ -64,7 +64,8 @@ class Intro:
             print("111")
 
     def Intro_Scenario(self):
-
+"""     
+# 인원 파악 및 이야기 들려주는 부분 스킵
         # 1.1 이야기
         behavior_list.do_suggestion_S()
         while True:
@@ -126,6 +127,46 @@ class Intro:
                         continue
                     break
             break
+"""
+    
+        behavior_list.do_suggestion_S()
+        while True:
+            text_to_speech(f"좋아 파이보랑 놀자! 이번에는 {self.play_name} 놀이를 하자. 너는 어때?")
+            break
+            
+        behavior_list.do_waiting_A()
+        while True:
+            user_said = speech_to_text()
+            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+            if answer == 'YES':
+                behavior_list.do_joy()
+                while True:
+                    text_to_speech("재미있겠다!")
+                    break
+                self.recommended_play(play_name=play_name)      # 처음 제안한 놀이 수행
+            else:
+                behavior_list.do_question_S()
+                while True:
+                    text_to_speech(f"그럼 {self.re_play_name} 놀이를 할까?")
+
+                    user_said = speech_to_text()
+                    answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+                    if answer == 'YES':
+                        behavior_list.do_joy()
+                        while True:
+                            text_to_speech("재미있겠다!")
+                            break
+                        self.recommended_play(play_name=re_play_name)   # 다시 제안하는 놀이 수행
+                    elif answer == 'NO':
+                        sys.exit(0)  # 어차피 지금 단계는 (제안하는 놀이, 다시 제안하는 놀이) 두 개 밖에 없음
+                    else:
+                        print("*** 답변 기다리는 중 ***")
+                        continue
+                    break
+            break
+
 
 
 # 제안하는 놀이 + 싫으면 다른 놀이 제안 (임시)
@@ -133,11 +174,13 @@ recommendation = [Scenario_List.com_1, Scenario_List.soc_1, Scenario_List.cog_1,
 recommendation_list = random.sample(recommendation, 2)
 
 story_name = recommendation_list[0][0]
-play_name = recommendation_list[0][1]
+# play_name = recommendation_list[0][1]     # 랜덤 말고 직접 입력한 놀이로 플
 re_play_name = recommendation_list[1][1]
 
 
 if __name__ == "__main__":
     user_name = input("이름 입력: ")
+    print("놀이 목록: 훌라후프에 동물 넣기, 나는 왕, 휴지길 놀이, 풍선 축구")
+    play_name = input("놀이명 입력: ")
     run = Intro(user_name, story_name, play_name, re_play_name)
     run.Intro_Scenario()
