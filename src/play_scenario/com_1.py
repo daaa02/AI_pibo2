@@ -6,6 +6,8 @@ import os
 import sys
 import time
 
+from matplotlib.pyplot import contour
+
 # openpibo module
 import openpibo
 
@@ -27,7 +29,12 @@ def text_to_speech(string):
     tts.tts_connection(f"<speak>\
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
                 </speak>", filename)
-    tts.play(filename, 'local', '-1000', False)
+    tts.play(filename, 'local', '0', False)
+
+def wait_for(item):
+    while True:
+        print(f"{item} 기다리는 중")
+        break
 
 
 def Play_Hoop(user_name):
@@ -55,7 +62,8 @@ def Play_Hoop(user_name):
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
         else:
-            print("*** DONE 기다리는 중 ***")
+            behavior_list.do_waiting_A()
+            wait_for('DONE')
             continue
         break
 
@@ -79,7 +87,8 @@ def Play_Hoop(user_name):
                 text_to_speech("입으로 바람을 불기 힘들면 도구를 사용해서 바람을 일으켜도 좋아")
                 break
         else:
-            print("*** Yes 기다리는 중 ***")
+            behavior_list.do_waiting_A()
+            wait_for('YES')
             continue
         break
 
@@ -97,7 +106,8 @@ def Play_Hoop(user_name):
                 text_to_speech("그래, 시작하자!")
                 break
         else:
-            print("*** Done 기다리는 중 ***")
+            behavior_list.do_waiting_A()
+            wait_for('DONE')
             continue
         break
 
@@ -136,16 +146,16 @@ def Play_Hoop(user_name):
                     text_to_speech(f"우와 정말 귀여운 {animal}이다. 다른 동물들도 더 그려보자.")
                     break
             else:
-                print("*** Done 기다리는 중 ***")
+                behavior_list.do_waiting_C()
+                wait_for('DONE')
                 continue
             break
 
         behavior_list.do_waiting_A()
         while True:
-            text_to_speech("시간을 5분 줄게 자유롭게 그려봐. 다 그렸으면 다 그렸다고 말해줘.")
-            #time.sleep(5)      # test 하려고 5초로 함
-            print("300sec ...")
-            time.sleep(300)     # 진짜진짜진짜 5분임
+            text_to_speech("시간을 5분 줄게 자유롭게 그려봐. 다 그렸으면 다 그렸다고 말해줘.")            
+            # print("300sec ...")
+            # time.sleep(300)     # 진짜진짜진짜 5분임
 
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
@@ -157,7 +167,8 @@ def Play_Hoop(user_name):
                     time.sleep(5)
                     break
             else:
-                print("*** Done 기다리는 중 ***")
+                behavior_list.do_waiting_A()
+                wait_for('DONE')
                 continue
             break
 
@@ -176,7 +187,8 @@ def Play_Hoop(user_name):
                     text_to_speech("내가 시~작! 하면 입으로 바람을 불어서 동물들을 훌라후프 안에 날려 넣는거야.")
                     break
             else:
-                print("*** Done 기다리는 중 ***")
+                behavior_list.do_waiting_B()
+                wait_for('DONE')
                 continue
             break
 
@@ -206,7 +218,8 @@ def Play_Hoop(user_name):
                     time.sleep(1)
                     break
             else:
-                print("*** Done 기다리는 중 ***")
+                behavior_list.do_waiting_C()
+                wait_for('DONE')
                 continue
             break
 
@@ -300,4 +313,3 @@ def Play_Hoop(user_name):
                 text_to_speech("다음에 또 놀자!")
                 break
         break
-
