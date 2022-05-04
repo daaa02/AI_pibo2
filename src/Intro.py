@@ -52,13 +52,13 @@ class Intro:
         self.re_play_name = re_play_name
 
     def recommended_play(self, play_name):
-        if play_name is Scenario_List.com_1[1]:
+        if play_name == Scenario_List.com_1[1]:
             return Play_Hoop(user_name)
-        elif play_name is Scenario_List.soc_1[1]:
+        elif play_name == Scenario_List.soc_1[1]:
             return Play_King(user_name)
-        elif play_name is Scenario_List.cog_1[1]:
+        elif play_name == Scenario_List.cog_1[1]:
             return Play_Tissue(user_name)
-        elif play_name is Scenario_List.mus_1[1]:
+        elif play_name == Scenario_List.mus_1[1]:
             return Play_Balloon(user_name)
         else:
             print("111")
@@ -173,13 +173,13 @@ class Intro:
 recommendation = [Scenario_List.com_1, Scenario_List.soc_1, Scenario_List.cog_1, Scenario_List.mus_1]
 recommendation_list = random.sample(recommendation, 2)
 
+user_name = input("이름 입력: ")
 story_name = recommendation_list[0][0]
-# play_name = recommendation_list[0][1]     # 랜덤 말고 직접 입력한 놀이로 플
+# play_name = recommendation_list[0][1]     
+print("\n<<놀이 목록: 훌라후프에 동물 넣기, 나는 왕, 휴지길 놀이, 풍선 축구>>")
+play_name = input("놀이명 입력: ")          # 랜덤 말고 직접 입력한 놀이로 플레이
 re_play_name = recommendation_list[1][1]
 
 if __name__ == "__main__":
-    user_name = input("이름 입력: ")
-    print("놀이 목록: 훌라후프에 동물 넣기, 나는 왕, 휴지길 놀이, 풍선 축구")
-    play_name = input("놀이명 입력: ")
     run = Intro(user_name, story_name, play_name, re_play_name)
     run.Intro_Scenario()
