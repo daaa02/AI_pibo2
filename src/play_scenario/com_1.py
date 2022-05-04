@@ -6,8 +6,6 @@ import os
 import sys
 import time
 
-from matplotlib.pyplot import contour
-
 # openpibo module
 import openpibo
 
