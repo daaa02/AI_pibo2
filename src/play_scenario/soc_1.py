@@ -28,6 +28,11 @@ def text_to_speech(string):
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
                 </speak>", filename)
     tts.play(filename, 'local', '-1000', False)
+    
+def wait_for(item):
+    while True:
+        print(f"{item} 기다리는 중")
+        break
 
 
 def Play_King(user_name):
@@ -54,7 +59,8 @@ def Play_King(user_name):
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
         else:
-            print("*** DONE 기다리는 중 ***")
+            behavior_list.do_waiting_A()
+            wait_for('DONE')
             continue
         break
 
@@ -77,11 +83,12 @@ def Play_King(user_name):
                 text_to_speech("왕이 된 친구는 왕관을 다른 친구에게 주면서 왕 역할을 양보할 수도 있어.")
                 break
         else:
-            print("*** Yes 기다리는 중 ***")
+            behavior_list.do_waiting_C()
+            wait_for('YES')
             continue
         break
 
-    behavior_list.do_waiting_A()
+    behavior_list.do_waiting_B()
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
@@ -95,7 +102,8 @@ def Play_King(user_name):
                 text_to_speech("그래, 시작하자!")
                 break
         else:
-            print("*** Done 기다리는 중 ***")
+            behavior_list.do_waiting_B()
+            wait_for('DONE')
             continue
         break
 
@@ -121,7 +129,8 @@ def Play_King(user_name):
                             text_to_speech("왕이다!")
                             break
                     else:
-                        print("*** Done 기다리는 중 ***")
+                        behavior_list.do_waiting_A()
+                        wait_for('DONE')
                         continue
                     break
                 break
