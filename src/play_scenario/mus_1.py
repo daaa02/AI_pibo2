@@ -27,7 +27,12 @@ def text_to_speech(string):
     tts.tts_connection(f"<speak>\
                 <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
                 </speak>", filename)
-    tts.play(filename, 'local', '-1000', False)
+    tts.play(filename, 'local', '0', False)
+    
+def wait_for(item):
+    while True:
+        print(f"{item} 기다리는 중")
+        break
 
 
 def Play_Balloon(user_name):
@@ -57,7 +62,8 @@ def Play_Balloon(user_name):
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
         else:
-            print("*** DONE 기다리는 중 ***")
+            behavior_list.do_waiting_A()
+            wait_for('DONE')
             continue
         break
 
@@ -83,7 +89,8 @@ def Play_Balloon(user_name):
                 text_to_speech(f"좋아. {user_name}이가 좋아하는 색깔의 풍선을 골라봐.")
                 break
         else:
-            print("*** Yes 기다리는 중 ***")
+            behavior_list.do_waiting_B()
+            wait_for('YES')
             continue
         break
 
@@ -101,7 +108,8 @@ def Play_Balloon(user_name):
                 text_to_speech("그래, 시작하자!")
                 break
         else:
-            print("*** Done 기다리는 중 ***")
+            behavior_list.do_waiting_A()
+            wait_for('DONE')
             continue
         break
 
@@ -154,7 +162,8 @@ def Play_Balloon(user_name):
                     text_to_speech("하나, 두울, 세엣, 네엣, 다섯, 여섯, 일곱, 여덟, 아홉, 열!")    # 둘, 셋 하면 너무 빠르게 느껴짐
                     break
             else:
-                print("*** Done 기다리는 중 ***")
+                behavior_list.do_waiting_B()
+                wait_for('DONE')
                 continue
             break
 
@@ -185,7 +194,8 @@ def Play_Balloon(user_name):
                     text_to_speech("하나, 두울, 세엣, 네엣, 다섯, 여섯, 일곱, 여덟, 아홉, 열!")
                     break
             else:
-                print("*** Done 기다리는 중 ***")
+                behavior_list.do_waiting_C()
+                wait_for('DONE')
                 continue
             break
 
