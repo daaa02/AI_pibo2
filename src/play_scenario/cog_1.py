@@ -29,6 +29,10 @@ def text_to_speech(string):
                 </speak>", filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
     tts.play(filename, 'local', '0', False)     # tts 파일 재생
 
+def wait_for(item):
+    while True:
+        print(f"{item} 기다리는 중")
+        break
 
 def Play_Tissue(user_name):
     
@@ -56,7 +60,8 @@ def Play_Tissue(user_name):
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
         else:
-            print("*** DONE 기다리는 중 ***")    # DONE 답변 들어올 때까지 stt open 반복
+            behavior_list.do_waiting_A()
+            wait_for('DONE')    # DONE 답변 들어올 때까지 stt open 반복
             continue
         break
 
@@ -80,7 +85,8 @@ def Play_Tissue(user_name):
                 text_to_speech("좋았어! 휴지 길은 미끄러울 수 있어서 뛰면 안돼. ")
                 break
         else:
-            print("*** Yes 기다리는 중 ***")
+            behavior_list.do_waiting_A()
+            wait_for('YES')
             continue
         break
 
@@ -98,7 +104,8 @@ def Play_Tissue(user_name):
                 text_to_speech("그래, 시작하자!")
                 break
         else:
-            print("*** Done 기다리는 중 ***")
+            behavior_list.do_waiting_A()
+            wait_for('DONE')
             continue
         break
 
@@ -130,7 +137,8 @@ def Play_Tissue(user_name):
                     text_to_speech("정말 멋진 섬이 완성 되었는걸? 휴지로 만들어서 포근해 보여.")
                     break
             else:
-                print("*** Done 기다리는 중 ***")
+                behavior_list.do_waiting_B()
+                wait_for('DONE')
                 continue
             break
 
@@ -156,7 +164,8 @@ def Play_Tissue(user_name):
                     time.sleep(5)
                     break
             else:
-                print("*** Done 기다리는 중 ***")
+                behavior_list.do_waiting_C()
+                wait_for('DONE')
                 continue
             break
 
@@ -201,7 +210,8 @@ def Play_Tissue(user_name):
                 time.sleep(1)
                 break
         else:
-            print("*** Done 기다리는 중 ***")
+            behavior_list.do_waiting_C()
+            wait_for('DONE')
             continue
         break
 
