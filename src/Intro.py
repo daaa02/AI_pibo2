@@ -129,10 +129,12 @@ class Intro:
         #                     break
         #             break
         # 
-
+        string = input("tts 입력 테스트할 문장: ")
+        text_to_speech(string)
+        
         behavior_list.do_suggestion_S()
         while True:
-            text_to_speech(f"좋아 파이보랑 놀자! 이번에는 {self.play_name} 놀이를 하자. 너는 어때?")
+            text_to_speech(f"파이보랑 놀자! 이번에는 {self.play_name} 놀이를 하자. 너는 어때?")
             break
 
         behavior_list.do_waiting_A()
