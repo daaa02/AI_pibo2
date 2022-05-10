@@ -66,7 +66,7 @@ class NLP:
         """
         공백, 가, 을, 를 split 해서 리스트화
         ex. input: 나는 호랑이가 좋아! ==> animal: 호랑이   ... 나중에 수정하기
-        => 이 부분에 komoran noun 적용하면 될 거 같음
+        => 이 부분에 komoran noun 적용하면 될 거 같음 (추후 수정!)
         """
         a_list = re.split('[ 가을를]', user_said)  
 
