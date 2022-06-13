@@ -1,4 +1,4 @@
-# Setup
+# Setup 
 * Visual Studio Code with Keras 초기 설정하기
 
 ## 1. Install Anaconda
