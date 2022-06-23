@@ -27,13 +27,12 @@ Dic = Dictionary()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)  # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
-    tts.play(filename, 'local', '0', False)  # tts 파일 재생
+    print("\n" + text + "\n")
+    audio.tts_connection(text, filename)
+    audio.play(filename, 'local', '-1500', False)
+#     audio.play('trigger.wav', 'local', '-2000', False)
 
 
 class Scenario_List:
@@ -129,8 +128,8 @@ class Intro:
         #                     break
         #             break
         # 
-        string = input("tts 입력 테스트할 문장: ")
-        text_to_speech(string)
+
+        text_to_speech("tts 테스트")
         
         behavior_list.do_suggestion_S()
         while True:
