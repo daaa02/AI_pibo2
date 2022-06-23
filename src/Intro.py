@@ -30,8 +30,8 @@ tts = TextToSpeech()
 def text_to_speech(text):
     filename = "tts.wav"
     print("\n" + text + "\n")
-    audio.tts_connection(text, filename)
-    audio.play(filename, 'local', '-1500', False)
+    tts.tts_connection(text, filename)
+    tts.play(filename, 'local', '-1500', False)
 #     audio.play('trigger.wav', 'local', '-2000', False)
 
 
