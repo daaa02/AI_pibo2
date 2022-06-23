@@ -3,6 +3,7 @@ import os
 import requests
 import json
 import wave
+import urllib.request
 
 
 def isNumber(s):
@@ -15,23 +16,28 @@ def isNumber(s):
 
 class TextToSpeech:
 
-    def tts_connection(self, string, filename="tts.wav"):
-        # Kakao auth-key
-        REST_API_KEY = "f8f8c3f66bb3310016fdeccffba152e8"
-        KAKAO_URL = "https://kakaoi-newtone-openapi.kakao.com/v1/synthesize"
-        HEADERS = {
-            "Content-Type": "application/xml",
-            "Authorization": "KakaoAK " + REST_API_KEY  # "KakaoAK" + "공백" + Key ;;;;; 
-        }
-        res = requests.post(KAKAO_URL, headers=HEADERS, data=string.encode('utf-8'))
+    def tts_connection(self, text, filename):
+        # CLOVA auth-key
+        client_id = "3qz5jqx2r0"
+        client_secret = "zwB0Yb4UONPKaOKCjZkhsSl8REuKvJTYK2Esvr41"
+        encText = urllib.parse.quote(text)
+        data = "speaker=nara&volume=0&speed=0&pitch=0&format=wav&text=" + encText
+        url = "https://naveropenapi.apigw.ntruss.com/tts-premium/v1/tts"
+        request = urllib.request.Request(url)
+        request.add_header("X-NCP-APIGW-API-KEY-ID",client_id)
+        request.add_header("X-NCP-APIGW-API-KEY",client_secret)
+        response = urllib.request.urlopen(request, data=data.encode('utf-8'))
+        rescode = response.getcode()
+        if(rescode==200):
+            response_body = response.read()
+            with open(filename, 'wb') as f:
+                f.write(response_body)
+        else:
+            print("Error Code:" + rescode)            
+            
 
-        # 음성 합성 결과를 파일로 저장
-        with open(filename, "wb") as f:
-            f.write(res.content)
-            
-            
     # tts, 효과음 등 모든 오디오를 플레이하는 함수
-    def play(self, filename, out='local', volume='-2000', background=True):
+    def play(self, filename, out='local', volume='-1000', background=True):
         if not os.path.isfile(filename):
             raise Exception(f'"{filename}" does not exist')
 
