@@ -13,7 +13,7 @@
 
 # 1. 환경 설정
 
-* 개발 환경: Raspberry pi 4, python3.7
+* 개발 환경: Raspberry pi 4, python3.8
 
 ## 1-1. wi-fi 연결하기
 
@@ -21,7 +21,7 @@
     * 파이보 뒷면(등) 분리를 위한 드라이버, 
     * Micro HDMI to HDMI 또는 MicroSD카드 리더기(노트북에 내장되어있을 수 있음)
 
-### 1-1-1. 방법 1: HDMI 연결 (또는 putty)
+### 1-1-1. 방법 1: HDMI 연결 (또는 putty) (이유정 ㄴㄴ)
 
 * **putty 접속 중일 때** putty 터미널에서 wi-fi 변경 또는 정보 확인 가능
 
@@ -57,13 +57,14 @@ wpa_supplicant.conf 파일의 network 부분이 입력한 정보와 같다면 wi
 	// ip 주소: inet xxx.xxx.xxx.xxx	
 
 
-### 1-1-2. 방법 2: SD카드
+### 1-1-2. 방법 2: SD카드 (ㅊㅊ)
 
 전원 꺼진 상태에서 라즈베리파이 보드의 SD카드 제거 후,
 PC에 SD카드 삽입 (또는 리더기 연결)
 
-MicroSD카드/boot/wpa_supplicant.conf 파일 수정
-(확장자 .txt로 잠깐 변경한 후 수정 가능)
+* boot/SSH 빈 파일 만들기
+* MicroSD카드/boot/wpa_supplicant.conf 파일 만들기
+(https://www.gloriouscoding.com/da4a2e0d-28f8-4e5c-99ad-277345ef9df7 참고하세유)
 
 	country=GB 
 	ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -80,7 +81,7 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 	[S] WIFI_NAME	// kiro_wifi
   
 
-## 1-2. 원격 접속하기	
+## 1-2-1. 원격 접속 방법 1: Putty	
 
 프로그램 다운로드
 
@@ -98,6 +99,10 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 			login: pi
 			password: 1234	// 치고 엔터!
 	
+## 1-2-2. 원격 접속 방법 2: VSCode
+
+* vscode.md 파일 참고
+
 
 ## 1-3. 마이크, 스피커 확인하기
 
@@ -143,7 +148,7 @@ MicroSD카드/boot/wpa_supplicant.conf 파일 수정
 	$ pibo
 	// 놀이 도입 시나리오(src/Intro.py) → 놀이 수행(src/play_scenario/<play_name>.py) →  종료
     
-# 3. 기타
+# 3. 기타 (이유정 ㄴㄴ)
 
 ## 3-1. 파일 업데이트하기 
 
