@@ -33,12 +33,12 @@
         $ conda install -c anaconda keras       # CPU 버전
 
         # 추가 패키지 설치
-        $ conda install -c anaconda pandas
-        $ conda install -c anaconda xlrd
-        $ conda install -c anaconda xlwt
-        $ conda install -c anaconda seaborn
-        $ conda install -c anaconda scikit-learn
-        $ conda install pillow
+        $ conda install -c anaconda pandas -y
+        $ conda install -c anaconda xlrd -y
+        $ conda install -c anaconda xlwt -y
+        $ conda install -c anaconda seaborn -y
+        $ conda install -c anaconda scikit-learn -y
+        $ conda install pillow -y
 
 ## 3. Install VS Code
 * https://code.visualstudio.com/
@@ -56,7 +56,7 @@
           1-1. 설정 > python path 검색 > Python: Python Path        
           C:\Users\User\anaconda3\envs\keras\python.exe           # Anaconda 가상환경 위치
 
-          1-2. Ctrl + Shift + p > Python: Select Interpreter > "설정하고자 하는 환경"
+          1-2. Ctrl + Shift + p > Python: Select Interpreter > "설정하고자 하는 환경"    # 근데 1-1 생략하고 이거만 해도 됨
 
   * 터미널 열었을 때 conda 어쩌고 에러가 뜬다면
 
