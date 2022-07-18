@@ -84,8 +84,8 @@ PC에 SD카드 삽입 (또는 리더기 연결)
 
 프로그램 다운로드
 
-* xming: https://xming.softonic.kr/
-* putty: https://www.putty.org/
+* [xming](https://xming.softonic.kr/)
+* [putty](https://www.putty.org/)
 
 		1. xming 실행	// 아무 일 안 일어남
 		2. putty 실행	 
