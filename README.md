@@ -122,9 +122,11 @@ PC에 SD카드 삽입 (또는 리더기 연결)
 	$ nano .asoundrc
 	
 	pcm.mic {
+		...
 		pcm "hw:<card number>,<device number>"
 	}
 	pcm.speaker {
+		...
 		pcm "hw:<card number>,<device number>"
 	}
 	
