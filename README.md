@@ -64,8 +64,7 @@ PC에 SD카드 삽입 (또는 리더기 연결)
 
 * boot/SSH 빈 파일 만들기
 * MicroSD카드/boot/wpa_supplicant.conf 파일 만들기 ([참고](https://www.gloriouscoding.com/da4a2e0d-28f8-4e5c-99ad-277345ef9df7))
-
-
+'''
 	country=GB 
 	ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 	network={
@@ -73,7 +72,7 @@ PC에 SD카드 삽입 (또는 리더기 연결)
         psk="WIFI_PASSWD"       // 비밀번호 없는 경우 psk 입력하지 말고,
         key_mgmt=WPA-PSK        // WPA-SPK 대신 NONE 입력하기
 	}
-
+'''
 파이보 부팅 후, OLED에서 wi-fi 연결 확인
 	
 	#NETWORK	
