@@ -65,6 +65,7 @@ PC에 SD카드 삽입 (또는 리더기 연결)
 * boot/SSH 빈 파일 만들기
 * MicroSD카드/boot/wpa_supplicant.conf 파일 만들기 ([참고](https://www.gloriouscoding.com/da4a2e0d-28f8-4e5c-99ad-277345ef9df7))
 
+
 	country=GB 
 	ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 	network={
