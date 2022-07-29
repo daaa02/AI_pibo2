@@ -31,13 +31,13 @@ $ git push -u origin main
 사용자 정보 설정
 
 ```
-$ git config --global user.name "daaa02"
-$ git config --global user.email "dyk98498@gmail.com"
+$ git config --global user.name "깃허브 이름"
+$ git config --global user.email "깃허브 메일 주소"
 ```
 언젠가 로그인 하라고 뜬다면
 ```
-username for ~ : daaa02
-password for ~ : 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
+username for ~ : 깃허브 닉네임
+password for ~ : ***
 ```
 
 ## 3. 업로드🚀
