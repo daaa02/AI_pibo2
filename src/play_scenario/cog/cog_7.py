@@ -22,20 +22,18 @@ Dic = Dictionary()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
-    tts.play(filename, 'local', '0', False)     # tts 파일 재생
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
 
 def wait_for(item):
     while True:
         print(f"{item} 기다리는 중")
         break
 
-def Play_Tissue(user_name):
+def Play_Stick(user_name):
     
     print(f"user name: {user_name} \n")
 
@@ -299,7 +297,7 @@ def Play_Tissue(user_name):
         user_said = speech_to_text()
         break
 
-    behavior_list.do_priase_S()
+    behavior_list.do_praise_S()
     while True:
         text_to_speech(f"그랬구나. {user_name}가 집중해서 놀이 하는 모습이 멋졌어~")
         break

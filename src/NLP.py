@@ -27,7 +27,7 @@ class Dictionary:
 
         self.Number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
-        self.Number_Word = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구', '십']
+        self.Number_word = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구', '십']
 
 
 class NLP:
@@ -95,19 +95,34 @@ class NLP:
         print(answer)
         return answer
 
-    """
+    
+    # def nlp_number(self, user_said, dic):
+    #     answer = -1
+    #     ko = -1
+    #     nb = -1
+    #     for i, j in enumerate(dic.Number):
+    #         x = user_said.find(j)
+    #         if x != -1:
+    #             ko = i
+    #     for i, j in enumerate(dic.Number_Word):
+    #         x = user_said.find(j)
+    #         if x != -1:
+    #             nb = i
+    #     answer = max(ko, nb)
+    #     return answer
+
     def nlp_number(self, user_said, dic):
-        answer = -1
+        number = -1
         ko = -1
         nb = -1
-        for i, j in enumerate(dic.Number):
+        for i, j in enumerate(dic.Number_word):
             x = user_said.find(j)
             if x != -1:
                 ko = i
-        for i, j in enumerate(dic.Number_Word):
+        for i, j in enumerate(dic.Number):
             x = user_said.find(j)
             if x != -1:
                 nb = i
-        answer = max(ko, nb)
-        return answer
-    """
+        number = max(ko, nb)
+        return number
+    

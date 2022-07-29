@@ -21,20 +21,18 @@ Dic = Dictionary()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
-    tts.play(filename, 'local', '0', False)     # tts 파일 재생
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
 
 def wait_for(item):
     while True:
         print(f"{item} 기다리는 중")
         break
 
-def Play_Tissue(user_name):
+def Play_Fashion(user_name):
     
     print(f"user name: {user_name} \n")
 
@@ -122,7 +120,7 @@ def Play_Tissue(user_name):
 
         behavior_list.do_waiting_B()
         while True:
-            text_to_speech("옷이 멋지게 완성하면 다 됐어 라고 말해줘. 그럼 시작!")
+            text_to_speech("옷이 멋지게 완성되면 다 됐어 라고 말해줘. 그럼 시작!")
 
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
@@ -180,7 +178,7 @@ def Play_Tissue(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("좋았어.친구에게 멋진 옷을 만들어 주자. ")
@@ -189,7 +187,7 @@ def Play_Tissue(user_name):
                     break
             else:
                 behavior_list.do_waiting_C()
-                wait_for('DONE')
+                wait_for('YES')
                 continue
             break
 

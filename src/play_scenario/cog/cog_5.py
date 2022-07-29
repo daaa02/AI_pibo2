@@ -32,7 +32,7 @@ def wait_for(item):
         print(f"{item} 기다리는 중")
         break
 
-def Play_Tissue(user_name):
+def Play_cup(user_name):
     
     print(f"user name: {user_name} \n")
 
@@ -48,7 +48,7 @@ def Play_Tissue(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = input("답변 :")    # stt open
+        user_said = speech_to_text()    # stt open
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)   # stt 결과 처리 (NLP.py 참고)
 
         if answer == 'DONE':
@@ -74,7 +74,7 @@ def Play_Tissue(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지?할 수 있으면 할 수 있어라고 말해줘~")
 
-        user_said = input("답변 :")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -92,7 +92,7 @@ def Play_Tissue(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘~")
 
-        user_said = input("답변 :")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -125,7 +125,7 @@ def Play_Tissue(user_name):
         while True:
             text_to_speech("다 했으면 다 했어 라고 말해줘.")
 
-            user_said = input("답변 :")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -144,7 +144,7 @@ def Play_Tissue(user_name):
         while True:
             text_to_speech("다 세면 몇 개인지 말해줘.")
             #행동인식 - 사진, 영상 촬영
-            user_said = input("답변 :")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_praise_S()
@@ -163,7 +163,7 @@ def Play_Tissue(user_name):
             text_to_speech("다 했으면, 다 했다고 말해줘!")
             time.sleep(1)
 
-            user_said = input("답변 :")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -191,7 +191,7 @@ def Play_Tissue(user_name):
             text_to_speech("할 수 있지?")
             time.sleep(1)
 
-            user_said = input("답변 :")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'YES':
@@ -211,7 +211,7 @@ def Play_Tissue(user_name):
         while True:
             text_to_speech("다 만들고 나면 컵받침이 몇 개 필요한지 알려줘.")
             #행동인식 - 사진, 영상 촬영
-            user_said = input("답변 :")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_praise_S()
@@ -234,7 +234,7 @@ def Play_Tissue(user_name):
         text_to_speech("준비가 되면 준비 됐어 라고 말해줘!")
         time.sleep(1)
 
-        user_said = input("답변 :")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
         time.sleep(60)
 
@@ -255,7 +255,7 @@ def Play_Tissue(user_name):
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-        user_said = input("답변 :")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -278,7 +278,7 @@ def Play_Tissue(user_name):
 
         text_to_speech("정리가 끝나면 다 했어 라고 말해줘. ")
         
-        user_said = input("답변 :")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -298,11 +298,11 @@ def Play_Tissue(user_name):
         time.sleep(1)
         text_to_speech("오늘 컵받침 놀이는 재미있었어?")
 
-        user_said = input("답변 :")
+        user_said = speech_to_text()
 
         text_to_speech("정말? 어렵진 않았어?")
 
-        user_said = input("답변 :")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_praise_L()
@@ -332,7 +332,7 @@ def Play_Tissue(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 :")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':       # 지금은 어떤 답변이라도 프로그램 종료됨

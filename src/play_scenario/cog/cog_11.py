@@ -20,21 +20,20 @@ NLP = NLP()
 Dic = Dictionary()
 tts = TextToSpeech()
 
-
-def text_to_speech(string):
+global i
+i=1;
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
-    tts.play(filename, 'local', '0', False)     # tts 파일 재생
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
 
 def wait_for(item):
     while True:
         print(f"{item} 기다리는 중")
         break
 
-def Play_Tissue(user_name):
+def Play_Fisherman(user_name):
     
     print(f"user name: {user_name} \n")
 
@@ -59,7 +58,7 @@ def Play_Tissue(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -77,7 +76,7 @@ def Play_Tissue(user_name):
     while True:
         text_to_speech("준비 됐으면 시작하자고 말해줘.")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -102,9 +101,9 @@ def Play_Tissue(user_name):
 
         behavior_list.do_waiting_B()
         while True:
-            text_to_speech("강을 다 만들었으면 만들었어 라고 말해줘.")
+            text_to_speech("강을 다 만들었으면 다 만들었어 라고 말해줘.")
 
-            user_said = speech_to_text()
+            user_said = input("답변 : ")
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -118,14 +117,14 @@ def Play_Tissue(user_name):
                 wait_for('DONE')
                 continue
             break
-        i=1;
+        
         def start_1(): 
             global i  
             behavior_list.do_waiting_B()
             while True:
-                text_to_speech("준비가 준비가 됐으면 준비 됐어 라고 말해줘.")
+                text_to_speech("준비가 됐으면 준비 됐어 라고 말해줘.")
 
-                user_said = speech_to_text()
+                user_said = input("답변 : ")
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
@@ -133,7 +132,7 @@ def Play_Tissue(user_name):
                     while True:
                         time.sleep(2)
                         text_to_speech("이제 어부한테 물어보자. “어부야, 어부야, 물이 얼마나 깊니?” 나를 따라해 봐. 시작!")
-                        user_said = speech_to_text()
+                        user_said = input("답변 : ")
                         break
                 else:
                     behavior_list.do_waiting_B()
@@ -151,14 +150,14 @@ def Play_Tissue(user_name):
             while True:
                 time.sleep(1)
                 text_to_speech("이번엔 어부가 대답해줘.")
-                user_said = speech_to_text()
+                user_said = input("답변 : ")
                 break
 
             behavior_list.do_suggestion_L()
             while True:
                 time.sleep(1)
                 text_to_speech("이제 어부에게 한번 더 물어보자. “어부야, 어부야, 물을 어떻게 건너갈 수 있니?” 나를 따라해 봐. 시작!")
-                user_said = speech_to_text()
+                user_said = input("답변 : ")
                 break
 
             behavior_list.do_praise_S()
@@ -171,43 +170,44 @@ def Play_Tissue(user_name):
             while True:
                 time.sleep(1)
                 text_to_speech("이제 어부가 어떻게 건너갈 수 있는지 동작을 알려줘.")
-                user_said = speech_to_text()
+                user_said = input("답변 : ")
                 break
 
             
             if i == 1:    
-                    behavior_list.do_waiting_B()
-                    while True:
-                        text_to_speech("좋았어. 어부가 정하는 대로 강을 다 건너왔으면 다 왔어 라고 말해줘.")
+                behavior_list.do_waiting_B()
+                while True:
+                    text_to_speech("좋았어. 어부가 정하는 대로 강을 다 건너왔으면 다 왔어 라고 말해줘.")
 
-                        user_said = speech_to_text()
-                        answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+                    user_said = input("답변 : ")
+                    answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                        if answer == 'DONE':
-                            behavior_list.do_praise_S()
-                            while True:
-                                time.sleep(2)
-                                text_to_speech("정말 잘 했어. 무사히 건너왔어.")
-                                
-                                break
-                        else:
-                            behavior_list.do_waiting_B()
-                            wait_for('DONE')
-                            continue
-                        break
-                        
-                    behavior_list.do_explain_A()
-                    while True:
-                        print("***1회차***")
-                        text_to_speech(f"이제 역할을 바꿔보자. {user_name}이가 어부가 되는 거야.")
-                        i=i+1
-                        start_1()
+                    if answer == 'DONE':
+                        behavior_list.do_praise_S()
+                        while True:
+                            time.sleep(2)
+                            text_to_speech("정말 잘 했어. 무사히 건너왔어.")
+                            
+                            break
+                    else:
+                        behavior_list.do_waiting_B()
+                        wait_for('DONE')
+                        continue
+                    break
+                    
+                behavior_list.do_explain_A()
+                while True:
+                    print("***1회차***")
+                    text_to_speech(f"이제 역할을 바꿔보자. {user_name}이가 어부가 되는 거야.")
+                    i=i+1
+                    start_1()
+                    break
                         
             elif i==2:
                 behavior_list.do_waiting_C()
                 while True:
                     text_to_speech("좋았어. 어부가 정하는 대로 강을 다 건너왔으면 다 왔어 라고 말해줘.")
-                    user_said = speech_to_text()
+                    user_said = input("답변 : ")
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
@@ -215,22 +215,22 @@ def Play_Tissue(user_name):
                         while True:
                             time.sleep(2)
                             text_to_speech("두 사람 모두 상상의 강을 열심히 건넜어!")
-                            
                             break
                     else:
                         behavior_list.do_waiting_B()
                         wait_for('DONE')
                         continue
                     break            
+        start_1()
+    start()
 
-            start()
 
     # 2.4 놀이 완료
     behavior_list.do_question_S()
     while True:
         text_to_speech("또 해볼까? 또 하고 싶으면 또하자고 말해줘~")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -253,11 +253,11 @@ def Play_Tissue(user_name):
         time.sleep(1)
         text_to_speech(f"{user_name}이는 강을 건너는 나그네가 재밌었어,  어부 역할이 재밌었어?")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
 
         text_to_speech("정말? 어떤 점이 재미있었어?")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         break
 
     behavior_list.do_agree()
@@ -287,7 +287,7 @@ def Play_Tissue(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':       # 지금은 어떤 답변이라도 프로그램 종료됨
