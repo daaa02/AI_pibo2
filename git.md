@@ -95,3 +95,10 @@ $ git status
 $ git push
 ```
 
+## 4. 끝!
+---
+github 들어가보면 파일 업로드된 걸 확인할 수 있습니당.
+참고로,
+* git push: 파일 업로드
+* git pull: 파일 다운로드
+* git pull --rebase origin main: 깃허브에 업로드 되어 있는 파일과 로컬 파일 동기화
