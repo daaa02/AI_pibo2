@@ -54,7 +54,7 @@ asound.snd_lib_error_set_handler(c_error_handler)
 ###############################
 
 # Audio recording parameters
-RATE = 16000
+RATE = 44100
 CHUNK = int(RATE / 10)  # 100ms
 
 

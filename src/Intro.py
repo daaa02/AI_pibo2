@@ -16,11 +16,11 @@ from text_to_speech import TextToSpeech
 
 # 여기랑 메인문 바꿔야 해
 # from src.play_scenario.<폴더명>.<파일명> import <해당 파일의 함수명>
-from src.play_scenario.com.com_1 import Play_Hoop
+from src.play_scenario.cog.cog_5 import Play_Tissue
 
 if __name__ == "__main__":
-  user_name = ("이름 입력: ")
+  user_name = ("유정")
   # <해당 파일의 함수명>(user_name)
-  Play_Hoop(user_name)
+  Play_Tissue(user_name)
 
   

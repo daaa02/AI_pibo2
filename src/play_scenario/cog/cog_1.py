@@ -48,7 +48,7 @@ def Play_Tissue(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = speech_to_text()    # stt open
+        user_said = input("답변: ")    # stt open
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)   # stt 결과 처리 (NLP.py 참고)
 
         if answer == 'DONE':
@@ -74,7 +74,7 @@ def Play_Tissue(user_name):
         time.sleep(1)
         text_to_speech("할 수 있으면 할 수 있다고 말해줘~")
 
-        user_said = speech_to_text()
+        user_said = input("답변: ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -92,7 +92,7 @@ def Play_Tissue(user_name):
     while True:
         text_to_speech("준비 됐으면 시작하자고 말해줘.")
 
-        user_said = speech_to_text()
+        user_said = input("답변: ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -125,7 +125,7 @@ def Play_Tissue(user_name):
         while True:
             text_to_speech("다 만들었으면 다 만들었다고 말해줘~")
 
-            user_said = speech_to_text()
+            user_said = input("답변: ")
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -151,7 +151,7 @@ def Play_Tissue(user_name):
             text_to_speech("다 만들었으면 다 만들었다고 말해줘~")
             time.sleep(1)
 
-            user_said = speech_to_text()
+            user_said = input("답변: ")
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -174,7 +174,7 @@ def Play_Tissue(user_name):
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-        user_said = speech_to_text()
+        user_said = input("답변: ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -198,7 +198,7 @@ def Play_Tissue(user_name):
         text_to_speech("길 이었던 휴지를 찢어서 휴지 섬에 눈을 내려보자.")
         text_to_speech("끝났으면 끝났다고 말해줘~")
 
-        user_said = speech_to_text()
+        user_said = input("답변: ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -218,11 +218,11 @@ def Play_Tissue(user_name):
         time.sleep(1)
         text_to_speech(f"{user_name}이는 언제 포근함을 느껴?")
 
-        user_said = speech_to_text()
+        user_said = input("답변: ")
 
         text_to_speech("정말? 왜 포근해?")
 
-        user_said = speech_to_text()
+        user_said = input("답변: ")
         break
 
     behavior_list.do_joy()
@@ -252,7 +252,7 @@ def Play_Tissue(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = speech_to_text()
+        user_said = input("답변: ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':       # 지금은 어떤 답변이라도 프로그램 종료됨
