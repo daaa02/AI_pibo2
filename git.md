@@ -37,7 +37,7 @@ $ git config --global user.email "dyk98498@gmail.com"
 언젠가 로그인 하라고 뜬다면
 ```
 username for ~ : daaa02
-password for ~ :    
+password for ~ : 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
 ```
 
 ## 3. 업로드🚀
@@ -49,7 +49,7 @@ password for ~ :
 $ git status
 ```
 
-현재 디렉토리의 모든 파일 업로드
+현재 디렉토리의 모든 파일 업로드 대기열에 추가
 ```
 $ git add . 
 ```
@@ -59,14 +59,39 @@ $ git add .
 $ git add <파일명.py>
 ```
 
+업로드 대기열에 추가되었는지 확인
+```
+$ git status
+
+현재 브랜치 main
+브랜치가 'origin/main'에 맞게 업데이트된 상태입니다.
+
+커밋할 변경 사항:
+  (스테이지 해제하려면 "git reset HEAD <파일>..."을 사용하십시오)
+
+	수정함:        Daily/01_weekday.py
+	새 파일:       Roleplay/01_magician.py
+	새 파일:       Roleplay/Sound/01_magic.wav
+```
+
 파일 업로드 하면서 공유할 메세지 내용 입력
 ```
 $ git commit -m "<메모>"    // git commit -m "test"
+```
+
+업로드 대기열 깨끗한지 확인
+```
+$ git status
+
+현재 브랜치 main
+브랜치가 'origin/main'보다 1개 커밋만큼 앞에 있습니다.
+  (로컬에 있는 커밋을 제출하려면 "git push"를 사용하십시오)
+
+커밋할 사항 없음, 작업 폴더 깨끗함
 ```
 
 **pushhhhhh**
 ```
 $ git push
 ```
-
 
