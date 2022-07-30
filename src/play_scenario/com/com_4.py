@@ -22,13 +22,11 @@ tts = TextToSpeech()
 global i
 i=1;
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
 
 def wait_for(item):
     while True:
@@ -59,7 +57,7 @@ def Play_Ghost(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어라고 말해줘~")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -78,7 +76,7 @@ def Play_Ghost(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -143,7 +141,7 @@ def Play_Ghost(user_name):
                 while True:
                     text_to_speech("또 해볼까? 또 하고 싶으면 또하자고 말해줘~")
 
-                    user_said = input("답변 : ")
+                    user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'AGAIN':
@@ -167,7 +165,7 @@ def Play_Ghost(user_name):
     while True:
         text_to_speech("춤추느라 힘들지는 않았어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         
 
         break
@@ -182,11 +180,11 @@ def Play_Ghost(user_name):
         time.sleep(1)
         text_to_speech("춤 추니까 기분이 어땠어? 신났어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         text_to_speech("정말? 왜?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_agree()
@@ -229,7 +227,7 @@ def Play_Ghost(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':

@@ -21,13 +21,11 @@ Dic = Dictionary()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
 
 def wait_for(item):
     while True:
@@ -156,15 +154,15 @@ def Play_Parcel(user_name):
           user_said = input("답변 : ")
           answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-          if answer == 'DONE':
+          if answer == 'YES':
             behavior_list.do_suggestion_L()
             while True:
                 time.sleep(2)
-                text_to_speech(f"좋아.이제 훌라후프를 바닥에 놓고 훌라후프 바깥에 {user_name} 이가 서.")
+                text_to_speech(f"좋아.이제 훌라후프를 바닥에 놓고 훌라후프 바깥에 {user_name}이가 서.")
                 break
           else:
             behavior_list.do_waiting_A()
-            wait_for('DONE')
+            wait_for('YES')
             continue
           break
 
@@ -182,7 +180,7 @@ def Play_Parcel(user_name):
           user_said = input("답변 : ")
           answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-          if answer == 'DONE':
+          if answer == 'YES':
             behavior_list.do_praise_S()
             while True:
                 time.sleep(2)
@@ -190,7 +188,7 @@ def Play_Parcel(user_name):
                 break
           else:
             behavior_list.do_waiting_A()
-            wait_for('DONE')
+            wait_for('YES')
             continue
           break
 
