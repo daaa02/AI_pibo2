@@ -5,7 +5,7 @@
 import os
 import sys
 import time
-
+import random
 # openpibo module
 import openpibo
 
@@ -20,14 +20,14 @@ NLP = NLP()
 Dic = Dictionary()
 tts = TextToSpeech()
 
+global i
+i=1;
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
 
 def wait_for(item):
     while True:
@@ -35,7 +35,7 @@ def wait_for(item):
         break
 
 
-def Play_Hoop(user_name):
+def Play_Salad(user_name):
 
     print(f"user name: {user_name} \n")
     #과일 샐러드
@@ -51,7 +51,7 @@ def Play_Hoop(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -77,7 +77,7 @@ def Play_Hoop(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -96,7 +96,7 @@ def Play_Hoop(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -113,6 +113,7 @@ def Play_Hoop(user_name):
 
     # 2.3 놀이 시작
     def start():
+        
         behavior_list.do_suggestion_S()
         while True:
             time.sleep(1)
@@ -123,7 +124,7 @@ def Play_Hoop(user_name):
         while True:
             text_to_speech("준비가 되면 준비 됐어 라고 말해줘~")
 
-            user_said = speech_to_text()
+            user_said = input("답변 : ")
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -142,70 +143,79 @@ def Play_Hoop(user_name):
 
         
         
-        for i in range (0, 4):
-            i=i+1
-            def start_1():
+            
+        def start_1():
+            fruit=Dic.Fruit
+            choicelist=random.choice(fruit)
+            global i
+            if 1<=i<5:
                 behavior_list.do_question_S()
                 while True:
-                    text_to_speech(f"{fruit}!맞췄어?")#랜덤과일이름
+                    text_to_speech(f"{random.choice(fruit)}!맞췄어?")#랜덤과일이름
                     #행동인식 - 사진, 영상 촬영       
-                    user_said = speech_to_text()
+                    user_said = input("답변 : ")
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-            if answer == 'DONE':
+
+                    if answer == 'YES':
+                        behavior_list.do_joy()
+                        while True:
+                            
+                            text_to_speech("좋았어. 한칸 옆으로 옮기자! 다시 맞춰 볼게.")
+                            i=i+1
+                            return start_1()
+                            
+                    else:
+                        behavior_list.do_sad()
+                        while True:
+                            text_to_speech("다시 맞춰 볼게.")
+                            return start_1()
+                    break 
+            elif i==5:
                 behavior_list.do_joy()
                 while True:
-                    
-                    text_to_speech("좋았어. 한칸 옆으로 옮기자! 다시 맞춰 볼게.")
-                    return start_1()
-                    
-            else:
-                behavior_list.do_sad()
-                while True:
-                    text_to_speech("다시 맞춰 볼게.")
-                
-            
+                    text_to_speech("처음 자리로 돌아왔어! 정말 빨리 도착했는 걸? ")
+                    break      
+        start_1()            
+    start()        
                     
 
             
 
 
-        behavior_list.do_joy()
-        while True:
-            text_to_speech("처음 자리로 돌아왔어! 정말 빨리 도착했는 걸? ")
-            break
+        
 
         
         # 2.4 놀이 완료
 
-        behavior_list.do_question_S()
-        while True:
-            text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
+    behavior_list.do_question_S()
+    while True:
+        text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-            user_said = speech_to_text()
-            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+        user_said = input("답변 : ")
+        answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'AGAIN':
-                behavior_list.do_agree()
-                start()
-            else:
-                behavior_list.do_praise_L()
-                while True:
-                    text_to_speech(f"{user_name}이는 정말 다양한 과일 이름을 알고 있구나! 멋지다~")
-                    break
-            break
-
-    start()
+        if answer == 'AGAIN':
+            behavior_list.do_agree()
+            start()
+        else:
+            behavior_list.do_praise_L()
+            while True:
+                text_to_speech(f"{user_name}이는 정말 다양한 과일 이름을 알고 있구나! 멋지다~")
+                break
+        break
+       
+    
 
     # 2.5 마무리 대화
     behavior_list.do_question_L()
     while True:
         text_to_speech(f"{user_name}이는 어떤 과일을 제일 좋아해?")
         
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         
         text_to_speech("정말? 어떤 맛이야?")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
 
         break
 
@@ -253,7 +263,7 @@ def Play_Hoop(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':

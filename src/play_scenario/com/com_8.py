@@ -20,18 +20,19 @@ NLP = NLP()
 Dic = Dictionary()
 tts = TextToSpeech()
 
+global i
+i=1;
+
 import random
 
 wheather=['비가 내리겠습니다.(약한 빗소리)', '해가 비치겠습니다(해소리)', '소나기가 내리겠습니다(센 빗소리)', '우박이 바닥에 쏟아져 내리겠습니다(우박소리)', '천둥 번개가 치겠습니다(천둥소리)', '눈이 내리겠습니다(캐롤소리)']
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
 
 def wait_for(item):
     while True:
@@ -39,7 +40,7 @@ def wait_for(item):
         break
 
 
-def Play_Hoop(user_name):
+def Play_Wheather(user_name):
 
     print(f"user name: {user_name} \n")
 
@@ -120,74 +121,81 @@ def Play_Hoop(user_name):
             time.sleep(1)
             text_to_speech(f"바닥에 매트를 깔고 {user_name}이가 먼저 엎드려줘. ")
             break
-        i=1;
+        
         def start_1():
-         global i
-         behavior_list.do_waiting_B()
-         while True:
-            time.sleep(1)
-            text_to_speech("준비가 다 됐으면 준비 됐어 라고 말해줘~")
+            global i
+            behavior_list.do_waiting_B()
+            while True:
+                time.sleep(1)
+                text_to_speech("준비가 다 됐으면 준비 됐어 라고 말해줘~")
 
-            user_said = speech_to_text()
-            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+                user_said = speech_to_text()
+                answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'YES':
-             
-               behavior_list.do_explain_B()
-               while True:
-                 text_to_speech("좋았어.일기 예보를 들려줄게!")
-                 break
-            else:
-                behavior_list.do_waiting_A()
-                wait_for('YES')
-                continue
-            break
+                if answer == 'DONE':
+                
+                    behavior_list.do_explain_B()
+                    while True:
+                        text_to_speech("좋았어.일기 예보를 들려줄게!")
+                        break
+                else:
+                    behavior_list.do_waiting_A()
+                    wait_for('DONE')
+                    continue
+                break
+
+            choicelist=random.choice(wheather)
 
             behavior_list.do_explain_A()
-         while True:
-            #행동인식-사진, 영상 촬영
-            text_to_speech("오늘의 일기 예보입니다. ")
-            time.sleep(1)
-            text_to_speech("오늘은 ", random(wheather))
-            break
-         behavior_list.do_explain_B()
-         while True:
-            #행동인식-사진, 영상 촬영
-            time.sleep(10)#날씨 효과음
-            text_to_speech("그리고 ", random(wheather))
-            break
-
-         behavior_list.do_explain_A()
-         while True:
-            #행동인식-사진, 영상 촬영
-            time.sleep(10)#날씨 효과음
-            text_to_speech("갑자기 ", random(wheather))
-            break
-
-         behavior_list.do_joy()
-         while True:
-            text_to_speech("정말 재미있다~")
-
-            
-            break
-        
-        if i == 1:
-             behavior_list.do_suggestion_L()
-             while True:
-              text_to_speech(f"이번에는 역할을 바꿔보자.친구가 매트에 엎드리면 {user_name}이가 등에 날씨를 표현해줘. ")
-              break
-             #행동인식 - 사진, 영상 촬영
-             print("*** 1회차 ***")
-             i=i+1
-             start_1()
-             
-        elif i==2:     
-                 
-            behavior_list.do_praise_S()
             while True:
-               print("*** 2회차 ***")
-               text_to_speech("우와 정말 생동감 있는 날씨 표현이야~")
+                #행동인식-사진, 영상 촬영
+                text_to_speech("오늘의 일기 예보입니다. ")
+                time.sleep(1)
+                text_to_speech(f"오늘은 {random.choice(wheather)}")
+                break
             
+            behavior_list.do_explain_B()
+            while True:
+                #행동인식-사진, 영상 촬영
+                time.sleep(10)#날씨 효과음
+                text_to_speech(f"그리고 {random.choice(wheather)}")
+                break
+
+            behavior_list.do_explain_A()
+            while True:
+                #행동인식-사진, 영상 촬영
+                time.sleep(10)#날씨 효과음
+                text_to_speech(f"갑자기 {random.choice(wheather)}")
+                break
+
+            
+            
+            if i == 1:
+
+                behavior_list.do_joy()
+                while True:
+                    text_to_speech("정말 재미있다~")
+                    break
+
+                behavior_list.do_suggestion_L()
+                while True:
+                    text_to_speech(f"이번에는 역할을 바꿔보자.친구가 매트에 엎드리면 {user_name}이가 등에 날씨를 표현해줘. ")
+                    #행동인식 - 사진, 영상 촬영
+                    print("*** 2회차 ***")
+                    i=i+1
+                    start_1()
+                    break
+                    
+                
+            elif i==2:     
+                    
+                behavior_list.do_praise_S()
+                while True:
+                    
+                    text_to_speech("우와 정말 생동감 있는 날씨 표현이야~")
+                    break
+
+        start_1()    
 
     start()        
 
@@ -212,7 +220,7 @@ def Play_Hoop(user_name):
                     break
             break
 
-    start()
+    
 
     # 2.5 마무리 대화
     behavior_list.do_question_L()

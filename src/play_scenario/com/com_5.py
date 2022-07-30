@@ -35,7 +35,7 @@ def wait_for(item):
         break
 
 
-def Play_Hoop(user_name):
+def Play_Parcel(user_name):
 
     print(f"user name: {user_name} \n")
 
@@ -50,7 +50,7 @@ def Play_Hoop(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -76,7 +76,7 @@ def Play_Hoop(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있다고 말해줘~")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -94,7 +94,7 @@ def Play_Hoop(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -116,13 +116,14 @@ def Play_Hoop(user_name):
          while True:
             time.sleep(1)
             text_to_speech(f"{user_name}이가 좋아하는 과일카드를 보여줘. 카드가 없으면 이름을 말해도 좋아.")
-
-            user_said = speech_to_text()
+            
+            user_said = input("답변 : ")
+            fruit = NLP.nlp_fruit(user_said=user_said, dic=Dic)
             break
 
          behavior_list.do_suggestion_S()
          while True:
-            text_to_speech("△△이네. 그러면 △△를 종이에 그려보자! ")
+            text_to_speech(f"{fruit}이네. 그러면 {fruit}를 종이에 그려보자! ")
 
             
             break
@@ -131,14 +132,14 @@ def Play_Hoop(user_name):
          while True:
           text_to_speech("다 그리면 다 그렸어 라고 말해줘~")
 
-          user_said = speech_to_text()
+          user_said = input("답변 : ")
           answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
           if answer == 'DONE':
              behavior_list.do_praise_S()
              while True:
                 time.sleep(2)
-                text_to_speech("정말 맛있어 보이는 △△이다.")
+                text_to_speech(f"정말 맛있어 보이는 {fruit}이다.")
                 break
           else:
             behavior_list.do_waiting_A()
@@ -152,7 +153,7 @@ def Play_Hoop(user_name):
          while True:
           text_to_speech("이제 그림을 오려서 공에 붙이면 과일 택배 완성이야. 다 붙이면 다 붙였어 라고 말해줘~")
 
-          user_said = speech_to_text()
+          user_said = input("답변 : ")
           answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
           if answer == 'DONE':
@@ -178,7 +179,7 @@ def Play_Hoop(user_name):
          while True:
           text_to_speech("다 옮겼으면 다 옮겼어 라고 말해줘~")
 
-          user_said = speech_to_text()
+          user_said = input("답변 : ")
           answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
           if answer == 'DONE':
@@ -200,7 +201,7 @@ def Play_Hoop(user_name):
          while True:
             text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-            user_said = speech_to_text()
+            user_said = input("답변 : ")
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'AGAIN':
@@ -214,16 +215,18 @@ def Play_Hoop(user_name):
                     break
             break
 
+    start()
+
     
 
     # 2.5 마무리 대화
     behavior_list.do_question_L()
     while True:
-        text_to_speech(f"{user_name} 이는 △△를 좋아하고, 어떤 과일을 싫어해?")
+        text_to_speech(f"{user_name} 이는 어떤 과일을 좋아하고, 어떤 과일을 싫어해?")
         time.sleep(3)
-       
+    
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         
 
         break
@@ -231,7 +234,7 @@ def Play_Hoop(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech("정말? 왜 싫어해?")
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         break
 
     behavior_list.do_agree()
@@ -242,9 +245,9 @@ def Play_Hoop(user_name):
     behavior_list.do_question_S()
     while True:
         time.sleep(1)
-        text_to_speech("OO이는 좋아하는 향기가 있어?")
+        text_to_speech(f"{user_name}이는 좋아하는 향기가 있어?")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
 
     
         break
@@ -279,7 +282,7 @@ def Play_Hoop(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':

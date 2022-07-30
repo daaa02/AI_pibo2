@@ -20,14 +20,14 @@ NLP = NLP()
 Dic = Dictionary()
 tts = TextToSpeech()
 
+global i
+i=1;
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
 
 def wait_for(item):
     while True:
@@ -35,7 +35,7 @@ def wait_for(item):
         break
 
 
-def Play_Hoop(user_name):
+def Play_Treasure(user_name):
 
     print(f"user name: {user_name} \n")
     #마법사의 보물
@@ -144,6 +144,7 @@ def Play_Hoop(user_name):
                 text_to_speech("동물이름을 말하고 변해라 얍! 이라고 하면 돼~ 시작!")
                 break
             def start_2():    
+                global i
                 behavior_list.do_joy()
                 while True:
                     #행동인식 - 사진, 영상 촬영
@@ -183,59 +184,62 @@ def Play_Hoop(user_name):
                     text_to_speech("마법이 풀렸어~")
                     break
 
-                for i in range(0, 2):
-                    i = i + 1
-                    if i == 1:
+                
+                if i == 1:
 
-                        behavior_list.do_waiting_A()
-                        while True:
-                            text_to_speech("보물을 찾으면 찾았다고 말해줘~")
+                    behavior_list.do_waiting_A()
+                    while True:
+                        text_to_speech("보물을 찾으면 찾았다고 말해줘~")
 
-                            user_said = speech_to_text()
-                            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+                        user_said = speech_to_text()
+                        answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                            if answer == 'DONE':
-                                behavior_list.do_praise_S()
-                                while True:
-                                    time.sleep(2)
-                                    text_to_speech("정말 주문을 잘 걸었어~")
-                                    
-                                    break
-                            else:
-                                behavior_list.do_waiting_A()
-                                text_to_speech("같은 방법으로 다시 마법을 걸어보자. 시작!")
-                                start_2()
-                                continue
-                            break
-
-                        behavior_list.do_suggestion_L()
-                        while True:
-                            text_to_speech(f"이번에는 역할을 바꿔보자. 친구가 보물을 숨기고 {user_name}이가 보물을 찾아줘.")
-                            start_1()
-                            break
-
-                    elif i == 2:
-                        behavior_list.do_waiting_A()
-                        while True:
-                            text_to_speech("보물을 찾으면 찾았다고 말해줘~")
-
-                            user_said = speech_to_text()
-                            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-                            if answer == 'DONE':
-                                behavior_list.do_praise_S()
-                                while True:
-                                    time.sleep(2)
-                                    text_to_speech("벌써? 대단한 걸?")
-                                    
-                                    break
-                            else:
-                                behavior_list.do_waiting_A()
-                                wait_for('DONE')
-                                continue
-                            break
+                        if answer == 'YES':
+                            behavior_list.do_praise_S()
+                            while True:
+                                time.sleep(2)
+                                text_to_speech("정말 주문을 잘 걸었어~")
+                                
+                                
+                                
+                                break
+                        else:
+                            behavior_list.do_waiting_A()
+                            text_to_speech("같은 방법으로 다시 마법을 걸어보자. 시작!")
+                            start_2()
+                            continue
                         break
-                start_1()
+
+                    behavior_list.do_suggestion_L()
+                    while True:
+                        text_to_speech(f"이번에는 역할을 바꿔보자. 친구가 보물을 숨기고 {user_name}이가 보물을 찾아줘.")
+                        i=i+1
+                        start_1()
+                        break
+
+                elif i == 2:
+                    behavior_list.do_waiting_A()
+                    while True:
+                        text_to_speech("보물을 찾으면 찾았다고 말해줘~")
+
+                        user_said = speech_to_text()
+                        answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+                        if answer == 'YES':
+                            behavior_list.do_praise_S()
+                            while True:
+                                time.sleep(2)
+                                text_to_speech("벌써? 대단한 걸?")
+                                
+                                break
+                        else:
+                            behavior_list.do_waiting_A()
+                            wait_for('YES')
+                            continue
+                        break
+                    
+            start_2()        
+        start_1()
                 
 
             

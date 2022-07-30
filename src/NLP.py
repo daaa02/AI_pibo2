@@ -20,6 +20,9 @@ class Dictionary:
 
         self.Animal = ['치타', '타조', '돌고래', '사슴', '호랑이', '고양이', '강아지', '수달', '코끼리', '토끼', '사자', '표범', 
                        '기린', '앵무새', '새', '공룡', '곰', '원숭이', '달팽이', '개미', '닭', '돼지', '소', '고슴도치', '개', '물고기', '다람쥐']
+        
+        self.Fruit = ['사과', '딸기', '복숭아', '포도', '귤', '오렌지', '감', '파인애플', '자두', '청포도', '바나나', '망고', '수박',
+                        '배','참외', '앵두', '']
 
         self.One = ['1', '일', '첫']
 
@@ -72,6 +75,12 @@ class NLP:
 
         animal = [i for i in a_list if i in dic.Animal]
         return animal[0]
+
+    def nlp_fruit(self, user_said, dic):
+
+        a_list = re.split('[ 가을를]', user_said)
+        fruit = [i for i in a_list if i in dic.Fruit]
+        return fruit[0]
 
 
     def nlp_name(self, user_said):

@@ -19,7 +19,8 @@ from text_to_speech import TextToSpeech
 NLP = NLP()
 Dic = Dictionary()
 tts = TextToSpeech()
-
+global i
+i=1;
 
 def text_to_speech(string):
     filename = "tts.wav"
@@ -35,7 +36,7 @@ def wait_for(item):
         break
 
 
-def Play_Hoop(user_name):
+def Play_Ghost(user_name):
 
     print(f"user name: {user_name} \n")
 
@@ -58,7 +59,7 @@ def Play_Hoop(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어라고 말해줘~")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -77,7 +78,7 @@ def Play_Hoop(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -94,15 +95,16 @@ def Play_Hoop(user_name):
 
     # 2.3 놀이 시작
     def start():
-            behavior_list.do_dance()#춤=dance 정지=stop으로 임의로 만듦!
-            while True:
-                #음악재생
-                text_to_speech("우리는 춤을 추는 유령이에요. ")
-                #10초간 재생
-                break
+        behavior_list.do_joy()#춤=dance=joy 정지=stop=sad
+        while True:
+            #음악재생
+            text_to_speech("우리는 춤을 추는 유령이에요. ")
+            #10초간 재생
+            break
 
-        def start_1() :    
-            behavior_list.do_stop()
+        def start_1(): 
+            global i   
+            behavior_list.do_sad()
             while True:
                 #행동인식 - 사진 및 영상 촬영
                 text_to_speech("음악이 멈췄어. ")
@@ -110,60 +112,69 @@ def Play_Hoop(user_name):
                 time.sleep(3)
                 break
 
-            behavior_list.do_stop()
+            behavior_list.do_sad()
             while True:
                 text_to_speech("안 움직이고 있지? 움직이면 유령인게 들킬거야!")
                 time.sleep(3)
                 break
 
-            for i in range(0, 3):
-                i = i + 1
-                if i == 3:    
-                    behavior_list.do_waiting_C()
-                    while True:
-                        #행동인식 - 사진 및 영상 촬영
-                        #음악재생
-                        text_to_speech("음악이 다시 나온다! 춤추자~ 우리는 음악이 나오면 춤을 추는 유령이에요.")
-                        break
-                        start_1()
-                    break    
-            start_1()
-    start()
-
-
-        # 2.4 놀이 완료
-        behavior_list.do_question_S()
-        while True:
-            text_to_speech("또 해볼까? 또 하고 싶으면 또하자고 말해줘~")
-
-            user_said = speech_to_text()
-            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-            if answer == 'AGAIN':
-                behavior_list.do_agree()
-                start()
-            else:
-                behavior_list.do_praise_L()
+            
+            if 1<=i<3:    
+                behavior_list.do_waiting_C()
                 while True:
-                    text_to_speech(f"열심히 춤춘 {user_name}이가 최고야~ 정말 신났어!")
-                    break
-            break
+                    #행동인식 - 사진 및 영상 촬영
+                    #음악재생
+                    text_to_speech("음악이 다시 나온다! 춤추자~ 우리는 음악이 나오면 춤을 추는 유령이에요.")
 
+                    i=i+1
+                    start_1()
+                    break 
+
+            elif i==3:
+
+                behavior_list.do_waiting_C()
+                while True:
+                    #행동인식 - 사진 및 영상 촬영
+                    #음악재생
+                    text_to_speech("음악이 다시 나온다! 춤추자~ 우리는 음악이 나오면 춤을 추는 유령이에요.")                  
+                    break 
+
+                behavior_list.do_question_S()
+                while True:
+                    text_to_speech("또 해볼까? 또 하고 싶으면 또하자고 말해줘~")
+
+                    user_said = input("답변 : ")
+                    answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+                    if answer == 'AGAIN':
+                        behavior_list.do_agree()
+                        start()
+                    else:
+                        behavior_list.do_praise_L()
+                        while True:
+                            text_to_speech(f"열심히 춤춘 {user_name}이가 최고야~ 정말 신났어!")
+                            break
+                    break
+
+        start_1()
     start()
+
+
+    
 
     # 2.5 마무리 대화
     behavior_list.do_suggestion_S()
     while True:
         text_to_speech("춤추느라 힘들지는 않았어?")
 
-        user_said = speech_to_text()
-        answer = NLP.nlp_animal(user_said=user_said, dic=Dic)
+        user_said = input("답변 : ")
+        
 
         break
 
     behavior_list.do_praise_S()
     while True:
-        text_to_speech("그랬구나. 그래도 OO이가 춤을 잘 춰서 파이보는 정말 재미있었어!")
+        text_to_speech(f"그랬구나. 그래도 {user_name}이가 춤을 잘 춰서 파이보는 정말 재미있었어!")
         break
 
     behavior_list.do_question_S()
@@ -171,11 +182,11 @@ def Play_Hoop(user_name):
         time.sleep(1)
         text_to_speech("춤 추니까 기분이 어땠어? 신났어?")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
 
         text_to_speech("정말? 왜?")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         break
 
     behavior_list.do_agree()
@@ -218,7 +229,7 @@ def Play_Hoop(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':

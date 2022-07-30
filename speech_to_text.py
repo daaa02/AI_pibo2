@@ -55,6 +55,7 @@ asound.snd_lib_error_set_handler(c_error_handler)
 
 # Audio recording parameters
 RATE = 44100
+RATE = 44100 # 기존 16000 에서 "OSError: [Errno -9997] Invalid sample rate" 발생
 CHUNK = int(RATE / 10)  # 100ms
 
 
