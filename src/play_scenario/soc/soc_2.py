@@ -21,13 +21,11 @@ Dic = Dictionary()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
     
 def wait_for(item):
     while True:
@@ -35,7 +33,7 @@ def wait_for(item):
         break
 
 
-def Play_King(user_name):
+def Play_Newspaper(user_name):
     print(f"user name: {user_name} \n")
 
     # 2.1 준비물 설명
@@ -49,7 +47,7 @@ def Play_King(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -75,7 +73,7 @@ def Play_King(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -93,7 +91,7 @@ def Play_King(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -123,7 +121,7 @@ def Play_King(user_name):
                 while True:
                     text_to_speech("다 만들었으면 다 만들었다고 말해줘~")
 
-                    user_said = speech_to_text()
+                    user_said = input("답변 : ")
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
@@ -146,7 +144,7 @@ def Play_King(user_name):
                 #행동인식-사진, 영상촬영
                 text_to_speech("정말 멋진 비였어. 이제 바닥에 떨어진 비를 다시 모아보자. 다 모았으면 다 모았다고 말해줘~ ")
                 
-                user_said = speech_to_text()
+                user_said = input("답변 : ")
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
@@ -169,8 +167,8 @@ def Play_King(user_name):
              text_to_speech("신문지 비가 또 내린다~")
              break
             
-                
-
+        start_2()        
+    start()
 
            
 
@@ -179,7 +177,7 @@ def Play_King(user_name):
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -200,7 +198,7 @@ def Play_King(user_name):
         time.sleep(1)
         text_to_speech("신문지 비를 맞으니까 기분이 어땠어? 포근했어?")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
 
         
         break
@@ -214,13 +212,13 @@ def Play_King(user_name):
     while True:
         text_to_speech(f"{user_name}이는 어떤 날씨를 좋아해?")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         break
 
     behavior_list.do_question_S()
     while True:
         text_to_speech("정말? 왜 좋아?")
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         break
 
     behavior_list.do_agree()
@@ -259,7 +257,7 @@ def Play_King(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
