@@ -21,13 +21,11 @@ Dic = Dictionary()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
     
 def wait_for(item):
     while True:
@@ -35,7 +33,7 @@ def wait_for(item):
         break
 
 
-def Play_King(user_name):
+def Play_Indian(user_name):
     print(f"user name: {user_name} \n")
 
     # 2.1 준비물 설명
@@ -110,80 +108,80 @@ def Play_King(user_name):
 
     # 2.3 놀이 시작
     def start():
-        def start_2():
-            behavior_list.do_suggestion_L()
-            while True:
-                text_to_speech("빨래집게를 서로의 옷에 꽂아서 인디언 옷을 만들자!")
-                time.sleep(1)
-
-                behavior_list.do_waiting_A()
-                while True:
-                    text_to_speech("완성이 되면 다됐어 라고 말해줘.")
-
-                    user_said = speech_to_text()
-                    answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-                    if answer == 'DONE':
-                        behavior_list.do_joy()
-                        while True:
-                            time.sleep(3)
-                            text_to_speech("정말 멋진 인디언 옷이다!파이보가 신나는 음악을 틀어줄게. 춤추면서 집게를 떨어트려봐.")
-                            break
-                    else:
-                        behavior_list.do_waiting_A()
-                        wait_for('DONE')
-                        continue
-                    break
-                break
-
-            behavior_list.do_joy()
-            while True:
-                #행동인식-사진, 영상 촬영
-                #음악 재생
-                text_to_speech(" 신난다~집게를 다 떨어트리면 다됐어 라고 말해줘!")
-                
-                user_said = speech_to_text()
-                answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-                if answer == 'DONE':
-                        behavior_list.do_praise_L()
-                        while True:
-                            time.sleep(3)
-                            #행동인식-사진, 영상 촬영
-                            text_to_speech("진짜 빠르다! 춤을 정말 열심히 췄는걸?")
-                            break
-                else:
-                        behavior_list.do_waiting_A()
-                        wait_for('DONE')
-                        continue
-                break
-
-            behavior_list.do_suggestion_L()
-            while True:
-                #행동인식-사진, 영상 촬영
-                #음악 재생
-                text_to_speech("이제 집게를 색깔 별로 정리해보자.")
-                break
+        
+        behavior_list.do_suggestion_L()
+        while True:
+            text_to_speech("빨래집게를 서로의 옷에 꽂아서 인디언 옷을 만들자!")
+            time.sleep(1)
 
             behavior_list.do_waiting_A()
             while True:
-                text_to_speech("다 정리하면 다했어 라고 말해줘~")
+                text_to_speech("완성이 되면 다됐어 라고 말해줘.")
+
                 user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
-                        behavior_list.do_praise_L()
-                        while True:
-                            time.sleep(3)
-                            
-                            text_to_speech(f"정말 깔끔하다. {user_name}이는 정리도 잘하는 구나!")
-                            break
+                    behavior_list.do_joy()
+                    while True:
+                        time.sleep(3)
+                        text_to_speech("정말 멋진 인디언 옷이다!파이보가 신나는 음악을 틀어줄게. 춤추면서 집게를 떨어트려봐.")
+                        break
                 else:
-                        behavior_list.do_waiting_A()
-                        wait_for('DONE')
-                        continue
+                    behavior_list.do_waiting_A()
+                    wait_for('DONE')
+                    continue
                 break
-                
+            break
+
+        behavior_list.do_joy()
+        while True:
+            #행동인식-사진, 영상 촬영
+            tts.play(filename="/home/pi/AI_pibo2/src/data/audio/인디언.mp3", out='local', volume=-1000, background=False)
+            text_to_speech(" 신난다~집게를 다 떨어트리면 다됐어 라고 말해줘!")
+            
+            user_said = speech_to_text()
+            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+            if answer == 'DONE':
+                    behavior_list.do_praise_L()
+                    while True:
+                        time.sleep(3)
+                        #행동인식-사진, 영상 촬영
+                        text_to_speech("진짜 빠르다! 춤을 정말 열심히 췄는걸?")
+                        break
+            else:
+                    behavior_list.do_waiting_A()
+                    wait_for('DONE')
+                    continue
+            break
+
+        behavior_list.do_suggestion_L()
+        while True:
+            
+            
+            text_to_speech("이제 집게를 색깔 별로 정리해보자.")
+            break
+
+        behavior_list.do_waiting_A()
+        while True:
+            text_to_speech("다 정리하면 다했어 라고 말해줘~")
+            user_said = speech_to_text()
+            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+            if answer == 'DONE':
+                    behavior_list.do_praise_L()
+                    while True:
+                        time.sleep(3)
+                        
+                        text_to_speech(f"정말 깔끔하다. {user_name}이는 정리도 잘하는 구나!")
+                        break
+            else:
+                    behavior_list.do_waiting_A()
+                    wait_for('DONE')
+                    continue
+            break
+    start()            
 
             
 
@@ -214,7 +212,6 @@ def Play_King(user_name):
     while True:
         time.sleep(1)
         text_to_speech("오늘 인디언이 되보니까 기분이 어땠어?")
-
         user_said = speech_to_text()
 
         
