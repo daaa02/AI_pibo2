@@ -21,13 +21,11 @@ Dic = Dictionary()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
     
 def wait_for(item):
     while True:
@@ -35,7 +33,7 @@ def wait_for(item):
         break
 
 
-def Play_King(user_name):
+def Play_Indian(user_name):
     print(f"user name: {user_name} \n")
 
     # 2.1 준비물 설명
@@ -49,7 +47,7 @@ def Play_King(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -74,7 +72,7 @@ def Play_King(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -93,7 +91,7 @@ def Play_King(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -111,95 +109,95 @@ def Play_King(user_name):
     # 2.3 놀이 시작
     def start():
         
-            behavior_list.do_suggestion_L()
-            while True:
-                text_to_speech("의자랑 담요로 인디언 집을 만들자.")
-                time.sleep(1)
-
-                behavior_list.do_waiting_A()
-                while True:
-                    text_to_speech("완성이 되면 다 됐다고 말해줘.")
-
-                    user_said = speech_to_text()
-                    answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-                    if answer == 'DONE':
-                        behavior_list.do_praise_S()
-                        while True:
-                            time.sleep(3)
-                            text_to_speech("멋지게 잘 만들었는걸?")
-                            break
-                    else:
-                        behavior_list.do_waiting_A()
-                        wait_for('DONE')
-                        continue
-                    break
-                break
-
-            behavior_list.do_suggestion_L()
-            while True:
-                text_to_speech(f"이제 인디언 집 내부를 꾸며 보자.{user_name}이와 친구가가 좋아하는 장난감이나 인형으로 꾸밀 수 있어. ")
-                
-                behavior_list.do_waiting_A()
-                while True:
-                    text_to_speech("다 꾸미면 다 됐다고 말해줘.")
-
-                    user_said = speech_to_text()
-                    answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-                    if answer == 'DONE':
-                        behavior_list.do_joy()
-                        while True:
-                            time.sleep(3)
-                            text_to_speech("너무 기대된다! 파이보를 인디언 집에 데려가줘.")
-                            break
-                    else:
-                        behavior_list.do_waiting_A()
-                        wait_for('DONE')
-                        continue
-                    break
-                break
+        behavior_list.do_suggestion_L()
+        while True:
+            text_to_speech("의자랑 담요로 인디언 집을 만들자.")
+            time.sleep(1)
 
             behavior_list.do_waiting_A()
             while True:
-                text_to_speech("도착하면 도착했다고 말해줘! ")
-                
-                user_said = speech_to_text()
+                text_to_speech("완성이 되면 다 됐다고 말해줘.")
+
+                user_said = input("답변 : ")
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
-                        behavior_list.do_joy()
-                        while True:
-                            time.sleep(3)
-                            text_to_speech("우와~ 정말 아늑하다!다 같이 편하게 누워보자!")
-                            break
+                    behavior_list.do_praise_S()
+                    while True:
+                        time.sleep(3)
+                        text_to_speech("멋지게 잘 만들었는걸?")
+                        break
                 else:
-                        behavior_list.do_waiting_A()
-                        wait_for('DONE')
-                        continue
+                    behavior_list.do_waiting_A()
+                    wait_for('DONE')
+                    continue
                 break
+            break
 
+        behavior_list.do_suggestion_L()
+        while True:
+            text_to_speech(f"이제 인디언 집 내부를 꾸며 보자.{user_name}이와 친구가가 좋아하는 장난감이나 인형으로 꾸밀 수 있어. ")
+            
             behavior_list.do_waiting_A()
             while True:
-                text_to_speech("다 눕고 누웠어 라고 말해줘~")
-                
-                user_said = speech_to_text()
+                text_to_speech("다 꾸미면 다 됐다고 말해줘.")
+
+                user_said = input("답변 : ")
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
-                        behavior_list.do_joy()
-                        while True:
-                            time.sleep(3)
-                            text_to_speech("눈을 감고 귀 기울려봐. 숲소리가 들리는 것 같아.")
-                            #숲소리
-                
-                            break
+                    behavior_list.do_joy()
+                    while True:
+                        time.sleep(3)
+                        text_to_speech("너무 기대된다! 파이보를 인디언 집에 데려가줘.")
+                        break
                 else:
-                        behavior_list.do_waiting_A()
-                        wait_for('DONE')
-                        continue
+                    behavior_list.do_waiting_A()
+                    wait_for('DONE')
+                    continue
                 break
+            break
 
+        behavior_list.do_waiting_A()
+        while True:
+            text_to_speech("도착하면 도착했다고 말해줘! ")
+            
+            user_said = input("답변 : ")
+            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+            if answer == 'DONE':
+                    behavior_list.do_joy()
+                    while True:
+                        time.sleep(3)
+                        text_to_speech("우와~ 정말 아늑하다!다 같이 편하게 누워보자!")
+                        break
+            else:
+                    behavior_list.do_waiting_A()
+                    wait_for('DONE')
+                    continue
+            break
+
+        behavior_list.do_waiting_A()
+        while True:
+            text_to_speech("다 눕고 누웠어 라고 말해줘~")
+            
+            user_said = input("답변 : ")
+            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+            if answer == 'DONE':
+                    behavior_list.do_joy()
+                    while True:
+                        time.sleep(3)
+                        text_to_speech("눈을 감고 귀 기울려봐. 숲소리가 들리는 것 같아.")
+                        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/숲소리.wav", out='local', volume=-1000, background=False)
+            
+                        break
+            else:
+                    behavior_list.do_waiting_A()
+                    wait_for('DONE')
+                    continue
+            break
+    start()
 
 
     # 2.4 놀이 완료
@@ -207,7 +205,7 @@ def Play_King(user_name):
     while True:
         text_to_speech("인디언 집을 또 만들어볼까? 또 하고 싶으면 또하자라고 말해줘.")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -228,7 +226,7 @@ def Play_King(user_name):
         time.sleep(1)
         text_to_speech(f"{user_name}이가 만든 집에서 쉬니까 어땠어? 포근한 기분이 들었어?")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
 
         
         break
@@ -242,7 +240,7 @@ def Play_King(user_name):
     while True:
         text_to_speech(f"{user_name}이는 언제 제일 마음이 편해?")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         break
 
     behavior_list.do_joy()
@@ -274,7 +272,7 @@ def Play_King(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
