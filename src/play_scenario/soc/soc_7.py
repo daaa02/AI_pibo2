@@ -22,13 +22,11 @@ Dic = Dictionary()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
     
 def wait_for(item):
     while True:
@@ -36,7 +34,7 @@ def wait_for(item):
         break
 
 
-def Play_King(user_name):
+def Play_Stork(user_name):
     print(f"user name: {user_name} \n")
 
     # 2.1 준비물 설명
@@ -96,17 +94,18 @@ def Play_King(user_name):
 
     # 2.3 놀이 시작
     def start():
-        
+            global i
+            i=1;
             behavior_list.do_suggestion_S()
             while True:
                 text_to_speech(f"바닥에  {user_name}이는 엎드리고 친구는 옆에 앉아줘.")
                 time.sleep(1)
                 break
-            i=1   
+              
             def start_1():
-                 global i
-                 behavior_list.do_waiting_A()
-                 while True:
+                global i
+                behavior_list.do_waiting_A()
+                while True:
                     text_to_speech("준비가 다 됐으면 준비 됐어 라고 말해줘~")
 
                     user_said = speech_to_text()
@@ -127,98 +126,93 @@ def Play_King(user_name):
                     break
                   
 
-                 behavior_list.do_explain_A()
-                 while True:
-                  time.sleep(1)
-                  text_to_speech("황새가 콕콕 찌르기 시작했어.")
-                  break
-
-                 behavior_list.do_waiting_A()
-                 while True:
-                  time.sleep(1)
-                  text_to_speech("사람은 황새가 찌르는 신체 부위를 이야기 해줘.")
-                  break
-
-                 behavior_list.do_explain_C()
-                 while True:
-                  text_to_speech("황새가 찌른 신체부위를 맞췄으면 맞았어 라고 해줘")
-                  user_said = speech_to_text()
-                  answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-                  if answer == 'YES':
-                   behavior_list.do_praise_S()
-                   while True:
-                    text_to_speech("정말 잘 알아채는 걸?또 해보자!")
+                behavior_list.do_explain_A()
+                while True:
+                    time.sleep(1)
+                    text_to_speech("황새가 콕콕 찌르기 시작했어.")
                     break
-                  else:
-                   behavior_list.do_waiting_C()
-                   wait_for('YES')
-                   continue
-                  break
 
-                 behavior_list.do_explain_A()
-                 while True:
-                  time.sleep(1)
-                  text_to_speech("황새는 목표 신체 부위를 마음속으로 정해줘. ")
-                  break
+                behavior_list.do_waiting_A()
+                while True:
+                    time.sleep(1)
+                    text_to_speech("사람은 황새가 찌르는 신체 부위를 이야기 해줘.")
+                    break
 
-                 behavior_list.do_suggestion_S()
-                 while True:
-                   time.sleep(5)
-                   text_to_speech("시작할게!")
-                   break
+                behavior_list.do_explain_A()
+                while True:
+                    text_to_speech("황새가 찌른 신체부위를 맞췄으면 맞았어 라고 해줘")
+                    user_said = speech_to_text()
+                    answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                 behavior_list.do_explain_A()
-                 while True:
-                  time.sleep(1)
-                  text_to_speech("황새가 콕콕 찌르기 시작했어.")
-                  break
+                    if answer == 'YES':
+                        behavior_list.do_praise_S()
+                        while True:
+                            text_to_speech("정말 잘 알아채는 걸?또 해보자!")
+                            break
+                    else:
+                        behavior_list.do_waiting_C()
+                        wait_for('YES')
+                        continue
+                    break    
 
-                 behavior_list.do_waiting_A()
-                 while True:
-                  time.sleep(1)
-                  text_to_speech("사람은 황새가 찌르는 신체 부위를 이야기 해줘.")
-                  break
+                behavior_list.do_explain_A()
+                while True:
+                    time.sleep(1)
+                    text_to_speech("황새는 목표 신체 부위를 마음속으로 정해줘. ")
+                    break
 
-                 behavior_list.do_explain_C()
-                 while True:
-                  text_to_speech("황새가 찌른 신체부위를 맞췄으면 맞았어 라고 해줘")
-                  user_said = speech_to_text()
-                  answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+                behavior_list.do_suggestion_S()
+                while True:
+                    time.sleep(5)
+                    text_to_speech("시작할게!")
+                    break
 
-                  if answer == 'YES':
-                   behavior_list.do_joy()
-                   while True:
-                     text_to_speech(" 정말 빠르다~")
-                     break
-                  else:
-                   behavior_list.do_waiting_C()
-                   wait_for('YES')
-                   continue
-                  break
+                behavior_list.do_explain_A()
+                while True:
+                    time.sleep(1)
+                    text_to_speech("황새가 콕콕 찌르기 시작했어.")
+                    break
+
+                behavior_list.do_waiting_A()
+                while True:
+                    time.sleep(1)
+                    text_to_speech("사람은 황새가 찌르는 신체 부위를 이야기 해줘.")
+                    break
+
+                behavior_list.do_explain_B()
+                while True:
+                    text_to_speech("황새가 찌른 신체부위를 맞췄으면 맞았어 라고 해줘")
+                    user_said = speech_to_text()
+                    answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+                    if answer == 'YES':
+                        behavior_list.do_joy()
+                        while True:
+                            text_to_speech("정말 빠르다~")
+                            break
+                    else:
+                        behavior_list.do_waiting_C()
+                        wait_for('YES')
+                        continue
+                    break
 
                  
-            if i == 1:
+                if i == 1:
 
-                   behavior_list.do_suggestion_L()
-                   while True:
-             
-                    text_to_speech(f"이번에는  역할을 바꿔보자. 친구가 엎드리면 {user_name}이가 황새처럼 콕콕 찔러줘. ")
-
-                    print("*** 1회차 ***")
-                    i=i+1
-                    start_1()
-                    
-                 
-     
-            elif i==2:
-                 behavior_list.do_praise_S()
-                 while True:
-                  #행동인식 - 사진, 영상 촬영
-                  text_to_speech("*** 2회차 ***")
-                  text_to_speech("황새 역할도 재미있게 잘 하는걸?")
-                  break
-
+                    behavior_list.do_suggestion_L()
+                    while True:            
+                        text_to_speech(f"이번에는  역할을 바꿔보자. 친구가 엎드리면 {user_name}이가 황새처럼 콕콕 찔러줘. ")
+                        text_to_speech("*** 2회차 ***")
+                        i=i+1
+                        return start_1()                    
+                        
+                elif i==2:
+                    behavior_list.do_praise_S()
+                    while True:
+                    #행동인식 - 사진, 영상 촬영
+                        text_to_speech("황새 역할도 재미있게 잘 하는걸?")
+                        break
+            start_1()      
     start()   
 
     # 2.4 놀이 완료
