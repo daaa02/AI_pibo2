@@ -3,8 +3,10 @@
 
 # python module
 import os
+from re import I
 import sys
 import time
+import random
 
 # openpibo module
 import openpibo
@@ -20,14 +22,14 @@ NLP = NLP()
 Dic = Dictionary()
 tts = TextToSpeech()
 
+body=['발바닥', '배', '팔', '다리', '팔꿈치', '무릎', '허벅지']
 
-def text_to_speech(string):
+
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
     
 def wait_for(item):
     while True:
@@ -35,7 +37,7 @@ def wait_for(item):
         break
 
 
-def Play_King(user_name):
+def Play_Body(user_name):
     print(f"user name: {user_name} \n")
 
     # 2.1 준비물 설명
@@ -91,7 +93,8 @@ def Play_King(user_name):
 
     # 2.3 놀이 시작
     def start():
-        
+        global i
+        i=1;
         behavior_list.do_suggestion_L()
         while True:
             text_to_speech("첫번째 악기는 손바닥이야. 손바닥을 마주쳐 짝짝 소리를 내보자!")
@@ -102,35 +105,46 @@ def Play_King(user_name):
             text_to_speech("음악을 틀어줄게.")
             #행동인식 - 사진, 영상 촬영
             break
-        for i in range (0, 3):
-            i=i+1
-
-            behavior_list.do_suggestion_L()
-            while True:
-                #음악 10초 후
-                text_to_speech("(랜덤 신체부위)로 소리를 내보자!")
-                #행동인식 - 사진, 영상 촬영
-                break
-            break
+        choicelist=random.choice(body)
+        def start_1():
+            global i
+            tts.play(filename="/home/pi/AI_pibo2/src/data/audio/신체악기.mp3", out='local', volume=-1000, background=False)
+            if 1<=i<4:
+                behavior_list.do_suggestion_L()
+                while True:
+                    text_to_speech(f"{random.choice(body)}로 소리를 내보자!")
+                    i=i+1
+                    
+                    #행동인식 - 사진, 영상 촬영
+                    return start_1()
+                
+            elif i==4:
+                behavior_list.do_joy()
+                while True:
+                    
+                    text_to_speech("정말 재미있는 소리다!")   
+                    break
+        
+        start_1()
         
 
-        behavior_list.do_joy()
-        while True:
-            #음악 10초 후
-            text_to_speech("정말 재미있는 소리다!")   
-            break
+        
 
         behavior_list.do_waiting_C()
         while True:
-            text_to_speech("마지막으로 (랜덤 신체부위)로 소리를 내보자!") 
+            text_to_speech(f"마지막으로{random.choice(body)}로 소리를 내보자!") 
+            tts.play(filename="/home/pi/AI_pibo2/src/data/audio/신체악기.mp3", out='local', volume=-1000, background=False)
             #행동인식 - 사진, 영상 촬영
             break
 
         behavior_list.do_praise_S()
         while True:
-            #음악 10초 후
+            
             text_to_speech("우리 몸에서 나는 소리가 정말 악기 소리같아!")   
             break
+
+        
+    start()
 
     # 2.4 놀이 완료
     behavior_list.do_question_L()
