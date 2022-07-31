@@ -49,7 +49,7 @@ def Play_Pizza(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -67,7 +67,7 @@ def Play_Pizza(user_name):
     # 2.2 놀이 설명
     behavior_list.do_explain_B()
     while True:
-        text_to_speech(f"먼저 OO이가 매트위에 엎드려 있으면, 친구가 {user_name}이 등에 피자 만들기를 표현해줄거야. 레시피는 파이보가 알려줄게.")
+        text_to_speech(f"먼저 {user_name}이가 매트위에 엎드려 있으면, 친구가 {user_name}이 등에 피자 만들기를 표현해줄거야. 레시피는 파이보가 알려줄게.")
         break
 
     behavior_list.do_question_S()
@@ -75,7 +75,7 @@ def Play_Pizza(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -93,7 +93,7 @@ def Play_Pizza(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -122,7 +122,7 @@ def Play_Pizza(user_name):
             while True:
                 text_to_speech("준비가 다 됐으면 준비 됐어 라고 말해줘~")
 
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
@@ -177,19 +177,20 @@ def Play_Pizza(user_name):
                 
                 break
 
-            behavior_list.do_joy()
-            while True:
-                #행동인식-사진, 영상 촬영
-                time.sleep(10)#요리 효과음
-                text_to_speech("맛있는 피자가 완성됐어~ ")
-                
-                break
-
             
             if i == 1:
+
+                behavior_list.do_joy()
+                while True:
+                    #행동인식-사진, 영상 촬영
+                    time.sleep(10)#요리 효과음
+                    text_to_speech("맛있는 피자가 완성됐어~ ")
+                    
+                    break
+
                 behavior_list.do_suggestion_L()
                 while True:
-                    text_to_speech(f"이번에는 역할을 바꿔보자.친구가 매트에 엎드리면 {user_name}이가 피자를 만들줘. ")
+                    text_to_speech(f"이번에는 역할을 바꿔보자.친구가 매트에 엎드리면 {user_name}이가 피자를 만들어줘. ")
                     print("*** 2회차 ***")
                     i=i+1
                     start_1()
@@ -215,7 +216,7 @@ def Play_Pizza(user_name):
     while True:
             text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'AGAIN':
@@ -237,7 +238,7 @@ def Play_Pizza(user_name):
     while True:
         text_to_speech(f"{user_name}이는 피자에 어떤 토핑이 제일 좋아?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         
 
         break
@@ -252,7 +253,7 @@ def Play_Pizza(user_name):
         time.sleep(1)
         text_to_speech(f"{user_name}이는 제일 좋아하는 음식이 뭐야?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         
         break
@@ -267,7 +268,7 @@ def Play_Pizza(user_name):
         time.sleep(1)
         text_to_speech("파이보는 못 먹어봤어. 어떤 맛이야?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         
         break
@@ -299,7 +300,7 @@ def Play_Pizza(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':

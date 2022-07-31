@@ -49,7 +49,7 @@ def Play_Smile(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -75,7 +75,7 @@ def Play_Smile(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있다고 말해줘~")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -93,7 +93,7 @@ def Play_Smile(user_name):
     while True:
         text_to_speech("준비가 되면 시작하자고 말해줘")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -120,21 +120,21 @@ def Play_Smile(user_name):
         while True:
             text_to_speech("먼저 화장실은 무슨 거리라고 할까?")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_question_S()
         while True:
             text_to_speech("좋아 그럼 부엌은 뭐라고 할까?")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_question_S()
         while True:
             text_to_speech("멋진데? 그럼 현관은 뭐라고 할까?")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_agree()
@@ -156,7 +156,7 @@ def Play_Smile(user_name):
         while True:
             text_to_speech("세 개 모두 완성 했으면 다 했어 라고 말해줘.")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -176,14 +176,14 @@ def Play_Smile(user_name):
             text_to_speech("다 붙이면 다 붙였어 라고 말해줘.")            
             
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'YES':
                 behavior_list.do_question_S()
                 while True:
                     text_to_speech("좋았어. 먼저 어떤 거리로 가볼까?")
-                    user_said = input("답변 : ")
+                    user_said = speech_to_text()
                     time.sleep(5)
                     break
             else:
@@ -204,7 +204,7 @@ def Play_Smile(user_name):
             while True:
                 text_to_speech("도착하면 도착했어 라고 말해줘~")
 
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
@@ -233,7 +233,7 @@ def Play_Smile(user_name):
                 behavior_list.do_question_S()
                 while True:
                     text_to_speech("또 어떤 거리를 가볼까?") 
-                    user_said = input("답변 : ")  
+                    user_said = speech_to_text()  
                     print("*** 2회차 ***")
                     i=i+1
                     start_1()
@@ -245,7 +245,7 @@ def Play_Smile(user_name):
                 while True:
                     text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-                    user_said = input("답변 : ")
+                    user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'AGAIN':
@@ -277,7 +277,7 @@ def Play_Smile(user_name):
         time.sleep(3)
         text_to_speech("놀이가 어렵지는 않았어? ")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         
 
         break
@@ -297,11 +297,11 @@ def Play_Smile(user_name):
         time.sleep(1)
         text_to_speech("어떤 거리가 제일 즐거웠어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         text_to_speech("정말? 왜 즐거웠어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_joy()
@@ -334,7 +334,7 @@ def Play_Smile(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':

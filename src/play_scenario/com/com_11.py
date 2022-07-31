@@ -49,7 +49,7 @@ def Play_Clean(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -75,7 +75,7 @@ def Play_Clean(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -94,7 +94,7 @@ def Play_Clean(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -122,7 +122,7 @@ def Play_Clean(user_name):
         while True:
             text_to_speech("준비가 됐으면 준비됐다고 말해줘.")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -141,7 +141,7 @@ def Play_Clean(user_name):
         behavior_list.do_explain_A()
         while True:
             text_to_speech("원하는 세차 코스를 이야기하고 시작!이라고 말해줘.")
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -202,7 +202,7 @@ def Play_Clean(user_name):
             while True:
                 text_to_speech("준비가 완료되면 준비됐어라고 말해줘.")
 
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
@@ -217,7 +217,7 @@ def Play_Clean(user_name):
                     behavior_list.do_waiting_A()
                     wait_for('DONE')
                     continue
-                break
+                
 
         elif i==2:
             behavior_list.do_praise_S()
@@ -233,7 +233,7 @@ def Play_Clean(user_name):
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -253,11 +253,11 @@ def Play_Clean(user_name):
     while True:
         text_to_speech("세차를 해보니까 기분이 어땠어? 상쾌해진 기분이야?")
         
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         
         text_to_speech(f"그렇구나. {user_name}이는 어떤 코스가 제일 마음에 들었어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         break
 
@@ -292,7 +292,7 @@ def Play_Clean(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':

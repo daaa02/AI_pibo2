@@ -51,7 +51,7 @@ def Play_Salad(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -77,7 +77,7 @@ def Play_Salad(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -96,7 +96,7 @@ def Play_Salad(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -124,7 +124,7 @@ def Play_Salad(user_name):
         while True:
             text_to_speech("준비가 되면 준비 됐어 라고 말해줘~")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -148,19 +148,19 @@ def Play_Salad(user_name):
             fruit=Dic.Fruit
             choicelist=random.choice(fruit)
             global i
-            if 1<=i<5:
+            if 1<=i<6:
                 behavior_list.do_question_S()
                 while True:
                     text_to_speech(f"{random.choice(fruit)}!맞췄어?")#랜덤과일이름
                     #행동인식 - 사진, 영상 촬영       
-                    user_said = input("답변 : ")
+                    user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'YES':
                         behavior_list.do_joy()
                         while True:
                             
-                            text_to_speech("좋았어. 한칸 옆으로 옮기자! 다시 맞춰 볼게.")
+                            text_to_speech("좋았어. 한칸 옆으로 옮기자!")
                             i=i+1
                             return start_1()
                             
@@ -169,8 +169,8 @@ def Play_Salad(user_name):
                         while True:
                             text_to_speech("다시 맞춰 볼게.")
                             return start_1()
-                    break 
-            elif i==5:
+                     
+            elif i==6:
                 behavior_list.do_joy()
                 while True:
                     text_to_speech("처음 자리로 돌아왔어! 정말 빨리 도착했는 걸? ")
@@ -191,7 +191,7 @@ def Play_Salad(user_name):
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -211,20 +211,15 @@ def Play_Salad(user_name):
     while True:
         text_to_speech(f"{user_name}이는 어떤 과일을 제일 좋아해?")
         
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         
         text_to_speech("정말? 어떤 맛이야?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         break
 
     behavior_list.do_agree()
-    while True:
-        text_to_speech("그렇구나. 파이보는 과일을 한번도 못 먹어봤어.")
-        break
-
-    behavior_list.do_question_S()
     while True:
         text_to_speech("그렇구나. 파이보는 과일을 한번도 못 먹어봤어.")
         break
@@ -263,7 +258,7 @@ def Play_Salad(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
