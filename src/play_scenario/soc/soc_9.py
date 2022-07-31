@@ -22,13 +22,11 @@ Dic = Dictionary()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
     
 def wait_for(item):
     while True:
@@ -36,7 +34,7 @@ def wait_for(item):
         break
 
 
-def Play_King(user_name):
+def Play_Horse(user_name):
     print(f"user name: {user_name} \n")
 
     # 2.1 준비물 설명
@@ -119,7 +117,7 @@ def Play_King(user_name):
         while True:
             text_to_speech("먼저 말이 움직이는 길에 박스모양 장애물을 설치하자.")
             time.sleep(1)
-            user_said = speech_to_text()
+            
             break
 
     
@@ -155,7 +153,8 @@ def Play_King(user_name):
 
         behavior_list.do_waiting_C()
         while True:
-            text_to_speech("따라해 볼까? (말소리효과음)")
+            text_to_speech("따라해 볼까?")
+            tts.play(filename="/home/pi/AI_pibo2/src/data/audio/말울음소리.wav", out='local', volume=-1000, background=False)
             #행동인식 - 사진, 영상 촬영
             break
 
@@ -216,7 +215,7 @@ def Play_King(user_name):
                 wait_for('DONE')
                 continue
             break
-
+    start()
 
     # 2.4 놀이 완료
     behavior_list.do_question_L()
