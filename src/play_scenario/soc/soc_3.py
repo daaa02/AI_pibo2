@@ -21,13 +21,12 @@ Dic = Dictionary()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
 
 def wait_for(item):
     while True:
@@ -35,7 +34,7 @@ def wait_for(item):
         break
 
 
-def Play_Hoop(user_name):
+def Play_Newspaper(user_name):
 
     print(f"user name: {user_name} \n")
 
@@ -51,7 +50,7 @@ def Play_Hoop(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -77,7 +76,7 @@ def Play_Hoop(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -95,7 +94,7 @@ def Play_Hoop(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -112,91 +111,100 @@ def Play_Hoop(user_name):
 
     # 2.3 놀이 시작
     def start():
-        
+        global i
+        i=1;
         behavior_list.do_suggestion_L()
         while True:
             
             text_to_speech("노래가 시작됐어. 먼저 바닥에 신문지를 깔고 신문지 위에 올라가서 마음껏 춤춰보자!")
             #행동인식-사진,영상촬영
             break
-        for i in range(0,2):
-            i=i+1   
-            behavior_list.do_suggestion_S()
-            while True:
-                time.sleep(15)
-                text_to_speech("노래가 끝났어. 신문지 땅 밖으로 나와도 좋아.")
-                break
+        
+        def start_1():
+            global i 
+            if 1<=i<3: 
+                behavior_list.do_suggestion_S()
+                while True:
+                    time.sleep(15)
+                    text_to_speech("노래가 끝났어. 신문지 땅 밖으로 나와도 좋아.")
+                    break
 
-            behavior_list.do_suggestion_L()
-            while True:
-                text_to_speech("신문지를 반으로 접자. 몇 번 접었는지 이따 물어볼테니 잘 기억해 둬야해.")
-                break
+                behavior_list.do_suggestion_L()
+                while True:
+                    text_to_speech("신문지를 반으로 접자. 몇 번 접었는지 이따 물어볼테니 잘 기억해 둬야해.")
+                    break
 
-            behavior_list.do_waiting_C()
-            while True:
-                text_to_speech("다 접었으면 다 했어 라고 말해줘~")
+                behavior_list.do_waiting_C()
+                while True:
+                    text_to_speech("다 접었으면 다 했어 라고 말해줘~")
 
-                user_said = speech_to_text()
-                answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+                    user_said = input("답변 : ")
+                    answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                if answer == 'DONE':
-                    behavior_list.do_praise_S()
-                    while True:
-                        time.sleep(2)
-                        text_to_speech("신문지 땅이 좁아졌구나!")
-                        break
-                else:
-                    behavior_list.do_waiting_A()
-                    wait_for('DONE')
-                    continue
-                break
+                    if answer == 'DONE':
+                        behavior_list.do_praise_S()
+                        while True:
+                            time.sleep(2)
+                            text_to_speech("신문지 땅이 좁아졌구나!")
+                            break
+                    else:
+                        behavior_list.do_waiting_A()
+                        wait_for('DONE')
+                        continue
+                    break
+            if 1<=i<2:        
+                behavior_list.do_suggestion_L()
+                while True:
+                    time.sleep(5)
+                    text_to_speech("노래가 다시 시작 됐어. 신문지 위에 다시 올라가서 마음껏 춤춰보자.")
+                    i=i+1
+                    return start_1()
 
-            behavior_list.do_suggestion_L()
-            while True:
-                time.sleep(5)
-                text_to_speech("노래가 다시 시작 됐어. 신문지 위에 다시 올라가서 마음껏 춤춰보자.")
-                break
-            break
+            elif i==3:
+                behavior_list.do_question_S()
+                while True:
+                    text_to_speech("신문지를 몇번 접었는지 기억나?숫자로 몇번인지 말해줘~")
 
+                    user_said = input("답변 : ")
+                    answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+                    #답변인식-정답
+                    if answer == "세번":
+                        behavior_list.do_praise_S()
+                        text_to_speech(f"대단한걸? {user_name}이는 기억력이 좋구나!")
+                        
+                    else:
+                        behavior_list.do_suggestion_S()
+                        while True:
+                            text_to_speech("정답은 3번이야!")
+                            break
+                    break
+
+
+        start_1()    
+    start()
 
         # 2.4 놀이 완료
 
-        behavior_list.do_question_S()
-        while True:
-            text_to_speech("신문지를 몇번 접었는지 기억나?숫자로 몇번인지 말해줘~")
+        
 
-            user_said = speech_to_text()
-            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-            #답변인식-정답
-            if answer == "세번":
-                behavior_list.do_praise_S()
-                text_to_speech(f"대단한걸? {user_name}이는 기억력이 좋구나!")
-                
-            else:
-                behavior_list.do_suggestion_S()
-                while True:
-                    text_to_speech("정답은 3번이야!")
-                    break
-            break
+    behavior_list.do_question_L()
+    while True:
+        text_to_speech("또 해볼까? 또 하고 싶으면 또 하자고 말해줘.")
 
-        behavior_list.do_question_L()
-        while True:
-            text_to_speech("또 해볼까? 또 하고 싶으면 또 하자고 말해줘.")
+        user_said = input("답변 : ")
+        answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            user_said = speech_to_text()
-            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-            if answer == 'AGAIN':
-                behavior_list.do_agree()
-                while True:
-                    text_to_speech("그래 또 하자!")
-                    start()
-            else:
-                behavior_list.do_praise_L()
-                while True:
-                    text_to_speech(f"오늘 정말 열심히 춤췄어. 파이보는 {user_name}이가 신나게 춤추는 모습이 정말 좋아!")
-                    break
-            break
+        if answer == 'AGAIN':
+            behavior_list.do_agree()
+            while True:
+                text_to_speech("그래 또 하자!")
+                start()
+        else:
+            behavior_list.do_praise_L()
+            while True:
+                text_to_speech(f"오늘 정말 열심히 춤췄어. 파이보는 {user_name}이가 신나게 춤추는 모습이 정말 좋아!")
+                break
+        break
 
     
 
@@ -204,7 +212,7 @@ def Play_Hoop(user_name):
     behavior_list.do_question_L()
     while True:
         text_to_speech("춤추니까 기분이 어땠어?")
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         break
 
     behavior_list.do_agree()
@@ -220,7 +228,7 @@ def Play_Hoop(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech(f"{user_name}이는 어떤 노래를 좋아해?")
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         text_to_speech("정말? 왜?")
         break
 
@@ -253,7 +261,7 @@ def Play_Hoop(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = speech_to_text()
+        user_said = input("답변 : ")
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
