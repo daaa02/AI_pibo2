@@ -21,13 +21,11 @@ Dic = Dictionary()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
+    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
     
 def wait_for(item):
     while True:
@@ -35,7 +33,7 @@ def wait_for(item):
         break
 
 
-def Play_King(user_name):
+def Play_Wool(user_name):
     print(f"user name: {user_name} \n")
 
     # 2.1 준비물 설명
@@ -79,7 +77,7 @@ def Play_King(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'YES':
             behavior_list.do_explain_B()
             while True:
                 time.sleep(2)
@@ -87,7 +85,7 @@ def Play_King(user_name):
                 break
         else:
             behavior_list.do_waiting_B()
-            wait_for('DONE')
+            wait_for('YES')
             continue
         break
 
@@ -118,13 +116,12 @@ def Play_King(user_name):
             
             break
 
-        behavior_list.do_joy()
-        while True:
-            text_to_speech("준비~ 시작!")
-            break
 
         behavior_list.do_waiting_A()
         while True:
+            
+            text_to_speech("준비~ 시작!")
+            start=time.time()
             text_to_speech("털실을 다 감으면 파이보에게 다 했어 라고 말해줘~")
             #행동인식 - 사진, 영상 촬영
             user_said = speech_to_text()
@@ -134,7 +131,7 @@ def Play_King(user_name):
                 behavior_list.do_praise_L()
                 while True:
                     time.sleep(1)
-                    text_to_speech(" 00초가 걸렸어! 정말 열심히 감았는 걸?")
+                    text_to_speech(f"{time.time() - start: .3f}초가 걸렸어! 정말 열심히 감았는 걸?")
                     break
             else:
                 behavior_list.do_waiting_A()
@@ -154,7 +151,7 @@ def Play_King(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'YES':
                 behavior_list.do_praise_L()
                 while True:
                     time.sleep(1)
@@ -162,7 +159,7 @@ def Play_King(user_name):
                     break
             else:
                 behavior_list.do_waiting_A()
-                wait_for('DONE')
+                wait_for('YES')
                 continue
             break 
 
@@ -178,6 +175,7 @@ def Play_King(user_name):
                 while True:
                     time.sleep(1)
                     text_to_speech("시작!")
+                    start=time.time()
                     break
             else:
                 behavior_list.do_waiting_A()
@@ -196,7 +194,7 @@ def Play_King(user_name):
                 behavior_list.do_praise_S()
                 while True:
                     time.sleep(1)
-                    text_to_speech("00초가 걸렸어! 정말 빠른 속도야. 대단해~")
+                    text_to_speech(f"{time.time() - start: .3f}초가 걸렸어! 정말 빠른 속도야. 대단해~")
                     break
             else:
                 behavior_list.do_waiting_A()
@@ -238,7 +236,7 @@ def Play_King(user_name):
             behavior_list.do_agree()
             while True:
                 text_to_speech(f"그랬구나. 원래 뒤로 걷는건 쉽지 않아. 하지만 오늘 {user_name}이는 조심조심 잘 걷던걸?")
-                start()
+                
         else:
             behavior_list.do_praise_L()
             while True:
