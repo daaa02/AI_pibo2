@@ -112,6 +112,7 @@ def Play_Clean(user_name):
     # 2.3 놀이 시작
     def start():
         global i
+        
         behavior_list.do_suggestion_S()
         while True:
             time.sleep(1)
@@ -147,8 +148,8 @@ def Play_Clean(user_name):
             if answer == 'DONE':
                 behavior_list.do_joy()
                 while True:
-                    
-                    text_to_speech("좋아. (효과음) 세차가 시작됐어.")
+                    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/세차장놀이_경적소리.mp3", out='local', volume=-1000, background=False)
+                    text_to_speech("좋아. 세차가 시작됐어.")
                     
                     break
             else:
