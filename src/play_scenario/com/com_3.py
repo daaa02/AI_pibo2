@@ -20,8 +20,7 @@ NLP = NLP()
 Dic = Dictionary()
 tts = TextToSpeech()
 
-global i
-i=1;
+
 def text_to_speech(text):
     filename = "tts.wav"
     print("\n" + text + "\n")
@@ -110,6 +109,8 @@ def Play_Smile(user_name):
 
     # 2.3 놀이 시작
     def start():
+        global i
+        i=1;
         behavior_list.do_suggestion_S()
         while True:
             time.sleep(1)
@@ -306,7 +307,7 @@ def Play_Smile(user_name):
 
     behavior_list.do_joy()
     while True:
-        text_to_speech(f" {user_name} 이는 열심히 하는 모습이 정말 멋졌어. 파이보는 {user_name} 이랑 갔던 거리가 다 재미있었어~")
+        text_to_speech(f" {user_name}이는 열심히 하는 모습이 정말 멋졌어. 파이보는 {user_name}이랑 갔던 거리가 다 재미있었어~")
 
         break
 
