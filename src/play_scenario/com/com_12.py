@@ -20,8 +20,7 @@ NLP = NLP()
 Dic = Dictionary()
 tts = TextToSpeech()
 
-global i
-i=1;
+
 
 def text_to_speech(text):
     filename = "tts.wav"
@@ -113,7 +112,8 @@ def Play_Salad(user_name):
 
     # 2.3 놀이 시작
     def start():
-        
+        global i
+        i=1;
         behavior_list.do_suggestion_S()
         while True:
             time.sleep(1)
@@ -227,6 +227,7 @@ def Play_Salad(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech("어떤 과일이 제일 상큼해?")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_joy()
