@@ -48,7 +48,7 @@ def Play_Pocket(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = input("답변 : ")    # stt open
+        user_said = speech_to_text()    # stt open
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)   # stt 결과 처리 (NLP.py 참고)
 
         if answer == 'DONE':
@@ -75,7 +75,7 @@ def Play_Pocket(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있다고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -94,7 +94,7 @@ def Play_Pocket(user_name):
     while True:
         text_to_speech("준비가 되면 시작하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -121,7 +121,7 @@ def Play_Pocket(user_name):
         while True:
             text_to_speech("준비가 됐으면 준비됐어 라고 말해줘.")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -140,7 +140,7 @@ def Play_Pocket(user_name):
         while True:
             text_to_speech("준비가 되면 시작이라고 말해줘.")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -167,7 +167,7 @@ def Play_Pocket(user_name):
         behavior_list.do_question_S()
         while True:
             text_to_speech("물건을 맞췄어?")
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_praise_S()
@@ -185,7 +185,7 @@ def Play_Pocket(user_name):
         behavior_list.do_question_S()
         while True:
             text_to_speech("물건을 맞췄어?")
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_praise_L()
@@ -205,19 +205,19 @@ def Play_Pocket(user_name):
             text_to_speech("다 찾았으면 다 찾았어 라고 말해줘.")
             time.sleep(1)
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'YES':
                 behavior_list.do_question_S()
                 while True:
                     text_to_speech("누가 더 많이 맞췄어?")
-                    user_said = input("답변 : ")
+                    user_said = speech_to_text()
                     time.sleep(5)
                     break
             else:
                 behavior_list.do_waiting_C()
-                wait_for('DONE')
+                wait_for('YES')
                 continue
             break
 
@@ -234,7 +234,7 @@ def Play_Pocket(user_name):
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -256,7 +256,7 @@ def Play_Pocket(user_name):
         time.sleep(5)
         text_to_speech("정리가 끝나면 끝났어 라고 말해줘. ")
         
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -276,11 +276,11 @@ def Play_Pocket(user_name):
         time.sleep(1)
         text_to_speech(f"오늘 주머니 놀이에 {user_name}이는 어떤 물건을 숨겼어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         text_to_speech("정말? 제일 맞추기 어려운 물건은 어떤 거였어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_praise_L()
@@ -310,7 +310,7 @@ def Play_Pocket(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':       # 지금은 어떤 답변이라도 프로그램 종료됨
