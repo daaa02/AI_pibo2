@@ -50,7 +50,7 @@ def Play_Newspaper(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -76,7 +76,7 @@ def Play_Newspaper(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -94,7 +94,7 @@ def Play_Newspaper(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -138,7 +138,7 @@ def Play_Newspaper(user_name):
                 while True:
                     text_to_speech("다 접었으면 다 했어 라고 말해줘~")
 
-                    user_said = input("답변 : ")
+                    user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
@@ -165,7 +165,7 @@ def Play_Newspaper(user_name):
                 while True:
                     text_to_speech("신문지를 몇번 접었는지 기억나?숫자로 몇번인지 말해줘~")
 
-                    user_said = input("답변 : ")
+                    user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
                     #답변인식-정답
                     if answer == "세번":
@@ -191,7 +191,7 @@ def Play_Newspaper(user_name):
     while True:
         text_to_speech("또 해볼까? 또 하고 싶으면 또 하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -212,7 +212,7 @@ def Play_Newspaper(user_name):
     behavior_list.do_question_L()
     while True:
         text_to_speech("춤추니까 기분이 어땠어?")
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_agree()
@@ -228,7 +228,7 @@ def Play_Newspaper(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech(f"{user_name}이는 어떤 노래를 좋아해?")
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         text_to_speech("정말? 왜?")
         break
 
@@ -261,7 +261,7 @@ def Play_Newspaper(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
