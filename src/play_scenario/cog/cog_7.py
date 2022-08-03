@@ -140,7 +140,7 @@ def Play_Stick(user_name):
 
         behavior_list.do_waiting_A()
         while True:
-            text_to_speech("멋진 성을 만들고 다 만들었으면 다 말했다고 말해줘.")
+            text_to_speech("멋진 성을 만들고 다 만들었으면 다 만들었다고 말해줘.")
             #행동인식 - 사진, 영상 촬영
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
