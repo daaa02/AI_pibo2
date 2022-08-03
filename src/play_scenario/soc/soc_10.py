@@ -56,7 +56,7 @@ def Play_Robot(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -75,7 +75,7 @@ def Play_Robot(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -100,7 +100,7 @@ def Play_Robot(user_name):
             while True:
                 text_to_speech("먼저 출발지와 목적지를 정하자. 어디로 하는게 좋을까?")
                 time.sleep(1)
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 break
 
             behavior_list.do_suggestion_L()
@@ -115,7 +115,7 @@ def Play_Robot(user_name):
                 while True:
                     text_to_speech("파이보에게 도착하면 도착했다고 말해줘.")
 
-                    user_said = input("답변 : ")
+                    user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
@@ -140,7 +140,7 @@ def Play_Robot(user_name):
                 while True:
                     text_to_speech("파이보에게 도착하면 도착했다고 말해줘.")
 
-                    user_said = input("답변 : ")
+                    user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
@@ -164,7 +164,7 @@ def Play_Robot(user_name):
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -185,7 +185,7 @@ def Play_Robot(user_name):
         time.sleep(1)
         text_to_speech(f"{user_name}이는 로봇이랑 조종사 중에 어떤 역할이 더 재미있었어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         
         break
@@ -193,7 +193,7 @@ def Play_Robot(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech("정말? 왜 재미있었어?")
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_praise_L()
@@ -206,7 +206,7 @@ def Play_Robot(user_name):
     behavior_list.do_question_L()
     while True:
         text_to_speech(f"{user_name}이는 파이보가 로봇이라서 어떤 점이 좋아?")
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_joy()
@@ -236,7 +236,7 @@ def Play_Robot(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
