@@ -47,7 +47,7 @@ def Play_Body(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -72,7 +72,7 @@ def Play_Body(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -91,7 +91,7 @@ def Play_Body(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -119,7 +119,7 @@ def Play_Body(user_name):
                 while True:
                     text_to_speech("준비가 되면 준비 됐어 라고 말해줘~")
 
-                    user_said = input("답변 : ")
+                    user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
@@ -141,7 +141,7 @@ def Play_Body(user_name):
                 while True:
                     text_to_speech("다 그리면 다 그렸다고 말해줘.")
 
-                    user_said = input("답변 : ")
+                    user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
@@ -168,7 +168,7 @@ def Play_Body(user_name):
                         while True:
                             text_to_speech("딱 맞게 들어가면 파이보에게 다 됐다고 말해줘.")
 
-                            user_said = input("답변 : ")
+                            user_said = speech_to_text()
                             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                             if answer == 'DONE':
@@ -195,7 +195,7 @@ def Play_Body(user_name):
                         while True:
                             text_to_speech("딱 맞게 들어가면 파이보에게 다 됐다고 말해줘.")
 
-                            user_said = input("답변 : ")
+                            user_said = speech_to_text()
                             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                             if answer == 'DONE':
@@ -222,7 +222,7 @@ def Play_Body(user_name):
     while True:
         text_to_speech("한번 더 해볼까? 또 하고 싶으면 또하자라고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -243,7 +243,7 @@ def Play_Body(user_name):
         time.sleep(1)
         text_to_speech(f"{user_name}이는 친구 그림자를 그려보니까 어땠어? 어려웠어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         
         break
@@ -257,7 +257,7 @@ def Play_Body(user_name):
     while True:
         text_to_speech("그림자를 똑같이 따라하는건 힘들지 않았어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_praise_S()
@@ -289,7 +289,7 @@ def Play_Body(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
