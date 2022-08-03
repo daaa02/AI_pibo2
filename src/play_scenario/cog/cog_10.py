@@ -231,7 +231,7 @@ def Play_Cross(user_name):
     behavior_list.do_agree()
     while True:
         text_to_speech("그렇구나. 파이보는 징검다리를 보면 혹시나 물에 빠질까봐 마음이 조마조마해.")
-        user_said = speech_to_text()
+        
         break
 
     behavior_list.do_question_S()
