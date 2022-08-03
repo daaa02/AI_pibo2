@@ -49,7 +49,7 @@ def Play_World(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = input("답변 : ")    # stt open
+        user_said = speech_to_text()    # stt open
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)   # stt 결과 처리 (NLP.py 참고)
 
         if answer == 'DONE':
@@ -75,7 +75,7 @@ def Play_World(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어라고 말해줘~")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -93,7 +93,7 @@ def Play_World(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘~")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -121,7 +121,7 @@ def Play_World(user_name):
         while True:
             text_to_speech("친구는 다 숨기고 다 숨겼어 라고 말해줘.")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'YES':
@@ -145,14 +145,14 @@ def Play_World(user_name):
         while True:
             text_to_speech("정답을 알겠으면 정답이라고 외쳐줘.")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_question_S()
         while True:
             text_to_speech("정답을 맞췄어?")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'YES':
@@ -164,7 +164,7 @@ def Play_World(user_name):
             else:
                 behavior_list.do_suggestion_L()
                 text_to_speech("아쉽다! 거의 맞출 수 있었는데! 이제 정답을 이야기 해줘!")
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 wait_for('YES')
                 continue
             break
@@ -178,7 +178,7 @@ def Play_World(user_name):
         while True:
             text_to_speech(f"{user_name}이는 다 숨기고 나면 다 숨겼어 라고 말해줘.")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'YES':
@@ -197,14 +197,14 @@ def Play_World(user_name):
         while True:
             text_to_speech("친구는 정답을 알겠으면 정답이라고 외쳐줘.")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_question_S()
         while True:
             text_to_speech("정답을 맞췄어?")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'YES':
@@ -216,7 +216,7 @@ def Play_World(user_name):
             else:
                 behavior_list.do_suggestion_L()
                 text_to_speech("아쉽다! 정답이 뭐야?")
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 wait_for('YES')
                 continue
             break
@@ -228,7 +228,7 @@ def Play_World(user_name):
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -252,7 +252,7 @@ def Play_World(user_name):
         text_to_speech("정리가 끝나면 다 했어 라고 말해줘.")
         
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -272,11 +272,11 @@ def Play_World(user_name):
         time.sleep(1)
         text_to_speech("오늘 보자기 안에 있던 물건 중에 가장 좋아하는 물건은 뭐야?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         text_to_speech("정말? 그렇구나~ 가장 맞추기 힘들었던 물건은 뭐야?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_praise_L()
@@ -306,7 +306,7 @@ def Play_World(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':       # 지금은 어떤 답변이라도 프로그램 종료됨
