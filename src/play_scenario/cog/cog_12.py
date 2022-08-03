@@ -47,7 +47,7 @@ def Play_Ruler(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = input("답변 : ")    # stt open
+        user_said = speech_to_text()    # stt open
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)   # stt 결과 처리 (NLP.py 참고)
 
         if answer == 'DONE':
@@ -73,7 +73,7 @@ def Play_Ruler(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어라고 말해줘~")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -91,7 +91,7 @@ def Play_Ruler(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘~")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -112,32 +112,32 @@ def Play_Ruler(user_name):
         while True:
             time.sleep(1)
             text_to_speech("먼저 줄자는 어떨 때 사용하는 물건인지 이야기 해볼래?")
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_suggestion_L()
         while True:
             
             text_to_speech("좋은 답변이야. 맞아, 줄자는 길이나 거리를 잴 때 사용해.")
-            text_to_speech("줄자를 끝까지 펴면 길이가 얼만큼 인지 알 수 있어.")
+            text_to_speech("줄자를 끝까지 펴면 길이가 얼만큼인지 알 수 있어.")
             break
 
         behavior_list.do_question_S()
         while True:
             text_to_speech("끝까지 펴보고 적혀있는 숫자를 알려줄래?")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             number = NLP.nlp_number(user_said=user_said, dic=Dic)
 
-            if number == 'Number_word':
+            if number != 0 :
                 behavior_list.do_praise_L()
                 while True:
                     time.sleep(2)
-                    text_to_speech(f"우와. {user_said}이는 큰 숫자도 잘 읽는구나!")
+                    text_to_speech(f"우와. {user_name}이는 큰 숫자도 잘 읽는구나!")
                     break
             else:
                 behavior_list.do_waiting_B()
-                wait_for('Number_word')
+                wait_for(number != 0)
                 continue
             break
 
@@ -151,10 +151,10 @@ def Play_Ruler(user_name):
             text_to_speech("찾았으면 찾았어 라고 말하고 그 앞으로 파이보를 옮겨줘.")
             time.sleep(1)
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'YES':
                 behavior_list.do_praise_S()
                 while True:
                     text_to_speech("우와, 정말 잘 찾았네!")
@@ -162,7 +162,7 @@ def Play_Ruler(user_name):
                     break
             else:
                 behavior_list.do_waiting_C()
-                wait_for('DONE')
+                wait_for('YES')
                 continue
             break
 
@@ -171,10 +171,10 @@ def Play_Ruler(user_name):
             text_to_speech("이제 길이를 재 보자. 한 번 재어보고 알려줄래?")
             time.sleep(1)
 
-            user_said = input("답변 : ")
-            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+            user_said = speech_to_text()
+            number = NLP.nlp_number(user_said=user_said, dic=Dic)
 
-            if answer == 'Number_Word':
+            if number != 0 :
                 behavior_list.do_praise_S()
                 while True:
                     text_to_speech("좋았어. 처음 해 보는데 정말 잘 하네!")
@@ -182,7 +182,7 @@ def Play_Ruler(user_name):
                     break
             else:
                 behavior_list.do_waiting_C()
-                wait_for('DONE')
+                wait_for(number != 0)
                 continue
             break
 
@@ -196,10 +196,10 @@ def Play_Ruler(user_name):
             text_to_speech(f"{user_name}이가 재보고 싶은 물건을 찾았으면 찾았어 라고 말하고 그 앞으로 파이보를 옮겨줘.")
             time.sleep(1)
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'Number_Word':
+            if answer == 'YES':
                 behavior_list.do_praise_S()
                 while True:
                     text_to_speech("이번에도 잘 찾았네!")
@@ -207,7 +207,7 @@ def Play_Ruler(user_name):
                     break
             else:
                 behavior_list.do_waiting_C()
-                wait_for('DONE')
+                wait_for('YES')
                 continue
             break
 
@@ -216,10 +216,10 @@ def Play_Ruler(user_name):
             text_to_speech("이제 길이를 재어보고 알려줘.")
             time.sleep(1)
 
-            user_said = input("답변 : ")
-            answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+            user_said = speech_to_text()
+            number = NLP.nlp_number(user_said=user_said, dic=Dic)
 
-            if answer == 'Number_Word':
+            if number != 0 :
                 behavior_list.do_praise_S()
                 while True:
                     text_to_speech("역시 길이를 정말 잘 재는구나!")
@@ -227,7 +227,7 @@ def Play_Ruler(user_name):
                     break
             else:
                 behavior_list.do_waiting_C()
-                wait_for('DONE')
+                wait_for(number != 0)
                 continue
             break
 
@@ -241,7 +241,7 @@ def Play_Ruler(user_name):
             text_to_speech("다 했으면 다 했어 라고 말해줘.")
             time.sleep(1)
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -261,7 +261,7 @@ def Play_Ruler(user_name):
             text_to_speech("준비가 됐으면 준비 됐어 라고 말해줘.")
             time.sleep(1)
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -281,7 +281,7 @@ def Play_Ruler(user_name):
             text_to_speech("성공했으면 성공했어 라고 말해줘.")
             time.sleep(1)
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -302,7 +302,7 @@ def Play_Ruler(user_name):
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -324,11 +324,11 @@ def Play_Ruler(user_name):
         time.sleep(1)
         text_to_speech("오늘 줄자 놀이는 재미있었어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         text_to_speech("정말? 큰 물건을 재는 게 어렵진 않았어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_praise_L()
@@ -358,7 +358,7 @@ def Play_Ruler(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':       # 지금은 어떤 답변이라도 프로그램 종료됨
