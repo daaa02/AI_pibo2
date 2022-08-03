@@ -47,7 +47,7 @@ def Play_Indian(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -72,7 +72,7 @@ def Play_Indian(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -91,7 +91,7 @@ def Play_Indian(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -118,7 +118,7 @@ def Play_Indian(user_name):
             while True:
                 text_to_speech("완성이 되면 다 됐다고 말해줘.")
 
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
@@ -136,13 +136,13 @@ def Play_Indian(user_name):
 
         behavior_list.do_suggestion_L()
         while True:
-            text_to_speech(f"이제 인디언 집 내부를 꾸며 보자.{user_name}이와 친구가가 좋아하는 장난감이나 인형으로 꾸밀 수 있어. ")
+            text_to_speech(f"이제 인디언 집 내부를 꾸며 보자.{user_name}이와 친구가 좋아하는 장난감이나 인형으로 꾸밀 수 있어. ")
             
             behavior_list.do_waiting_A()
             while True:
                 text_to_speech("다 꾸미면 다 됐다고 말해줘.")
 
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
@@ -162,7 +162,7 @@ def Play_Indian(user_name):
         while True:
             text_to_speech("도착하면 도착했다고 말해줘! ")
             
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -181,10 +181,10 @@ def Play_Indian(user_name):
         while True:
             text_to_speech("다 눕고 누웠어 라고 말해줘~")
             
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'YES':
                     behavior_list.do_joy()
                     while True:
                         time.sleep(3)
@@ -194,7 +194,7 @@ def Play_Indian(user_name):
                         break
             else:
                     behavior_list.do_waiting_A()
-                    wait_for('DONE')
+                    wait_for('YES')
                     continue
             break
     start()
@@ -205,7 +205,7 @@ def Play_Indian(user_name):
     while True:
         text_to_speech("인디언 집을 또 만들어볼까? 또 하고 싶으면 또하자라고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -226,7 +226,7 @@ def Play_Indian(user_name):
         time.sleep(1)
         text_to_speech(f"{user_name}이가 만든 집에서 쉬니까 어땠어? 포근한 기분이 들었어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         
         break
@@ -240,7 +240,7 @@ def Play_Indian(user_name):
     while True:
         text_to_speech(f"{user_name}이는 언제 제일 마음이 편해?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_joy()
@@ -272,7 +272,7 @@ def Play_Indian(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
