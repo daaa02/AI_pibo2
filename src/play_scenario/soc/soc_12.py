@@ -55,7 +55,7 @@ def Play_Blind(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech("어렵지 않지? 할 수 있으면 할 수 있다고 말해줘~")
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -74,7 +74,7 @@ def Play_Blind(user_name):
     while True:
         text_to_speech("준비 됐으면 시작하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -108,7 +108,7 @@ def Play_Blind(user_name):
             
             text_to_speech("도착하면 도착했어 라고 말해줘~")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -125,25 +125,25 @@ def Play_Blind(user_name):
         behavior_list.do_question_L()
         while True:
             text_to_speech(f"{(places[0])}이 어떻게 생겼는지 알고 싶어. {(places[0])}에는 무슨 색깔이 있어?")
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_question_L()
         while True:
             text_to_speech("그렇구나! 왼쪽에는 어떤 물건이 있어?")
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_question_L()
         while True:
             text_to_speech("오른쪽에는 어떤 물건이 있어?")
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_question_L()
         while True:
             text_to_speech("바닥에도 물건이 있어?")
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             break
 
         behavior_list.do_praise_L()
@@ -157,7 +157,7 @@ def Play_Blind(user_name):
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -176,7 +176,7 @@ def Play_Blind(user_name):
     behavior_list.do_question_L()
     while True:
         text_to_speech("목적지 장소를 설명하는게 어렵지는 않았어?")
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':#어려웠어...
@@ -194,7 +194,7 @@ def Play_Blind(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech(f"{user_name}이는 앞이 안보이면 어떨 것 같아?")
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_agree()
@@ -224,7 +224,7 @@ def Play_Blind(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
