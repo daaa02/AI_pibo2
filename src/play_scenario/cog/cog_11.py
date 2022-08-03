@@ -20,8 +20,7 @@ NLP = NLP()
 Dic = Dictionary()
 tts = TextToSpeech()
 
-global i
-i=1;
+
 def text_to_speech(text):
     filename = "tts.wav"
     print("\n" + text + "\n")
@@ -58,7 +57,7 @@ def Play_Fisherman(user_name):
         time.sleep(1)
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -76,7 +75,7 @@ def Play_Fisherman(user_name):
     while True:
         text_to_speech("준비 됐으면 시작하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
@@ -93,6 +92,8 @@ def Play_Fisherman(user_name):
 
     # 2.3 놀이 시작
     def start():
+        global i
+        i=1;
         behavior_list.do_suggestion_L()
         while True:
             time.sleep(1)
@@ -103,7 +104,7 @@ def Play_Fisherman(user_name):
         while True:
             text_to_speech("강을 다 만들었으면 다 만들었어 라고 말해줘.")
 
-            user_said = input("답변 : ")
+            user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
@@ -124,7 +125,7 @@ def Play_Fisherman(user_name):
             while True:
                 text_to_speech("준비가 됐으면 준비 됐어 라고 말해줘.")
 
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
@@ -132,7 +133,7 @@ def Play_Fisherman(user_name):
                     while True:
                         time.sleep(2)
                         text_to_speech("이제 어부한테 물어보자. “어부야, 어부야, 물이 얼마나 깊니?” 나를 따라해 봐. 시작!")
-                        user_said = input("답변 : ")
+                        user_said = speech_to_text()
                         break
                 else:
                     behavior_list.do_waiting_B()
@@ -150,14 +151,14 @@ def Play_Fisherman(user_name):
             while True:
                 time.sleep(1)
                 text_to_speech("이번엔 어부가 대답해줘.")
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 break
 
             behavior_list.do_suggestion_L()
             while True:
                 time.sleep(1)
                 text_to_speech("이제 어부에게 한번 더 물어보자. “어부야, 어부야, 물을 어떻게 건너갈 수 있니?” 나를 따라해 봐. 시작!")
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 break
 
             behavior_list.do_praise_S()
@@ -170,7 +171,7 @@ def Play_Fisherman(user_name):
             while True:
                 time.sleep(1)
                 text_to_speech("이제 어부가 어떻게 건너갈 수 있는지 동작을 알려줘.")
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 break
 
             
@@ -178,8 +179,8 @@ def Play_Fisherman(user_name):
                 behavior_list.do_waiting_B()
                 while True:
                     text_to_speech("좋았어. 어부가 정하는 대로 강을 다 건너왔으면 다 왔어 라고 말해줘.")
-
-                    user_said = input("답변 : ")
+                    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/어부.wav", out='local', volume=-1000, background=False)
+                    user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
@@ -207,7 +208,8 @@ def Play_Fisherman(user_name):
                 behavior_list.do_waiting_C()
                 while True:
                     text_to_speech("좋았어. 어부가 정하는 대로 강을 다 건너왔으면 다 왔어 라고 말해줘.")
-                    user_said = input("답변 : ")
+                    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/어부.wav", out='local', volume=-1000, background=False)
+                    user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
@@ -230,7 +232,7 @@ def Play_Fisherman(user_name):
     while True:
         text_to_speech("또 해볼까? 또 하고 싶으면 또하자고 말해줘~")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -253,11 +255,11 @@ def Play_Fisherman(user_name):
         time.sleep(1)
         text_to_speech(f"{user_name}이는 강을 건너는 나그네가 재밌었어,  어부 역할이 재밌었어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         text_to_speech("정말? 어떤 점이 재미있었어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_agree()
@@ -287,7 +289,7 @@ def Play_Fisherman(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':       # 지금은 어떤 답변이라도 프로그램 종료됨
