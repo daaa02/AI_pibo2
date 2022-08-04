@@ -117,6 +117,7 @@ def Play_Newspaper(user_name):
         while True:
             
             text_to_speech("노래가 시작됐어. 먼저 바닥에 신문지를 깔고 신문지 위에 올라가서 마음껏 춤춰보자!")
+            tts.play(filename="/home/pi/AI_pibo2/src/data/audio/신문지위에서기.mp3", out='local', volume=-1000, background=False)
             #행동인식-사진,영상촬영
             break
         
@@ -152,13 +153,17 @@ def Play_Newspaper(user_name):
                         wait_for('DONE')
                         continue
                     break
-            if 1<=i<2:        
+            if 1<=i<=2:        
                 behavior_list.do_suggestion_L()
                 while True:
                     time.sleep(5)
                     text_to_speech("노래가 다시 시작 됐어. 신문지 위에 다시 올라가서 마음껏 춤춰보자.")
+                    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/신문지위에서기.mp3", out='local', volume=-1000, background=False)
                     i=i+1
-                    return start_1()
+                        
+
+                    start_1()
+                    break
 
             elif i==3:
                 behavior_list.do_question_S()
@@ -166,9 +171,9 @@ def Play_Newspaper(user_name):
                     text_to_speech("신문지를 몇번 접었는지 기억나?숫자로 몇번인지 말해줘~")
 
                     user_said = speech_to_text()
-                    answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+                    answer = NLP.nlp_number(user_said=user_said, dic=Dic)
                     #답변인식-정답
-                    if answer == "세번":
+                    if answer == 3:
                         behavior_list.do_praise_S()
                         text_to_speech(f"대단한걸? {user_name}이는 기억력이 좋구나!")
                         
@@ -178,7 +183,7 @@ def Play_Newspaper(user_name):
                             text_to_speech("정답은 3번이야!")
                             break
                     break
-
+                
 
         start_1()    
     start()
@@ -230,6 +235,7 @@ def Play_Newspaper(user_name):
         text_to_speech(f"{user_name}이는 어떤 노래를 좋아해?")
         user_said = speech_to_text()
         text_to_speech("정말? 왜?")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_joy()
