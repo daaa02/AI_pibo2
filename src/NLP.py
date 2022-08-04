@@ -28,6 +28,8 @@ class Dictionary:
 
         self.Two = ['2', '이', '두']
 
+        self.Three = ['3', '삼', '세']
+
         self.Number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
         self.Number_word = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구', '십']
@@ -101,6 +103,9 @@ class NLP:
         for j in range(len(dic.Two)):
             if dic.Two[j] in user_said:
                 answer = '2'
+        for k in range(len(dic.Three)):
+            if dic.Three[k] in user_said:
+                answer = '3'
         print(answer)
         return answer
 
