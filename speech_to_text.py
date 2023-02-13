@@ -153,7 +153,7 @@ def listen_print_loop(responses):
     return text
 
 
-def speech_to_text():
+def speech_to_text(timeout=10):
     # See http://g.co/cloud/speech/docs/languages
     # for a list of supported languages.
     language_code = 'ko-KR'  # a BCP-47 language tag
@@ -174,7 +174,7 @@ def speech_to_text():
         requests = (speech.StreamingRecognizeRequest(audio_content=content)
                     for content in audio_generator)
 
-        responses = client.streaming_recognize(streaming_config, requests)
+        responses = client.streaming_recognize(streaming_config, requests, timeout=timeout)
 
         # Now, put the transcription responses to use.
         stt_out = listen_print_loop(responses)
