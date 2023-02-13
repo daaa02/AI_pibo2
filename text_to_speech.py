@@ -21,7 +21,7 @@ class TextToSpeech:
         client_id = "3qz5jqx2r0"
         client_secret = "zwB0Yb4UONPKaOKCjZkhsSl8REuKvJTYK2Esvr41"
         encText = urllib.parse.quote(text)
-        data = "speaker=nara&volume=0&speed=0&pitch=0&format=wav&text=" + encText
+        data = "speaker=nhajun&volume=0&speed=0&pitch=0&format=wav&text=" + encText
         url = "https://naveropenapi.apigw.ntruss.com/tts-premium/v1/tts"
         request = urllib.request.Request(url)
         request.add_header("X-NCP-APIGW-API-KEY-ID",client_id)

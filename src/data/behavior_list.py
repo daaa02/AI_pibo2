@@ -15,6 +15,7 @@ from openpibo.oled import Oled
 
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+sys.path.append('/home/pi/AI_pibo2/')
 import src.data.eye_list as eye
 import src.data.oled_list as oled
 from text_to_speech import TextToSpeech
@@ -123,32 +124,26 @@ def do_explain_B():
 
 
 def do_photo():
-    m = Thread(target=motion.set_motion, args=("m_photo", 1))
-    o = Thread(target=oled.o_photo, args=())
-
-    m.daemon = True
-    o.daemon = True
-
-    m.start()
-    o.start()
-
+    eye.e_photo()
+    t = Thread(target=oled.o_photo, args=(), daemon=True)
+    t.start()
     while True:
-        eye.e_photo()
+        motion.set_motion(name="m_photo-1", cycle=1)
+        break
+    while True:
+        motion.set_motion(name="m_photo-2", cycle=1)
         break
 
 
 def do_stamp():
-    m = Thread(target=motion.set_motion, args=("m_stamp", 1))
-    o = Thread(target=oled.o_stamp, args=())
-
-    m.daemon = True
-    o.daemon = True
-
-    m.start()
-    o.start()
-
+    eye.e_stamp()
+    t = Thread(target=oled.o_stamp, args=(), daemon=True)
+    t.start()
     while True:
-        eye.e_stamp()
+        motion.set_motion(name="m_stamp-1", cycle=1)        
+        break
+    while True:
+        motion.set_motion(name="m_stamp-2", cycle=1)        
         break
 
 
