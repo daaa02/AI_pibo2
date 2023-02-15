@@ -165,7 +165,7 @@ def speech_to_text(timeout=10):
         language_code=language_code)
     streaming_config = speech.StreamingRecognitionConfig(
         config=config,
-        single_utteranve = True,    # 공백 생기면 바로 입력 중단시킴!
+        single_utterance = True,    # 공백 생기면 바로 입력 중단시킴!
         interim_results=True)
 
     with MicrophoneStream(RATE, CHUNK) as stream:
