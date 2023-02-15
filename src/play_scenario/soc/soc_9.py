@@ -13,13 +13,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -54,7 +55,7 @@ def Play_Horse(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -70,7 +71,7 @@ def Play_Horse(user_name):
     behavior_list.do_explain_B()
     while True:
         time.sleep(1)
-        text_to_speech(f"먼저 {user_name}이가 앞이 안보이는 말 역할을 하고, 친구가 조련사 역할을 할거야.")
+        text_to_speech(f"먼저 {wm.word(user_name, 0)}가 앞이 안보이는 말 역할을 하고, 친구가 조련사 역할을 할거야.")
         text_to_speech("말은 눈을 감고 조련사가 말하는 대로 이동하면 돼.")
         break
 
@@ -100,7 +101,7 @@ def Play_Horse(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -143,7 +144,7 @@ def Play_Horse(user_name):
 
         behavior_list.do_waiting_A()
         while True:
-            text_to_speech(f"{user_name}이는 말이 어떻게 걷는지 알아?")
+            text_to_speech(f"{wm.word(user_name, 0)}는 말이 어떻게 걷는지 알아?")
             user_said = speech_to_text()
             break
 
@@ -166,7 +167,7 @@ def Play_Horse(user_name):
 
         behavior_list.do_suggestion_L()
         while True:
-            text_to_speech(f"말이 된 {user_name}이는 눈을 감고 조련사의 지시대로 이동해보자. 장애물을 모두 피해서 다시 파이보에게 돌아와야해.")
+            text_to_speech(f"말이 된 {wm.word(user_name, 0)}는 눈을 감고 조련사의 지시대로 이동해보자. 장애물을 모두 피해서 다시 파이보에게 돌아와야해.")
             break
 
         behavior_list.do_waiting_B()
@@ -190,7 +191,7 @@ def Play_Horse(user_name):
 
         behavior_list.do_suggestion_L()
         while True:
-            text_to_speech(f"이번에는 역할을 바꿔보자.친구가 앞이안보이는 말 역할이고 {user_name}이가 조련사야. ")
+            text_to_speech(f"이번에는 역할을 바꿔보자.친구가 앞이안보이는 말 역할이고 {wm.word(user_name, 0)}가 조련사야. ")
             break
 
         behavior_list.do_suggestion_L()
@@ -242,7 +243,7 @@ def Play_Horse(user_name):
     behavior_list.do_question_L()
     while True:
         time.sleep(1)
-        text_to_speech(f"{user_name}이는 앞이 안보이니까 어땠어? 무섭지는 않았어?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 앞이 안보이니까 어땠어? 무섭지는 않았어?")
 
         user_said = speech_to_text()
 
@@ -257,7 +258,7 @@ def Play_Horse(user_name):
 
     behavior_list.do_question_S()
     while True:
-        text_to_speech(f"{user_name}이는 무서워하는게 있어?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 무서워하는게 있어?")
         user_said = speech_to_text()
         break
 
@@ -269,8 +270,8 @@ def Play_Horse(user_name):
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_S()
@@ -280,7 +281,7 @@ def Play_Horse(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -292,7 +293,7 @@ def Play_Horse(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

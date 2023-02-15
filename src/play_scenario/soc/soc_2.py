@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -48,11 +49,11 @@ def Play_Newspaper(user_name):
 
     behavior_list.do_waiting_A()
     while True:
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -74,7 +75,7 @@ def Play_Newspaper(user_name):
     behavior_list.do_question_S()
     while True:
         text_to_speech("할 수 있지? 할 수 있으면 할 수 있어 라고 말해줘~")
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
@@ -92,11 +93,11 @@ def Play_Newspaper(user_name):
     while True:
         text_to_speech("준비가 됐으면 시작하자고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -122,7 +123,7 @@ def Play_Newspaper(user_name):
                 while True:
                     text_to_speech("다 만들었으면 다 만들었다고 말해줘~")
 
-                    user_said = input("답변 : ")
+                    user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
@@ -145,7 +146,7 @@ def Play_Newspaper(user_name):
                 #행동인식-사진, 영상촬영
                 text_to_speech("정말 멋진 비였어. 이제 바닥에 떨어진 비를 다시 모아보자. 다 모았으면 다 모았다고 말해줘~ ")
                 
-                user_said = input("답변 : ")
+                user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
@@ -162,7 +163,7 @@ def Play_Newspaper(user_name):
                         continue
                 break
 
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
              #행동인식-사진, 영상촬영
              text_to_speech("신문지 비가 또 내린다~")
@@ -178,7 +179,7 @@ def Play_Newspaper(user_name):
     while True:
         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
@@ -189,7 +190,7 @@ def Play_Newspaper(user_name):
         else:
             behavior_list.do_praise_L()
             while True:
-                text_to_speech(f"{user_name}이가 내린 신문지 비는 정말 포근했어. 젖지 않는 멋진 비야~")
+                text_to_speech(f"{wm.word(user_name, 0)}가 내린 신문지 비는 정말 포근했어. 젖지 않는 멋진 비야~")
                 break
         break
 
@@ -199,7 +200,7 @@ def Play_Newspaper(user_name):
         time.sleep(1)
         text_to_speech("신문지 비를 맞으니까 기분이 어땠어? 포근했어?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
 
         
         break
@@ -211,15 +212,15 @@ def Play_Newspaper(user_name):
 
     behavior_list.do_question_L()
     while True:
-        text_to_speech(f"{user_name}이는 어떤 날씨를 좋아해?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 어떤 날씨를 좋아해?")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_question_S()
     while True:
         text_to_speech("정말? 왜 좋아?")
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         break
 
     behavior_list.do_agree()
@@ -227,7 +228,7 @@ def Play_Newspaper(user_name):
         text_to_speech("맞아. 파이보도 좋아해.")
         break
 
-    behavior_list.do_joy()
+    behavior_list.do_joy_A()
     while True:
         text_to_speech("우리 둘 다 공통점이 있구나?")
         break
@@ -239,8 +240,8 @@ def Play_Newspaper(user_name):
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_S()
@@ -250,7 +251,7 @@ def Play_Newspaper(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -258,11 +259,11 @@ def Play_Newspaper(user_name):
         time.sleep(1)
         text_to_speech("또 다른 놀이 할까? 파이보랑 또 놀고 싶으면 놀고 싶다고 말해줘!")
 
-        user_said = input("답변 : ")
+        user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -55,7 +56,7 @@ def Play_Flower(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -85,7 +86,7 @@ def Play_Flower(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'YES':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("좋았어!")
                 break
@@ -99,7 +100,7 @@ def Play_Flower(user_name):
     while True:
         text_to_speech("술래가 뒤돌아 볼 때 움직이는 친구는 탈락이고 술래에게 무사히 도착하면 성공이야.")
         time.sleep(1)
-        text_to_speech(f"{user_name}이가 먼저 술래를 해보자.")
+        text_to_speech(f"{wm.word(user_name, 0)}가 먼저 술래를 해보자.")
         break
 
     behavior_list.do_waiting_A()
@@ -110,7 +111,7 @@ def Play_Flower(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -219,7 +220,7 @@ def Play_Flower(user_name):
         time.sleep(1)
         text_to_speech("몸을 일으켜 앉아보자.")
         time.sleep(1)
-        text_to_speech(f"{user_name}이는 무궁화 꽃이 피었습니다 놀이 전에도 해 본 적 있어? 파이보랑 같이 한 거랑 달랐어?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 무궁화 꽃이 피었습니다 놀이 전에도 해 본 적 있어? 파이보랑 같이 한 거랑 달랐어?")
 
         user_said = speech_to_text()
 
@@ -238,7 +239,7 @@ def Play_Flower(user_name):
         user_said = speech_to_text()
         break
 
-    behavior_list.do_joy()
+    behavior_list.do_joy_A()
     while True:
         text_to_speech("그렇구나. 모두 재미있게 놀았으니 서로 악수하고 놀이를 마치도록 하자! 정말 멋있었어!")
         time.sleep(1)
@@ -247,8 +248,8 @@ def Play_Flower(user_name):
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 튼튼 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 튼튼 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_S()
@@ -258,7 +259,7 @@ def Play_Flower(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -270,7 +271,7 @@ def Play_Flower(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

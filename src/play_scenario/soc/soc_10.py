@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -51,7 +52,7 @@ def Play_Robot(user_name):
     behavior_list.do_explain_B()
     while True:
         time.sleep(1)
-        text_to_speech(f"먼저 친구가 로봇 역할을 하고, {user_name}이는 로봇을 조종하는 조종사 역할을 할거야. 로봇의 오른 손을 당기면 오른쪽으로 움직이고, 왼 손을 당기면 왼쪽으로 움직일거야.")
+        text_to_speech(f"먼저 친구가 로봇 역할을 하고, {wm.word(user_name, 0)}는 로봇을 조종하는 조종사 역할을 할거야. 로봇의 오른 손을 당기면 오른쪽으로 움직이고, 왼 손을 당기면 왼쪽으로 움직일거야.")
         break
 
     behavior_list.do_question_S()
@@ -80,7 +81,7 @@ def Play_Robot(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -106,7 +107,7 @@ def Play_Robot(user_name):
 
             behavior_list.do_suggestion_L()
             while True:
-                text_to_speech(f"좋아. 파이보를 목적지에 세워 주고 {user_name}이는 출발지에 파이보에게 오면 돼. 이제 로봇 조종을 시작해보자!")
+                text_to_speech(f"좋아. 파이보를 목적지에 세워 주고 {wm.word(user_name, 0)}는 출발지에 파이보에게 오면 돼. 이제 로봇 조종을 시작해보자!")
 
                 break
 
@@ -184,7 +185,7 @@ def Play_Robot(user_name):
     behavior_list.do_question_L()
     while True:
         time.sleep(1)
-        text_to_speech(f"{user_name}이는 로봇이랑 조종사 중에 어떤 역할이 더 재미있었어?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 로봇이랑 조종사 중에 어떤 역할이 더 재미있었어?")
 
         user_said = speech_to_text()
 
@@ -199,18 +200,18 @@ def Play_Robot(user_name):
 
     behavior_list.do_praise_L()
     while True:
-        text_to_speech(f"그렇구나. 그렇지만 {user_name}이는 두가지 역할을 모두 잘 해냈어!")
+        text_to_speech(f"그렇구나. 그렇지만 {wm.word(user_name, 0)}는 두가지 역할을 모두 잘 해냈어!")
 
        
         break
 
     behavior_list.do_question_L()
     while True:
-        text_to_speech(f"{user_name}이는 파이보가 로봇이라서 어떤 점이 좋아?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 파이보가 로봇이라서 어떤 점이 좋아?")
         user_said = speech_to_text()
         break
 
-    behavior_list.do_joy()
+    behavior_list.do_joy_A()
     while True:
         text_to_speech("그래? 정말 감동이야~")
         break
@@ -218,8 +219,8 @@ def Play_Robot(user_name):
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_S()
@@ -229,7 +230,7 @@ def Play_Robot(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -241,7 +242,7 @@ def Play_Robot(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

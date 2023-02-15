@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -55,7 +56,7 @@ def Play_Salad(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -69,7 +70,7 @@ def Play_Salad(user_name):
     # 2.2 놀이 설명
     behavior_list.do_explain_B()
     while True:
-        text_to_speech(f"먼저 방석을 원 모양으로 놓을거야.그리고 {user_name}이는 과일 카드 다섯가지를 골라줘")
+        text_to_speech(f"먼저 방석을 원 모양으로 놓을거야.그리고 {wm.word(user_name, 0)}는 과일 카드 다섯가지를 골라줘")
         break
 
     behavior_list.do_question_S()
@@ -83,7 +84,7 @@ def Play_Salad(user_name):
         if answer == 'YES':
             behavior_list.do_explain_B()
             while True:
-                text_to_speech(f"{user_name}이가 고른 과일을 파이보가 맞출 때마다 옆 방석으로 한칸씩 움직이면 돼. ")
+                text_to_speech(f"{wm.word(user_name, 0)}가 고른 과일을 파이보가 맞출 때마다 옆 방석으로 한칸씩 움직이면 돼. ")
                 text_to_speech("처음 자리로 돌아오면 놀이가 끝나는거야")
                 break
         else:
@@ -100,7 +101,7 @@ def Play_Salad(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -132,7 +133,7 @@ def Play_Salad(user_name):
                 behavior_list.do_suggestion_L()
                 while True:
                     time.sleep(2)
-                    text_to_speech(f"좋아.  파이보가 {user_name}이가 생각한 과일을 맞춰볼게.")
+                    text_to_speech(f"좋아.  파이보가 {wm.word(user_name, 0)}가 생각한 과일을 맞춰볼게.")
                     text_to_speech("맞췄으면 카드를 파이보에게 보여주고한 칸씩 옆자리로 옮기면 돼. 시작해보자!")
                     #행동인식 - 사진, 영상 촬영
                     break
@@ -158,7 +159,7 @@ def Play_Salad(user_name):
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'YES':
-                        behavior_list.do_joy()
+                        behavior_list.do_joy_A()
                         while True:
                             
                             text_to_speech("좋았어. 한칸 옆으로 옮기자!")
@@ -172,7 +173,7 @@ def Play_Salad(user_name):
                             return start_1()
                      
             elif i==6:
-                behavior_list.do_joy()
+                behavior_list.do_joy_A()
                 while True:
                     text_to_speech("처음 자리로 돌아왔어! 정말 빨리 도착했는 걸? ")
                     break      
@@ -201,7 +202,7 @@ def Play_Salad(user_name):
         else:
             behavior_list.do_praise_L()
             while True:
-                text_to_speech(f"{user_name}이는 정말 다양한 과일 이름을 알고 있구나! 멋지다~")
+                text_to_speech(f"{wm.word(user_name, 0)}는 정말 다양한 과일 이름을 알고 있구나! 멋지다~")
                 break
         break
        
@@ -210,7 +211,7 @@ def Play_Salad(user_name):
     # 2.5 마무리 대화
     behavior_list.do_question_L()
     while True:
-        text_to_speech(f"{user_name}이는 어떤 과일을 제일 좋아해?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 어떤 과일을 제일 좋아해?")
         
         user_said = speech_to_text()
         
@@ -231,7 +232,7 @@ def Play_Salad(user_name):
         user_said = speech_to_text()
         break
 
-    behavior_list.do_joy()
+    behavior_list.do_joy_A()
     while True:
         text_to_speech("그렇구나. 과일들은 모두 상큼할 것 같아!")
         break
@@ -241,8 +242,8 @@ def Play_Salad(user_name):
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 술술 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 술술 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_L()
@@ -252,7 +253,7 @@ def Play_Salad(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -264,7 +265,7 @@ def Play_Salad(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

@@ -240,9 +240,25 @@ def do_agree():
         break
 
 
-def do_joy():
+def do_joy_A():
     audio.play(filename="/home/pi/AI_pibo2/src/data/audio/기분좋음.mp3", out='local', volume=-1000, background=False)
-    m = Thread(target=motion.set_motion, args=("m_joy", 2))
+    m = Thread(target=motion.set_motion, args=("m_joy_A", 2))
+    o = Thread(target=oled.o_joy(), args=())
+
+    m.daemon = True
+    o.daemon = True
+
+    m.start()
+    o.start()
+
+    while True:
+        eye.e_joy()
+        break
+    
+
+def do_joy_B():
+    audio.play(filename="/home/pi/AI_pibo2/src/data/audio/기분좋음.mp3", out='local', volume=-1000, background=False)
+    m = Thread(target=motion.set_motion, args=("m_joy_B", 2))
     o = Thread(target=oled.o_joy(), args=())
 
     m.daemon = True

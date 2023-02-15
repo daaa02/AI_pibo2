@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 global i
@@ -56,7 +57,7 @@ def Play_Treasure(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -70,8 +71,8 @@ def Play_Treasure(user_name):
     # 2.2 놀이 설명
     behavior_list.do_explain_B()
     while True:
-        text_to_speech(f"먼저 {user_name}이가 보물을 숨기면 친구가 보물을 찾을거야")
-        text_to_speech(f"{user_name}이는 친구가 보물을 찾기 어렵게 거북이나 나무늘보처럼 느린 동물로 변하는 마법을 거는거야.")
+        text_to_speech(f"먼저 {wm.word(user_name, 0)}가 보물을 숨기면 친구가 보물을 찾을거야")
+        text_to_speech(f"{wm.word(user_name, 0)}는 친구가 보물을 찾기 어렵게 거북이나 나무늘보처럼 느린 동물로 변하는 마법을 거는거야.")
         break
 
     behavior_list.do_question_S()
@@ -101,7 +102,7 @@ def Play_Treasure(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -117,7 +118,7 @@ def Play_Treasure(user_name):
         behavior_list.do_question_S()
         while True:
             time.sleep(1)
-            text_to_speech(f"{user_name}이가 먼저 보물 쪽지를 만들어서 숨겨줘.")
+            text_to_speech(f"{wm.word(user_name, 0)}가 먼저 보물 쪽지를 만들어서 숨겨줘.")
             break
         def start_1():    
             behavior_list.do_waiting_A()
@@ -146,7 +147,7 @@ def Play_Treasure(user_name):
                 break
             def start_2():    
                 global i
-                behavior_list.do_joy()
+                behavior_list.do_joy_A()
                 while True:
                     #행동인식 - 사진, 영상 촬영
                     break
@@ -168,7 +169,7 @@ def Play_Treasure(user_name):
                     text_to_speech("같은 방법으로 다시 마법을 걸어보자. 시작!")
                     break
 
-                behavior_list.do_joy()
+                behavior_list.do_joy_A()
                 while True:
                     #행동인식 - 사진, 영상 촬영
                     break
@@ -213,7 +214,7 @@ def Play_Treasure(user_name):
 
                     behavior_list.do_suggestion_L()
                     while True:
-                        text_to_speech(f"이번에는 역할을 바꿔보자. 친구가 보물을 숨기고 {user_name}이가 보물을 찾아줘.")
+                        text_to_speech(f"이번에는 역할을 바꿔보자. 친구가 보물을 숨기고 {wm.word(user_name, 0)}가 보물을 찾아줘.")
                         i=i+1
                         start_1()
                         break
@@ -268,7 +269,7 @@ def Play_Treasure(user_name):
     # 2.5 마무리 대화
     behavior_list.do_question_L()
     while True:
-        text_to_speech(f"{user_name}이는 보물을 지키는게 재미있었어 아니면 찾는게 재미있었어?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 보물을 지키는게 재미있었어 아니면 찾는게 재미있었어?")
         user_said = speech_to_text()
         break
 
@@ -281,7 +282,7 @@ def Play_Treasure(user_name):
 
     behavior_list.do_agree()
     while True:
-        text_to_speech(f"그렇구나. 파이보는 {user_name}이가 다양한 동물을 알아서 정말 신났어!")
+        text_to_speech(f"그렇구나. 파이보는 {wm.word(user_name, 0)}가 다양한 동물을 알아서 정말 신났어!")
         break
 
     behavior_list.do_question_S()
@@ -290,7 +291,7 @@ def Play_Treasure(user_name):
         user_said = speech_to_text()
         break
 
-    behavior_list.do_joy()
+    behavior_list.do_joy_A()
     while True:
         text_to_speech("맞아. 파이보도 정말 깜짝 놀랐어!")
         break
@@ -298,8 +299,8 @@ def Play_Treasure(user_name):
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 술술 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 술술 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_L()
@@ -309,7 +310,7 @@ def Play_Treasure(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -321,7 +322,7 @@ def Play_Treasure(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

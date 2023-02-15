@@ -13,13 +13,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -52,7 +53,7 @@ def Play_Stork(user_name):
     behavior_list.do_explain_A()
     while True:
         time.sleep(1)
-        text_to_speech(f"먼저 {user_name}이가 엎드려 있으면, 황새가 된 친구가 {user_name}이를 천천히 콕콕 찌를거야. {user_name}이는 친구가 어디를 찔렀는지 맞추면 돼.")
+        text_to_speech(f"먼저 {wm.word(user_name, 0)}가 엎드려 있으면, 황새가 된 친구가 {wm.word(user_name, 0)}를 천천히 콕콕 찌를거야. {wm.word(user_name, 0)}는 친구가 어디를 찔렀는지 맞추면 돼.")
         break
     
     behavior_list.do_question_L
@@ -82,7 +83,7 @@ def Play_Stork(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -99,7 +100,7 @@ def Play_Stork(user_name):
             i=1;
             behavior_list.do_suggestion_S()
             while True:
-                text_to_speech(f"바닥에  {user_name}이는 엎드리고 친구는 옆에 앉아줘.")
+                text_to_speech(f"바닥에  {wm.word(user_name, 0)}는 엎드리고 친구는 옆에 앉아줘.")
                 time.sleep(1)
                 break
               
@@ -187,7 +188,7 @@ def Play_Stork(user_name):
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'YES':
-                        behavior_list.do_joy()
+                        behavior_list.do_joy_A()
                         while True:
                             text_to_speech("정말 빠르다~")
                             break
@@ -202,7 +203,7 @@ def Play_Stork(user_name):
 
                     behavior_list.do_suggestion_L()
                     while True:            
-                        text_to_speech(f"이번에는  역할을 바꿔보자. 친구가 엎드리면 {user_name}이가 황새처럼 콕콕 찔러줘. ")
+                        text_to_speech(f"이번에는  역할을 바꿔보자. 친구가 엎드리면 {wm.word(user_name, 0)}가 황새처럼 콕콕 찔러줘. ")
                         text_to_speech("*** 2회차 ***")
                         i=i+1
                         return start_1()                    
@@ -232,7 +233,7 @@ def Play_Stork(user_name):
         else:
             behavior_list.do_praise_L()
             while True:
-                text_to_speech(f"{user_name}이는 다양한 신체 부위 명칭을 알고 있구나? 대단해~")
+                text_to_speech(f"{wm.word(user_name, 0)}는 다양한 신체 부위 명칭을 알고 있구나? 대단해~")
                 break
         break
 
@@ -245,14 +246,14 @@ def Play_Stork(user_name):
     behavior_list.do_question_L()
     while True:
         time.sleep(1)
-        text_to_speech(f"{user_name}이는 어떤 부위가 제일 간지러웠어?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 어떤 부위가 제일 간지러웠어?")
 
         user_said = speech_to_text()
 
         
         break
 
-    behavior_list.do_joy()
+    behavior_list.do_joy_A()
     while True:
         text_to_speech("정말? 신기하다.")
         break
@@ -264,12 +265,12 @@ def Play_Stork(user_name):
 
     behavior_list.do_question_S()
     while True:
-        text_to_speech(f"{user_name}이도 비밀이 있어?")
+        text_to_speech(f"{wm.word(user_name, 0)}도 비밀이 있어?")
 
         user_said = speech_to_text()
         break
 
-    behavior_list.do_joy()
+    behavior_list.do_joy_A()
     while True:
         text_to_speech("그렇구나. 둘만의 비밀이 생기다니 파이보는 기뻐!")
         break
@@ -279,8 +280,8 @@ def Play_Stork(user_name):
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_S()
@@ -290,7 +291,7 @@ def Play_Stork(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -302,7 +303,7 @@ def Play_Stork(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

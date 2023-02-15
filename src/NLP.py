@@ -140,3 +140,42 @@ class NLP:
         number = max(ko, nb)
         return number
     
+class WordManage():
+        
+    def postposition(self, word):
+        """
+        'word' 가 종성으로 끝나는지 판별 (=받침이 있는지 없는지)
+        """
+        m = re.search("[가-힣]+", word)
+        if m:
+            k = m.group()[-1]
+            return (ord(k) - ord("가")) % 28 > 0
+        else:
+            return
+
+    def word(self, word, type):
+        """
+        type0: '다영'이 / '파이보'
+        type1: '다영'이 / '파이보'가
+        type2: '다영'은 / '파이보'는
+        type3: '다영'을 / '파이보'를
+        type4: '다영'아 / '파이보'야
+        type5: '다영'과 / '파이보'와
+        * 주의: 띄워쓰기 없어야 함 (ex. '작은 개구리' => '작은'의 영향 받는 듯;;)
+        """
+        if type == 0:
+            name = f"{word}이" if wm.postposition(word) else f"{word}"
+        if type == 1:
+            name = f"{word}이" if wm.postposition(word) else f"{word}가"                    
+        if type == 2:
+            name = f"{word}은" if wm.postposition(word) else f"{word}는"              
+        if type == 3:
+            name = f"{word}을" if wm.postposition(word) else f"{word}를"
+        if type == 4:
+            name = f"{word}아" if wm.postposition(word) else f"{word}야"
+        if type == 5:
+            name = f"{word}과" if wm.postposition(word) else f"{word}와"
+
+        return name
+
+wm = WordManage()

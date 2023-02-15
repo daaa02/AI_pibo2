@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -57,7 +58,7 @@ def Play_Clothespin(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -103,7 +104,7 @@ def Play_Clothespin(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -176,7 +177,7 @@ def Play_Clothespin(user_name):
         behavior_list.do_question_S()
         while True:
             time.sleep(1)
-            text_to_speech(f"{user_name}이는 어떤 모양을 만들고 싶어?")
+            text_to_speech(f"{wm.word(user_name, 0)}는 어떤 모양을 만들고 싶어?")
 
             user_said = speech_to_text()
 
@@ -227,7 +228,7 @@ def Play_Clothespin(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("정말 편안하겠다. 1분 간 그대로 있어!")
@@ -280,22 +281,22 @@ def Play_Clothespin(user_name):
 
     behavior_list.do_question_L()
     while True:
-        text_to_speech(f"{user_name}이는 뭐가 가장 기억에 남아?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 뭐가 가장 기억에 남아?")
 
         user_said = speech_to_text()
         break
 
-    behavior_list.do_joy()
+    behavior_list.do_joy_A()
     while True:
-        text_to_speech(f"알려줘서 고마워. {user_name}이랑 노는 건 항상 너무 재밌어~")
+        text_to_speech(f"알려줘서 고마워. {wm.word(user_name, 0)}랑 노는 건 항상 너무 재밌어~")
         time.sleep(1)
         break
 
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 튼튼 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 튼튼 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_S()
@@ -305,7 +306,7 @@ def Play_Clothespin(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -317,7 +318,7 @@ def Play_Clothespin(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

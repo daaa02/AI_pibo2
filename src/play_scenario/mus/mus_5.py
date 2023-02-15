@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -55,7 +56,7 @@ def Play_Bear(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -105,7 +106,7 @@ def Play_Bear(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -137,7 +138,7 @@ def Play_Bear(user_name):
                 while True:
                     text_to_speech("이제 역할을 나누자. 사람과 곰 역할이 있어.")
                     time.sleep(1)
-                    text_to_speech(f"{user_name}이가 먼저 사람을 하자.")    # 둘, 셋 하면 너무 빠르게 느껴짐
+                    text_to_speech(f"{wm.word(user_name, 0)}가 먼저 사람을 하자.")    # 둘, 셋 하면 너무 빠르게 느껴짐
                     break
             else:
                 behavior_list.do_waiting_B()
@@ -225,7 +226,7 @@ def Play_Bear(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'YES':
-                behavior_list.do_joy()
+                behavior_list.do_joy_A()
                 while True:
                     text_to_speech("정말 재미있다!")
                     start()
@@ -253,7 +254,7 @@ def Play_Bear(user_name):
         else:
             behavior_list.do_praise_S()
             while True:
-                text_to_speech(f"파이보는 곰에게 들킬까봐 엄청 긴장했는데, {user_name}이는 정말 씩씩하게 잘 하던걸?")
+                text_to_speech(f"파이보는 곰에게 들킬까봐 엄청 긴장했는데, {wm.word(user_name, 0)}는 정말 씩씩하게 잘 하던걸?")
                 break
         break
 
@@ -280,7 +281,7 @@ def Play_Bear(user_name):
     behavior_list.do_question_S()
     while True:
         time.sleep(1)
-        text_to_speech(f"그랬구나. {user_name}이는 언제 가장 무서워?")
+        text_to_speech(f"그랬구나. {wm.word(user_name, 0)}는 언제 가장 무서워?")
 
         user_said = speech_to_text()
 
@@ -294,8 +295,8 @@ def Play_Bear(user_name):
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 튼튼 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 튼튼 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_S()
@@ -305,7 +306,7 @@ def Play_Bear(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -317,7 +318,7 @@ def Play_Bear(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

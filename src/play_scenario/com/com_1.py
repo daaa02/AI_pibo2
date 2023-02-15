@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -53,7 +54,7 @@ def Play_Hoop(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -97,7 +98,7 @@ def Play_Hoop(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -126,7 +127,7 @@ def Play_Hoop(user_name):
 
         behavior_list.do_suggestion_S()
         while True:
-            text_to_speech(f"그럼 {animal}를 종이에 그려보자!")
+            text_to_speech(f"그럼 {wm.word(animal, 3)} 종이에 그려보자!")
             break
 
         behavior_list.do_waiting_C()
@@ -140,7 +141,7 @@ def Play_Hoop(user_name):
                 behavior_list.do_praise_L()
                 while True:
                     time.sleep(2)
-                    text_to_speech(f"우와 정말 귀여운 {animal}이다. 다른 동물들도 더 그려보자.")
+                    text_to_speech(f"우와 정말 귀여운 {wm.word(animal, 3)}다. 다른 동물들도 더 그려보자.")
                     break
             else:
                 behavior_list.do_waiting_C()
@@ -190,7 +191,7 @@ def Play_Hoop(user_name):
             break
 
         text_to_speech("준비~~~~~ 시작!")
-        behavior_list.do_joy()
+        behavior_list.do_joy_A()
         while True:
             text_to_speech("후우우우~~~~")     # 효과음 넣기!!!!! ;마땅한 거 못 찾음
             time.sleep(7)
@@ -243,7 +244,7 @@ def Play_Hoop(user_name):
     # 2.5 마무리 대화
     behavior_list.do_question_L()
     while True:
-        text_to_speech(f"{user_name}이는 오늘 만든 동물 중에 어떤 동물 그림이 제일 마음에 들었어?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 오늘 만든 동물 중에 어떤 동물 그림이 제일 마음에 들었어?")
 
         user_said = speech_to_text()
         answer = NLP.nlp_animal(user_said=user_said, dic=Dic)
@@ -258,7 +259,7 @@ def Play_Hoop(user_name):
     behavior_list.do_question_S()
     while True:
         time.sleep(1)
-        text_to_speech(f"{user_name}이는 키워보고 싶은 동물이 있어?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 키워보고 싶은 동물이 있어?")
 
         user_said = speech_to_text()
 
@@ -269,14 +270,14 @@ def Play_Hoop(user_name):
 
     behavior_list.do_agree()
     while True:
-        text_to_speech(f"그렇구나. {user_name}이는 동물을 정말 정성껏 잘 돌봐줄 것 같아")
+        text_to_speech(f"그렇구나. {wm.word(user_name, 0)}는 동물을 정말 정성껏 잘 돌봐줄 것 같아")
         break
 
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 술술 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 술술 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_L()
@@ -286,7 +287,7 @@ def Play_Hoop(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -298,7 +299,7 @@ def Play_Hoop(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

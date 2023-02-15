@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -52,7 +53,7 @@ def Play_Indian(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -96,7 +97,7 @@ def Play_Indian(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -137,7 +138,7 @@ def Play_Indian(user_name):
 
         behavior_list.do_suggestion_L()
         while True:
-            text_to_speech(f"이제 인디언 집 내부를 꾸며 보자.{user_name}이와 친구가 좋아하는 장난감이나 인형으로 꾸밀 수 있어. ")
+            text_to_speech(f"이제 인디언 집 내부를 꾸며 보자.{wm.word(user_name, 0)}와 친구가 좋아하는 장난감이나 인형으로 꾸밀 수 있어. ")
             
             behavior_list.do_waiting_A()
             while True:
@@ -147,7 +148,7 @@ def Play_Indian(user_name):
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                 if answer == 'DONE':
-                    behavior_list.do_joy()
+                    behavior_list.do_joy_A()
                     while True:
                         time.sleep(3)
                         text_to_speech("너무 기대된다! 파이보를 인디언 집에 데려가줘.")
@@ -167,7 +168,7 @@ def Play_Indian(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                    behavior_list.do_joy()
+                    behavior_list.do_joy_A()
                     while True:
                         time.sleep(3)
                         text_to_speech("우와~ 정말 아늑하다!다 같이 편하게 누워보자!")
@@ -186,7 +187,7 @@ def Play_Indian(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'YES':
-                    behavior_list.do_joy()
+                    behavior_list.do_joy_A()
                     while True:
                         time.sleep(3)
                         text_to_speech("눈을 감고 귀 기울려봐. 숲소리가 들리는 것 같아.")
@@ -217,7 +218,7 @@ def Play_Indian(user_name):
         else:
             behavior_list.do_praise_L()
             while True:
-                text_to_speech(f"인디언 집을 정말 멋지게 만들었어. 열심히 만든 {user_name}이 최고야!")
+                text_to_speech(f"인디언 집을 정말 멋지게 만들었어. 열심히 만든 {wm.word(user_name, 0)} 최고야!")
                 break
         break
 
@@ -225,7 +226,7 @@ def Play_Indian(user_name):
     behavior_list.do_question_L()
     while True:
         time.sleep(1)
-        text_to_speech(f"{user_name}이가 만든 집에서 쉬니까 어땠어? 포근한 기분이 들었어?")
+        text_to_speech(f"{wm.word(user_name, 0)}가 만든 집에서 쉬니까 어땠어? 포근한 기분이 들었어?")
 
         user_said = speech_to_text()
 
@@ -239,12 +240,12 @@ def Play_Indian(user_name):
 
     behavior_list.do_question_S()
     while True:
-        text_to_speech(f"{user_name}이는 언제 제일 마음이 편해?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 언제 제일 마음이 편해?")
 
         user_said = speech_to_text()
         break
 
-    behavior_list.do_joy()
+    behavior_list.do_joy_A()
     while True:
         text_to_speech("정말? 생각만 해도 기분이 좋다.")
         break
@@ -254,8 +255,8 @@ def Play_Indian(user_name):
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_S()
@@ -265,7 +266,7 @@ def Play_Indian(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -277,7 +278,7 @@ def Play_Indian(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

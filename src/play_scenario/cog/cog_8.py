@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -53,7 +54,7 @@ def Play_Sound(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)   # stt 결과 처리 (NLP.py 참고)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -97,7 +98,7 @@ def Play_Sound(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -113,7 +114,7 @@ def Play_Sound(user_name):
         behavior_list.do_explain_B()
         while True:
             time.sleep(1)
-            text_to_speech(f"먼저 {user_name}이가 소리를 내고 친구가 맞춰보기를 하자. 눈을 꼭 감고 뒤를 돌아서 소리를 집중해서 듣는 거야. ")
+            text_to_speech(f"먼저 {wm.word(user_name, 0)}가 소리를 내고 친구가 맞춰보기를 하자. 눈을 꼭 감고 뒤를 돌아서 소리를 집중해서 듣는 거야. ")
             break
 
         behavior_list.do_waiting_B()
@@ -150,7 +151,7 @@ def Play_Sound(user_name):
 
         behavior_list.do_suggestion_L()
         while True:
-            text_to_speech(f"이제 역할을 바꿔보자. {user_name}이는 눈을 꼭 감고 뒤를 돌아 앉아보는거야.")
+            text_to_speech(f"이제 역할을 바꿔보자. {wm.word(user_name, 0)}는 눈을 꼭 감고 뒤를 돌아 앉아보는거야.")
             
             break
 
@@ -204,7 +205,7 @@ def Play_Sound(user_name):
         else:
             behavior_list.do_praise_S()
             while True:
-                text_to_speech(f"열심히 놀이해 준 {user_name}이가 최고야~ 파이보도 다양한 소리를 알게 된 것 같아!")
+                text_to_speech(f"열심히 놀이해 준 {wm.word(user_name, 0)}가 최고야~ 파이보도 다양한 소리를 알게 된 것 같아!")
                 break
         break
 
@@ -225,7 +226,7 @@ def Play_Sound(user_name):
         if answer == 'DONE':
             behavior_list.do_praise_S()
             while True:
-                text_to_speech(f"{user_name}이는 정리도 잘 하는구나!")
+                text_to_speech(f"{wm.word(user_name, 0)}는 정리도 잘 하는구나!")
                 time.sleep(1)
                 break
         else:
@@ -248,14 +249,14 @@ def Play_Sound(user_name):
 
     behavior_list.do_praise_L()
     while True:
-        text_to_speech(f"그랬구나. 파이보는  {user_name}이가 소리를 집중해서 듣는 모습이 멋졌어~")
+        text_to_speech(f"그랬구나. 파이보는  {wm.word(user_name, 0)}가 소리를 집중해서 듣는 모습이 멋졌어~")
         break
 
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_S()
@@ -265,7 +266,7 @@ def Play_Sound(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -277,7 +278,7 @@ def Play_Sound(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':       # 지금은 어떤 답변이라도 프로그램 종료됨
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

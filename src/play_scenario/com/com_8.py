@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -59,7 +60,7 @@ def Play_Wheather(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -73,7 +74,7 @@ def Play_Wheather(user_name):
     # 2.2 놀이 설명
     behavior_list.do_explain_B()
     while True:
-        text_to_speech(f"먼저 {user_name}이가 매트위에 엎드려 있으면, 친구가 {user_name}이 등에 날씨를 표현 할거야. 만약에 비가 오면 등을 톡톡 치면서 빗방울을 표현할 수 있어. 날씨는 파이보가 알려줄게.")
+        text_to_speech(f"먼저 {wm.word(user_name, 0)}가 매트위에 엎드려 있으면, 친구가 {wm.word(user_name, 0)} 등에 날씨를 표현 할거야. 만약에 비가 오면 등을 톡톡 치면서 빗방울을 표현할 수 있어. 날씨는 파이보가 알려줄게.")
         break
 
     behavior_list.do_question_S()
@@ -103,7 +104,7 @@ def Play_Wheather(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -121,7 +122,7 @@ def Play_Wheather(user_name):
         behavior_list.do_suggestion_S()
         while True:
             time.sleep(1)
-            text_to_speech(f"바닥에 매트를 깔고 {user_name}이가 먼저 엎드려줘. ")
+            text_to_speech(f"바닥에 매트를 깔고 {wm.word(user_name, 0)}가 먼저 엎드려줘. ")
             break
         
         def start_1():
@@ -223,14 +224,14 @@ def Play_Wheather(user_name):
             
             if i == 1:
 
-                behavior_list.do_joy()
+                behavior_list.do_joy_A()
                 while True:
                     text_to_speech("정말 재미있다~")
                     break
 
                 behavior_list.do_suggestion_L()
                 while True:
-                    text_to_speech(f"이번에는 역할을 바꿔보자.친구가 매트에 엎드리면 {user_name}이가 등에 날씨를 표현해줘. ")
+                    text_to_speech(f"이번에는 역할을 바꿔보자.친구가 매트에 엎드리면 {wm.word(user_name, 0)}가 등에 날씨를 표현해줘. ")
                     #행동인식 - 사진, 영상 촬영
                     print("*** 2회차 ***")
                     i=i+1
@@ -276,7 +277,7 @@ def Play_Wheather(user_name):
     # 2.5 마무리 대화
     behavior_list.do_question_L()
     while True:
-        text_to_speech(f"{user_name}이는 어떤 날씨가 제일 재미있었어?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 어떤 날씨가 제일 재미있었어?")
 
         user_said = speech_to_text()
        
@@ -295,9 +296,9 @@ def Play_Wheather(user_name):
         
         break
 
-    behavior_list.do_joy()
+    behavior_list.do_joy_A()
     while True:
-        text_to_speech(f"파이보도 {user_name}이가 재미있어보여서 신났어!")
+        text_to_speech(f"파이보도 {wm.word(user_name, 0)}가 재미있어보여서 신났어!")
         
         break
 
@@ -309,7 +310,7 @@ def Play_Wheather(user_name):
         user_said = speech_to_text()
         break
 
-    behavior_list.do_joy()
+    behavior_list.do_joy_A()
     while True:
         text_to_speech("맞아. 파이보도 정말 좋아해~")
         break
@@ -317,8 +318,8 @@ def Play_Wheather(user_name):
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 술술 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 술술 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_L()
@@ -328,7 +329,7 @@ def Play_Wheather(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -340,7 +341,7 @@ def Play_Wheather(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

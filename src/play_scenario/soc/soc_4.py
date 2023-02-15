@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -53,7 +54,7 @@ def Play_Wool(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -82,7 +83,7 @@ def Play_Wool(user_name):
             behavior_list.do_explain_B()
             while True:
                 time.sleep(2)
-                text_to_speech(f"{user_name}이가 털실을 감는 동안 파이보가 시간을 재서 얼마나 걸렸는지 알려줄게. ")
+                text_to_speech(f"{wm.word(user_name, 0)}가 털실을 감는 동안 파이보가 시간을 재서 얼마나 걸렸는지 알려줄게. ")
                 break
         else:
             behavior_list.do_waiting_B()
@@ -97,7 +98,7 @@ def Play_Wool(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("그래 시작하자!")
@@ -156,7 +157,7 @@ def Play_Wool(user_name):
                 behavior_list.do_praise_L()
                 while True:
                     time.sleep(1)
-                    text_to_speech(f"{user_name}이는 뒤로 걷기도 잘하는 구나!좋아. 다시 털실을 감아보자.")
+                    text_to_speech(f"{wm.word(user_name, 0)}는 뒤로 걷기도 잘하는 구나!좋아. 다시 털실을 감아보자.")
                     break
             else:
                 behavior_list.do_waiting_A()
@@ -236,12 +237,12 @@ def Play_Wool(user_name):
         if answer == 'DONE':
             behavior_list.do_agree()
             while True:
-                text_to_speech(f"그랬구나. 원래 뒤로 걷는건 쉽지 않아. 하지만 오늘 {user_name}이는 조심조심 잘 걷던걸?")
+                text_to_speech(f"그랬구나. 원래 뒤로 걷는건 쉽지 않아. 하지만 오늘 {wm.word(user_name, 0)}는 조심조심 잘 걷던걸?")
                 
         else:
             behavior_list.do_praise_L()
             while True:
-                text_to_speech(f"그랬구나. {user_name}이는 새로운 것도 금방 습득하는 것 같아!")
+                text_to_speech(f"그랬구나. {wm.word(user_name, 0)}는 새로운 것도 금방 습득하는 것 같아!")
                 break
         break
 
@@ -254,14 +255,14 @@ def Play_Wool(user_name):
 
     behavior_list.do_agree()
     while True:
-        text_to_speech(f"그럴 수 있겠구나. 파이보는 빨리 움직일 수 있는 {user_name}이가 너무 부러워~")
+        text_to_speech(f"그럴 수 있겠구나. 파이보는 빨리 움직일 수 있는 {wm.word(user_name, 0)}가 너무 부러워~")
         break
 
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 바른 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_S()
@@ -271,7 +272,7 @@ def Play_Wool(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -283,7 +284,7 @@ def Play_Wool(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)

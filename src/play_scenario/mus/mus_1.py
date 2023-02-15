@@ -12,13 +12,14 @@ import openpibo
 # my module
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append('/home/pi/AI_pibo2/')
-from src.NLP import NLP, Dictionary
+from src.NLP import NLP, Dictionary, WordManage
 from src.data import behavior_list
 from speech_to_text import speech_to_text
 from text_to_speech import TextToSpeech
 
 NLP = NLP()
 Dic = Dictionary()
+wm = WordManage()
 tts = TextToSpeech()
 
 
@@ -55,7 +56,7 @@ def Play_Balloon(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
@@ -85,7 +86,7 @@ def Play_Balloon(user_name):
         if answer == 'YES':
             behavior_list.do_explain_A()
             while True:
-                text_to_speech(f"좋아. {user_name}이가 좋아하는 색깔의 풍선을 골라봐.")
+                text_to_speech(f"좋아. {wm.word(user_name, 0)}가 좋아하는 색깔의 풍선을 골라봐.")
                 break
         else:
             behavior_list.do_waiting_B()
@@ -101,7 +102,7 @@ def Play_Balloon(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'DONE':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
                 text_to_speech("그래, 시작하자!")
@@ -127,7 +128,7 @@ def Play_Balloon(user_name):
             text_to_speech("이제 풍선을 쫓아가서 잡아 오자.")
             break
 
-        behavior_list.do_joy()
+        behavior_list.do_joy_A()
         while True:
             text_to_speech("정말 재밌어 보여!")
             time.sleep(1)
@@ -166,7 +167,7 @@ def Play_Balloon(user_name):
                 continue
             break
 
-        behavior_list.do_joy()
+        behavior_list.do_joy_A()
         while True:
             text_to_speech("정말 재미있어 보여!")
             break
@@ -221,7 +222,7 @@ def Play_Balloon(user_name):
         else:
             behavior_list.do_praise_S()
             while True:
-                text_to_speech(f"열심히 놀이한 {user_name}이가 최고야~ 정말 신났어!")
+                text_to_speech(f"열심히 놀이한 {wm.word(user_name, 0)}가 최고야~ 정말 신났어!")
                 break
         break
 
@@ -248,12 +249,12 @@ def Play_Balloon(user_name):
 
     behavior_list.do_question_L()
     while True:
-        text_to_speech(f"{user_name}이는 놀이하면서 어려운 거 있었어?")
+        text_to_speech(f"{wm.word(user_name, 0)}는 놀이하면서 어려운 거 있었어?")
 
         user_said = speech_to_text()
         break
 
-    behavior_list.do_joy()
+    behavior_list.do_joy_A()
     while True:
         text_to_speech("그랬구나. 이야기 들려줘서 고마워.")
         time.sleep(1)
@@ -262,8 +263,8 @@ def Play_Balloon(user_name):
     # 2.6 놀이 기록
     behavior_list.do_stamp()
     while True:
-        text_to_speech(f"{user_name}이가 열심히 놀이를 했으니, 오늘은 튼튼 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1000, background=False)
+        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 튼튼 스탬프를 찍어줄게.")
+        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
         break
 
     behavior_list.do_suggestion_S()
@@ -273,7 +274,7 @@ def Play_Balloon(user_name):
 
     behavior_list.do_photo()
     time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1000, background=False)
+    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
@@ -285,7 +286,7 @@ def Play_Balloon(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':
-            behavior_list.do_joy()
+            behavior_list.do_joy_A()
             while True:
                 text_to_speech("그래 좋아!")
                 time.sleep(1)
