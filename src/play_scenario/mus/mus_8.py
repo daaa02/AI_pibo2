@@ -23,13 +23,11 @@ wm = WordManage()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)
+    tts.play(filename, 'local', '-1800', False)
     
 def wait_for(item):
     while True:
@@ -157,7 +155,7 @@ def Play_Chef(user_name):
                 while True:
                     text_to_speech("우와 정말 빠른걸? 이제 체력 연습을 해보자.")
                     time.sleep(1)
-                    text_to_speech("주걱 위에 공을 올리고 앉았다 일어나는 거야!)
+                    text_to_speech("주걱 위에 공을 올리고 앉았다 일어나는 거야!")
                     break
             else:
                 behavior_list.do_waiting_B()
@@ -178,7 +176,7 @@ def Play_Chef(user_name):
                     text_to_speech("좋았어! 내가 천천히 열까지 셀 동안 해보는 거야.")
                     time.sleep(1)
                     text_to_speech("중간에 공을 떨어뜨리면 다시 시작해도 돼.")
-                    tiem.sleep(1)
+                    time.sleep(1)
                     text_to_speech("몇 번 성공했는지 세었다가 알려줘. 그럼 준비~ 시작!")
                     break
             else:
@@ -326,4 +324,6 @@ def Play_Chef(user_name):
                 break
         break
 
-Play_Chef("슬기")
+
+if __name__ == "__main__":
+    Play_Chef("윤지")

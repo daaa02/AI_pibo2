@@ -23,13 +23,11 @@ wm = WordManage()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)
+    tts.play(filename, 'local', '-1800', False)
     
 def wait_for(item):
     while True:
@@ -269,7 +267,7 @@ def Play_Pocket(user_name):
     behavior_list.do_praise_L()
     while True:
         text_to_speech("그래도 멋지게 해냈어.")
-        tiem.sleep(1)
+        time.sleep(1)
         text_to_speech(f"{wm.word(user_name, 0)}가 즐겁게 참여하는 모습이 보기 좋았어~")
         break
 
@@ -312,4 +310,6 @@ def Play_Pocket(user_name):
                 break
         break
 
-Play_Pocket("슬기")
+
+if __name__ == "__main__":
+    Play_Pocket("윤지")

@@ -27,14 +27,14 @@ def text_to_speech(text):
     filename = "tts.wav"
     print("\n" + text + "\n")
     tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
-    tts.play(filename, 'local', '-1500', False)
+    tts.play(filename, 'local', '-1800', False)
 
 def wait_for(item):
     while True:
         print(f"{item} 기다리는 중")
         break
 
-def Play_Pcup(user_name):
+def Play_Cup(user_name):
     
     print(f"user name: {user_name} \n")
 
@@ -313,3 +313,7 @@ def Play_Pcup(user_name):
                 text_to_speech("다음에 또 놀자!")
                 break
         break
+
+
+if __name__ == "__main__":
+    Play_Cup("윤지")

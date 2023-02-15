@@ -26,14 +26,14 @@ tts = TextToSpeech()
 
 import random
 
-wheathers=['비가 내리겠습니다.', '해가 비치겠습니다.', '소나기가 내리겠습니다.', '바람이 많이 불겠습니다.', '천둥 번개가 치겠습니다.', '눈이 내리겠습니다.']
+weathers=['비가 내리겠습니다.', '해가 비치겠습니다.', '소나기가 내리겠습니다.', '바람이 많이 불겠습니다.', '천둥 번개가 치겠습니다.', '눈이 내리겠습니다.']
 
 
 def text_to_speech(text):
     filename = "tts.wav"
     print("\n" + text + "\n")
     tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
-    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
+    tts.play(filename, 'local', '-1800', False)     # tts 파일 재생
 
 def wait_for(item):
     while True:
@@ -41,7 +41,7 @@ def wait_for(item):
         break
 
 
-def Play_Wheather(user_name):
+def Play_Weather(user_name):
 
     print(f"user name: {user_name} \n")
 
@@ -151,9 +151,9 @@ def Play_Wheather(user_name):
             
             
             for j in range(0,5):
-                wheather=random.randint(0,5)
-                wheathers.append(wheather)
-            print(wheathers[0])
+                weather=random.randint(0,5)
+                weathers.append(weather)
+            print(weathers[0])
 
 
             behavior_list.do_explain_A()
@@ -161,19 +161,19 @@ def Play_Wheather(user_name):
                 #행동인식-사진, 영상 촬영
                 text_to_speech("오늘의 일기 예보입니다. ")
                 time.sleep(1)
-                text_to_speech(f"오늘은 {(wheathers[0])}")
+                text_to_speech(f"오늘은 {(weathers[0])}")
 
-                if (wheathers[0])== '비가 내리겠습니다.':
+                if (weathers[0])== '비가 내리겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/약한빗소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[0])== '해가 비치겠습니다.':
+                elif (weathers[0])== '해가 비치겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/새소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[0])== '바람이 많이 불겠습니다.':
+                elif (weathers[0])== '바람이 많이 불겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/바람소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[0])== '소나기가 내리겠습니다.':
+                elif (weathers[0])== '소나기가 내리겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/센빗소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[0])== '천둥 번개가 치겠습니다.':
+                elif (weathers[0])== '천둥 번개가 치겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/천둥소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[0])== '눈이 내리겠습니다.':
+                elif (weathers[0])== '눈이 내리겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/눈밟는소리.wav", out='local', volume=-1000, background=False)
 
 
@@ -184,19 +184,19 @@ def Play_Wheather(user_name):
             while True:
                 #행동인식-사진, 영상 촬영
                 time.sleep(10)#날씨 효과음
-                text_to_speech(f"그리고 {(wheathers[1])}")
+                text_to_speech(f"그리고 {(weathers[1])}")
 
-                if (wheathers[1])== '비가 내리겠습니다.':
+                if (weathers[1])== '비가 내리겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/약한빗소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[1])== '해가 비치겠습니다.':
+                elif (weathers[1])== '해가 비치겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/새소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[1])== '바람이 많이 불겠습니다.':
+                elif (weathers[1])== '바람이 많이 불겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/바람소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[1])== '소나기가 내리겠습니다.':
+                elif (weathers[1])== '소나기가 내리겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/센빗소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[1])== '천둥 번개가 치겠습니다.':
+                elif (weathers[1])== '천둥 번개가 치겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/천둥소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[1])== '눈이 내리겠습니다.':
+                elif (weathers[1])== '눈이 내리겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/눈밟는소리.wav", out='local', volume=-1000, background=False)
                 break
 
@@ -204,19 +204,19 @@ def Play_Wheather(user_name):
             while True:
                 #행동인식-사진, 영상 촬영
                 time.sleep(10)#날씨 효과음
-                text_to_speech(f"갑자기 {(wheathers[2])}")
+                text_to_speech(f"갑자기 {(weathers[2])}")
 
-                if (wheathers[2])== '비가 내리겠습니다.':
+                if (weathers[2])== '비가 내리겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/약한빗소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[2])== '해가 비치겠습니다.':
+                elif (weathers[2])== '해가 비치겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/새소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[2])== '바람이 많이 불겠습니다.':
+                elif (weathers[2])== '바람이 많이 불겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/바람소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[2])== '소나기가 내리겠습니다.':
+                elif (weathers[2])== '소나기가 내리겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/센빗소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[2])== '천둥 번개가 치겠습니다.':
+                elif (weathers[2])== '천둥 번개가 치겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/천둥소리.wav", out='local', volume=-1000, background=False)
-                elif (wheathers[2])== '눈이 내리겠습니다.':
+                elif (weathers[2])== '눈이 내리겠습니다.':
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/눈밟는소리.wav", out='local', volume=-1000, background=False)
                 break
 
@@ -353,3 +353,7 @@ def Play_Wheather(user_name):
                 text_to_speech("다음에 또 놀자!")
                 break
         break
+
+
+if __name__ == "__main__":
+    Play_Weather("윤지")

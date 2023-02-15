@@ -23,13 +23,11 @@ wm = WordManage()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)
+    tts.play(filename, 'local', '-1800', False)
     
 def wait_for(item):
     while True:
@@ -90,7 +88,7 @@ def Play_Awake(user_name):
                 text_to_speech("드라큘라를 깨우지 않고 만지게 되면 드라큘라는 힘이 없어지고 놀이가 끝나.")
                 time.sleep(1)
                 text_to_speech("그런데 가까이 오기 전에 드라큘라가 잠에서 깨서 친구를 잡으면 수 있어.")
-                tiem.sleep(1)
+                time.sleep(1)
                 text_to_speech(f"{wm.word(user_name, 0)}가 먼저 드라큘라 역할을 해보자!")
                 break
         else:
@@ -332,4 +330,6 @@ def Play_Awake(user_name):
                 break
         break
 
-Play_Awake("슬기")
+
+if __name__ == "__main__":
+    Play_Awake("윤지")

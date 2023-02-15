@@ -29,7 +29,7 @@ def text_to_speech(text):
     filename = "tts.wav"
     print("\n" + text + "\n")
     tts.tts_connection(text, filename)        # tts 파일 생성 (*break time: 문장 간 쉬는 시간)
-    tts.play(filename, 'local', '-1500', False)     # tts 파일 재생
+    tts.play(filename, 'local', '-1800', False)     # tts 파일 재생
 
 def wait_for(item):
     while True:
@@ -279,3 +279,7 @@ def Play_Magic(user_name):
             break
         
     start()
+    
+
+if __name__ == "__main__":
+    Play_Magic("윤지")

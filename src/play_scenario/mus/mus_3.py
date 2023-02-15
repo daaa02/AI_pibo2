@@ -23,13 +23,11 @@ wm = WordManage()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)
+    tts.play(filename, 'local', '-1800', False)
     
 def wait_for(item):
     while True:
@@ -331,4 +329,6 @@ def Play_Clothespin(user_name):
                 break
         break
 
-Play_Clothespin("슬기")
+
+if __name__ == "__main__":
+    Play_Clothespin("윤지")

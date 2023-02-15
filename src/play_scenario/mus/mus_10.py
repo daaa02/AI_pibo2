@@ -24,13 +24,11 @@ wm = WordManage()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)
+    tts.play(filename, 'local', '-1800', False)
     
 def wait_for(item):
     while True:
@@ -158,8 +156,8 @@ def Play_Tennis(user_name):
                     text_to_speech("우와 정말 잘 하는걸? 이제 테니스채를 한번 바꿔보자.")
                     time.sleep(1)
                     text_to_speech("손에 움켜쥘 수 있는 도구를 가져와.")  
-                    tiem.sleep(1)
-                    text_to_speedh("신문지를 돌돌 말아 새로 만들어도 좋아.")
+                    time.sleep(1)
+                    text_to_speech("신문지를 돌돌 말아 새로 만들어도 좋아.")
                     break
             else:
                 behavior_list.do_waiting_B()
@@ -343,4 +341,6 @@ def Play_Tennis(user_name):
                 break
         break
 
-Play_Balloon("슬기")
+
+if __name__ == "__main__":
+    Play_Tennis("윤지")

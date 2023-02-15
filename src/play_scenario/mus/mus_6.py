@@ -23,13 +23,11 @@ wm = WordManage()
 tts = TextToSpeech()
 
 
-def text_to_speech(string):
+def text_to_speech(text):
     filename = "tts.wav"
-    print("\n" + string + "\n")
-    tts.tts_connection(f"<speak>\
-                <voice name='WOMAN_READ_CALM'><prosody rate='slow'>{string}<break time='500ms'/></prosody></voice>\
-                </speak>", filename)
-    tts.play(filename, 'local', '0', False)
+    print("\n" + text + "\n")
+    tts.tts_connection(text, filename)
+    tts.play(filename, 'local', '-1800', False)
     
 def wait_for(item):
     while True:
@@ -166,7 +164,7 @@ def Play_Flower(user_name):
                     text_to_speech("술래는 다시 구호를 외쳐줘.")
                     start()
                     break
-            elif answer = 'DONE':
+            elif answer == 'DONE':
                 behavior_list.do_suggesion_L()
                 while True:
                     text_to_speech("와, 정말 잘한다. 파이보도 그렇게 빨리 움직일 수 있으면 좋겠어.")
@@ -284,4 +282,6 @@ def Play_Flower(user_name):
                 break
         break
 
-Play_Flower("슬기")
+
+if __name__ == "__main__":
+    Play_Flower("윤지")

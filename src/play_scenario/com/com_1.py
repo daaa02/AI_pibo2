@@ -27,7 +27,7 @@ def text_to_speech(text):
     filename = "tts.wav"
     print("\n" + text + "\n")
     tts.tts_connection(text, filename)
-    tts.play(filename, 'local', '-1500', False)
+    tts.play(filename, 'local', '-1800', False)
 
 def wait_for(item):
     while True:
@@ -311,3 +311,7 @@ def Play_Hoop(user_name):
                 text_to_speech("다음에 또 놀자!")
                 break
         break
+
+
+if __name__ == "__main__":
+    Play_Hoop("윤지")
