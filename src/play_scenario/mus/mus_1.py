@@ -199,7 +199,7 @@ def Play_Balloon(user_name):
                 continue
             break
 
-        behavior_list.do_praise_S()
+        behavior_list.do_compliment_S()
         while True:
             text_to_speech("정말 축구 선수 같은 걸? 멋지다!")
             break
@@ -220,7 +220,7 @@ def Play_Balloon(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech(f"열심히 놀이한 {wm.word(user_name, 0)}가 최고야~ 정말 신났어!")
                 break
@@ -237,7 +237,7 @@ def Play_Balloon(user_name):
 
         break
 
-    behavior_list.do_praise_S()
+    behavior_list.do_compliment_S()
     while True:
         text_to_speech("그랬구나. 열심히 하는 모습이 보기 좋았어!")
         break
@@ -273,8 +273,6 @@ def Play_Balloon(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

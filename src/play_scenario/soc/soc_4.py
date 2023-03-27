@@ -59,10 +59,10 @@ def Play_Wool(user_name):
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.2 놀이 설명
@@ -82,7 +82,7 @@ def Play_Wool(user_name):
         if answer == 'YES':
             behavior_list.do_explain_B()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech(f"{wm.word(user_name, 0)}가 털실을 감는 동안 파이보가 시간을 재서 얼마나 걸렸는지 알려줄게. ")
                 break
         else:
@@ -103,10 +103,10 @@ def Play_Wool(user_name):
                 time.sleep(1)
                 text_to_speech("그래 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -130,14 +130,14 @@ def Play_Wool(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_L()
+                behavior_list.do_compliment_L()
                 while True:
                     time.sleep(1)
                     text_to_speech(f"{time.time() - start: .3f}초가 걸렸어! 정말 열심히 감았는 걸?")
                     break
             else:
-                behavior_list.do_waiting_A()
-                wait_for('DONE')
+                # behavior_list.do_waiting_A()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -154,14 +154,14 @@ def Play_Wool(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'YES':
-                behavior_list.do_praise_L()
+                behavior_list.do_compliment_L()
                 while True:
                     time.sleep(1)
                     text_to_speech(f"{wm.word(user_name, 0)}는 뒤로 걷기도 잘하는 구나!좋아. 다시 털실을 감아보자.")
                     break
             else:
-                behavior_list.do_waiting_A()
-                wait_for('YES')
+                # behavior_list.do_waiting_A()
+#                 wait_for('YES')
                 continue
             break 
 
@@ -180,8 +180,8 @@ def Play_Wool(user_name):
                     start=time.time()
                     break
             else:
-                behavior_list.do_waiting_A()
-                wait_for('DONE')
+                # behavior_list.do_waiting_A()
+#                 wait_for('DONE')
                 continue
             break 
 
@@ -193,14 +193,14 @@ def Play_Wool(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     time.sleep(1)
                     text_to_speech(f"{time.time() - start: .3f}초가 걸렸어! 정말 빠른 속도야. 대단해~")
                     break
             else:
-                behavior_list.do_waiting_A()
-                wait_for('DONE')
+                # behavior_list.do_waiting_A()
+#                 wait_for('DONE')
                 continue
             break    
 
@@ -220,7 +220,7 @@ def Play_Wool(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_L()
+            behavior_list.do_compliment_L()
             while True:
                 text_to_speech("정말 열심히 털실 감기를 했어! 처음보다 훨씬 잘하는 걸?")
                 break
@@ -240,7 +240,7 @@ def Play_Wool(user_name):
                 text_to_speech(f"그랬구나. 원래 뒤로 걷는건 쉽지 않아. 하지만 오늘 {wm.word(user_name, 0)}는 조심조심 잘 걷던걸?")
                 
         else:
-            behavior_list.do_praise_L()
+            behavior_list.do_compliment_L()
             while True:
                 text_to_speech(f"그랬구나. {wm.word(user_name, 0)}는 새로운 것도 금방 습득하는 것 같아!")
                 break
@@ -271,8 +271,6 @@ def Play_Wool(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

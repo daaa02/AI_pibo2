@@ -44,7 +44,6 @@ def Play_Flower(user_name):
     while True:
         time.sleep(1)
         text_to_speech("이번 놀이는 준비물이 필요 없고 벽 앞에 술래가 서야 돼!")
-        time.sleep(1)
         text_to_speech("벽을 정하고 준비가 되면 준비 됐다고 말해줘~")
         break
 
@@ -69,7 +68,6 @@ def Play_Flower(user_name):
     behavior_list.do_explain_B()
     while True:
         text_to_speech("술래는 벽을 보고 서있을거야.")
-        time.sleep(1)
         text_to_speech("술래가 '무궁화 꽃이 피었습니다'를 말하는 동안 친구들은 술래를 향해 조금씩 다가면 돼.")
         time.sleep(1)
         text_to_speech("술래가 뒤돌아 보면 다른 친구들은 제자리에서 멈춰야해.")
@@ -182,19 +180,13 @@ def Play_Flower(user_name):
     behavior_list.do_suggestion_L()
     while True:
         text_to_speech("잠시 자리에 앉아보자.")   
-        time.sleep(1)
         text_to_speech("열심히 놀이했으니 잠시 누워서 휴식 하자! 1분 동안 휴식 시작!")
-        #time.sleep(60) 
-        break
-    
-    behavior_list.do_question_S()
-    while True:
-        text_to_speech("정말 편하지?")
-        break
+        time.sleep(5) 
+        break    
 
     behavior_list.do_question_S()
     while True:
-        text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
+        text_to_speech("정말 편하지? 한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
@@ -205,7 +197,7 @@ def Play_Flower(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech("정말 재미있는 놀이 시간이었어.")
                 break
@@ -217,22 +209,15 @@ def Play_Flower(user_name):
     while True:
         time.sleep(1)
         text_to_speech("몸을 일으켜 앉아보자.")
-        time.sleep(1)
         text_to_speech(f"{wm.word(user_name, 0)}는 무궁화 꽃이 피었습니다 놀이 전에도 해 본 적 있어? 파이보랑 같이 한 거랑 달랐어?")
 
         user_said = speech_to_text()
 
         break
 
-    behavior_list.do_question_S()
-    while True:
-        text_to_speech("그랬구나. 파이보가 기억해 둘게. ")
-        break
-
-
     behavior_list.do_question_L()
     while True:
-        text_to_speech("술래를 했을 때는 기분이 어땠어?")
+        text_to_speech("그랬구나. 파이보가 기억해 둘게. 술래를 했을 때는 기분이 어땠어?")
 
         user_said = speech_to_text()
         break
@@ -256,8 +241,6 @@ def Play_Flower(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

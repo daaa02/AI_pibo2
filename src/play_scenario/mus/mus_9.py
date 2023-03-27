@@ -44,9 +44,7 @@ def Play_Star(user_name):
     while True:
         time.sleep(1)
         text_to_speech("이번 놀이는 풍선과 가벼운 천이 필요해~")
-        time.sleep(1)
         text_to_speech("스카프나 보자기를 준비하면 좋아.")
-        time.sleep(1)
         text_to_speech("준비가 되면 준비 됐다고 말해줘~")
         break
 
@@ -135,7 +133,7 @@ def Play_Star(user_name):
                 while True:
                     text_to_speech("우와 정말 빠른걸? 이번엔 친구랑 같이 별똥별을 주고 받아보자.")
                     time.sleep(1)
-                    text_to_speech("혼자 던질 때랑 별똥별 모양이 어떻게 다른지 관찰해봐.")    # 둘, 셋 하면 너무 빠르게 느껴짐
+                    text_to_speech("혼자 던질 때랑 별똥별 모양이 어떻게 다른지 관찰해봐.") 
                     break
             else:
                 behavior_list.do_waiting_B()
@@ -157,6 +155,7 @@ def Play_Star(user_name):
                     text_to_speech("좋았어! 내가 노래 한 곡을 틀어줄게.")
                     time.sleep(1)
                     text_to_speech("노래가 끝날 때까지 풍선을 주고 받는 거야. 준비~ 시작!")
+                    tts.play(filename='/home/pi/AI_pibo2/src/data/audio/거울놀이.mp3', out='local', volume=-1500, background=False)
                     break
             else:
                 behavior_list.do_waiting_C()
@@ -166,7 +165,7 @@ def Play_Star(user_name):
 
         #1분간 노래 재생
 
-        behavior_list.do_praise_S()
+        behavior_list.do_compliment_S()
         while True:
             text_to_speech("우와, 정말 하늘에서 별이 막 떨어지는 것 같았어!")
             break
@@ -177,19 +176,13 @@ def Play_Star(user_name):
     behavior_list.do_suggestion_L()
     while True:
         text_to_speech("이제 자리에 앉아보자.")   
-        time.sleep(1)
         text_to_speech("풍선을 따라 열심히 움직인 다리와 눈을 쉬게 하자!")
-        time.sleep(1)
         text_to_speech("손끝으로 다리와 눈 주위를 꾹꾹 눌러줘.")
-        time.sleep(1)
         text_to_speech("10초 동안 마사지 시작!")
-        #time.sleep(10) 
-        break
-
-    behavior_list.do_question_S()
-    while True:
+        time.sleep(5) 
         text_to_speech("다리와 눈이 편해졌지?")
-        break 
+        break
+ 
 
     behavior_list.do_question_S()
     while True:
@@ -204,7 +197,7 @@ def Play_Star(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech("정말 멋진 별똥별 놀이였어.")
                 break
@@ -252,8 +245,6 @@ def Play_Star(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

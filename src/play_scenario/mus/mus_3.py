@@ -44,9 +44,7 @@ def Play_Clothespin(user_name):
     while True:
         time.sleep(1)
         text_to_speech("이번 놀이는 빨래집게와 단단한 종이, 종이를 자를 가위가 필요해~")
-        time.sleep(1)
         text_to_speech("빨래집게는 많으면 많을수록 좋아.")
-        time.sleep(1)
         text_to_speech("준비가 되면 준비 됐다고 말해줘~")
         break
 
@@ -130,7 +128,7 @@ def Play_Clothespin(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("정말 멋진 탑이 완성 되었는걸?")
                     time.sleep(1)
@@ -154,7 +152,7 @@ def Play_Clothespin(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("우와 정말 빠른걸?")
                     time.sleep(1)
@@ -181,7 +179,7 @@ def Play_Clothespin(user_name):
 
             break
 
-        behavior_list.do_praise_S()
+        behavior_list.do_compliment_S()
         while True:
             text_to_speech("그렇구나~ 정말 기대된다.")
             break            
@@ -189,14 +187,14 @@ def Play_Clothespin(user_name):
         behavior_list.do_waiting_B()
         while True:
             text_to_speech("그럼 시작해.")
-            time.sleep("1")
+            time.sleep(1)
             text_to_speech("다 했으면 다 했다고 말해줘.")
 
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("우와 정말 잘했다.")
                     time.sleep(1)
@@ -250,7 +248,7 @@ def Play_Clothespin(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech("정말 멋진 빨래집게 놀이였어.")
                 break
@@ -267,7 +265,7 @@ def Play_Clothespin(user_name):
 
         break
 
-    behavior_list.do_praise_S()
+    behavior_list.do_compliment_S()
     while True:
         text_to_speech("오늘 놀이하면서 뭐가 가장 재미있었어?")
         break
@@ -303,8 +301,6 @@ def Play_Clothespin(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

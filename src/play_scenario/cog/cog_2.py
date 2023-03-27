@@ -32,9 +32,8 @@ def text_to_speech(text):
     tts.play(filename, 'local', '-1800', False)     # tts 파일 재생
 
 def wait_for(item):
-    while True:
         print(f"{item} 기다리는 중")
-        break
+
 
 def Play_Mirror(user_name):
     
@@ -43,10 +42,10 @@ def Play_Mirror(user_name):
     # 2.1 준비물 설명
     behavior_list.do_explain_A()
     while True:
-        time.sleep(1)
-        text_to_speech("이번 놀이는 거울이 필요해~ 거울이 있는 곳으로 나를 옮겨줘!")
-        text_to_speech("거울이 없으면 유리창 앞도 좋아.")
-        time.sleep(1)
+        # time.sleep(1)
+        # text_to_speech("이번 놀이는 거울이 필요해~ 거울이 있는 곳으로 나를 옮겨줘!")
+        # text_to_speech("거울이 없으면 유리창 앞도 좋아.")
+        # time.sleep(1)
         text_to_speech("준비가 되면 준비 됐다고 말해줘")
         break
 
@@ -62,7 +61,7 @@ def Play_Mirror(user_name):
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
         else:
-            behavior_list.do_waiting_A()
+            # behavior_list.do_waiting_A()
             wait_for('DONE')    # DONE 답변 들어올 때까지 stt open 반복
             continue
         break
@@ -90,7 +89,7 @@ def Play_Mirror(user_name):
                 text_to_speech("이제 친구를 바라봐. 서로 마주 보고 섰니?")
                 break
         else:
-            behavior_list.do_waiting_A()
+            # behavior_list.do_waiting_A()
             wait_for('YES')
             continue
         break
@@ -105,11 +104,11 @@ def Play_Mirror(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
         else:
-            behavior_list.do_waiting_A()
+#          behavior_list.do_waiting_A()
             wait_for('DONE')
             continue
         break
@@ -119,7 +118,7 @@ def Play_Mirror(user_name):
         behavior_list.do_suggestion_L()
         while True:
             time.sleep(1)
-            text_to_speech(f"먼저 {wm.word(user_name, 0)} 사람을 해보자. 사람이 먼저 재미있는 포즈를 취해봐~")
+            text_to_speech(f"먼저 {wm.word(user_name, 0)}가 사람을 해보자. 사람이 먼저 재미있는 포즈를 취해봐~")
             break
 
         behavior_list.do_waiting_B()
@@ -132,12 +131,12 @@ def Play_Mirror(user_name):
             if answer == 'DONE':
                 behavior_list.do_suggestion_S()
                 while True:
-                    time.sleep(2)
+                    time.sleep(1)
                     text_to_speech("그래. 이번엔 거울이 따라서 포즈를 취해봐.")
                     break
             else:
-                behavior_list.do_waiting_B()
-                wait_for('DONE')
+                # behavior_list.do_waiting_B()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -151,12 +150,12 @@ def Play_Mirror(user_name):
             if answer == 'DONE':
                 behavior_list.do_agree()
                 while True:
-                    time.sleep(2)
+                    time.sleep(1)
                     text_to_speech("좋았어! 이번엔 멈추지 않고 음악에 맞춰 계속 포즈를 바꿔보자.")
                     break
             else:
-                behavior_list.do_waiting_B()
-                wait_for('DONE')
+                # behavior_list.do_waiting_B()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -167,7 +166,7 @@ def Play_Mirror(user_name):
             time.sleep(120)
             break
 
-        behavior_list.do_praise_S()
+        behavior_list.do_compliment_S()
         while True:
             text_to_speech("와~ 정말 잘하는 걸? ")
         
@@ -188,15 +187,15 @@ def Play_Mirror(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("역할을 바꿔도 정말 잘 하는걸?")
                     
                     time.sleep(5)
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('DONE')
+                # behavior_list.do_waiting_C()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -250,7 +249,7 @@ def Play_Mirror(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech("정말 훌륭한 거울이었어. 서로를 관찰하는 모습이 보기 좋았어.")
                 break
@@ -281,11 +280,8 @@ def Play_Mirror(user_name):
         break
 
     # 2.6 놀이 기록
+    text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
     behavior_list.do_stamp()
-    while True:
-        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
-        break
 
     behavior_list.do_suggestion_S()
     while True:
@@ -293,8 +289,6 @@ def Play_Mirror(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

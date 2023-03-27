@@ -59,10 +59,10 @@ def Play_Hoop(user_name):
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.2 놀이 설명
@@ -100,13 +100,13 @@ def Play_Hoop(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -138,14 +138,14 @@ def Play_Hoop(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_L()
+                behavior_list.do_compliment_L()
                 while True:
-                    time.sleep(2)
+                    time.sleep(1)
                     text_to_speech(f"우와 정말 귀여운 {wm.word(animal, 3)}다. 다른 동물들도 더 그려보자.")
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('DONE')
+                # behavior_list.do_waiting_C()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -165,8 +165,8 @@ def Play_Hoop(user_name):
                     time.sleep(5)
                     break
             else:
-                behavior_list.do_waiting_A()
-                wait_for('DONE')
+                # behavior_list.do_waiting_A()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -185,8 +185,8 @@ def Play_Hoop(user_name):
                     text_to_speech("내가 시~작! 하면 입으로 바람을 불어서 동물들을 훌라후프 안에 날려 넣는거야.")
                     break
             else:
-                behavior_list.do_waiting_B()
-                wait_for('DONE')
+                # behavior_list.do_waiting_B()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -210,14 +210,14 @@ def Play_Hoop(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_L()
+                behavior_list.do_compliment_L()
                 while True:
                     text_to_speech("우와~ 우리만의 동물원이 완성된 것 같아. 멋지다~!")
                     time.sleep(1)
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('DONE')
+                # behavior_list.do_waiting_C()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -233,7 +233,7 @@ def Play_Hoop(user_name):
                 behavior_list.do_agree()
                 start()
             else:
-                behavior_list.do_praise_L()
+                behavior_list.do_compliment_L()
                 while True:
                     text_to_speech("오늘 다양한 동물그림을 정말 열심히 만들었어! 자랑스러워")
                     break
@@ -286,8 +286,6 @@ def Play_Hoop(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

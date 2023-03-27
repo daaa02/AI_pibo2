@@ -100,13 +100,13 @@ def Play_Tissue(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
         else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+           continue
         break
 
     # 2.3 놀이 시작
@@ -131,14 +131,14 @@ def Play_Tissue(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_L()
+                behavior_list.do_compliment_L()
                 while True:
-                    time.sleep(2)
+                    time.sleep(1)
                     text_to_speech("정말 멋진 섬이 완성 되었는걸? 휴지로 만들어서 포근해 보여.")
                     break
             else:
-                behavior_list.do_waiting_B()
-                wait_for('DONE')
+                # behavior_list.do_waiting_B()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -157,38 +157,44 @@ def Play_Tissue(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_L()
+                behavior_list.do_compliment_L()
                 while True:
                     text_to_speech("정말 열심히 만들었는걸?")
                     text_to_speech("정말 휴지길로 걸어서 섬에 가 보고 싶어.")
                     time.sleep(5)
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('DONE')
+                # behavior_list.do_waiting_C()
+#                 wait_for('DONE')
                 continue
             break
 
     start()
 
+    # # 2.4 놀이 완료
+    # behavior_list.do_question_S()
+    # while True:
+    #     text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
+
+    #     user_said = speech_to_text()
+    #     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+    #     if answer == 'AGAIN':
+    #         behavior_list.do_agree()
+    #         while True:
+    #             text_to_speech("그래 또 하자!")
+    #             start()
+    #     else:
+    #         behavior_list.do_compliment_S()
+    #         while True:
+    #             text_to_speech(f"열심히 따라해준 {wm.word(user_name, 0)}가 최고야~ 정말 신났어!")
+    #             break
+    #     break
+    
     # 2.4 놀이 완료
-    behavior_list.do_question_S()
+    behavior_list.do_compliment_S()
     while True:
-        text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
-
-        user_said = speech_to_text()
-        answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-        if answer == 'AGAIN':
-            behavior_list.do_agree()
-            while True:
-                text_to_speech("그래 또 하자!")
-                start()
-        else:
-            behavior_list.do_praise_S()
-            while True:
-                text_to_speech(f"열심히 따라해준 {wm.word(user_name, 0)}가 최고야~ 정말 신났어!")
-                break
+        text_to_speech(f"열심히 따라해준 {wm.word(user_name, 0)}가 최고야~ 정말 신났어!")
         break
 
     # 2.5 마무리 대화
@@ -197,7 +203,7 @@ def Play_Tissue(user_name):
         text_to_speech("이제 입으로 바람을 만들어서 휴지를 날려보자.")
         time.sleep(5)
 
-        text_to_speech("길 이었던 휴지를 찢어서 휴지 섬에 눈을 내려보자.")
+        text_to_speech("길이었던 휴지를 찢어서 휴지 섬에 눈을 내려보자.")
         text_to_speech("끝났으면 끝났다고 말해줘~")
 
         user_said = speech_to_text()
@@ -209,10 +215,10 @@ def Play_Tissue(user_name):
                 text_to_speech("휴지 눈이 내리니까 정말 포근하다~")
                 time.sleep(1)
                 break
-        else:
-            behavior_list.do_waiting_C()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_C()
+#          wait_for('DONE')
+#            continue
         break
 
     behavior_list.do_question_L()
@@ -229,15 +235,13 @@ def Play_Tissue(user_name):
 
     behavior_list.do_joy_A()
     while True:
-        text_to_speech(f"생각만 해도 기분이 좋아. ")
+        text_to_speech(f"그렇구나~ 생각만 해도 기분이 좋아. ")
         break
 
     # 2.6 놀이 기록
+    text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
     behavior_list.do_stamp()
-    while True:
-        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
-        break
+        
 
     behavior_list.do_suggestion_S()
     while True:
@@ -245,9 +249,7 @@ def Play_Tissue(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
-
+    
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()
     while True:

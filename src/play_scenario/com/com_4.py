@@ -84,13 +84,13 @@ def Play_Ghost(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -150,7 +150,7 @@ def Play_Ghost(user_name):
                         behavior_list.do_agree()
                         start()
                     else:
-                        behavior_list.do_praise_L()
+                        behavior_list.do_compliment_L()
                         while True:
                             text_to_speech(f"열심히 춤춘 {wm.word(user_name, 0)}가 최고야~ 정말 신났어!")
                             break
@@ -172,7 +172,7 @@ def Play_Ghost(user_name):
 
         break
 
-    behavior_list.do_praise_S()
+    behavior_list.do_compliment_S()
     while True:
         text_to_speech(f"그랬구나. 그래도 {wm.word(user_name, 0)}가 춤을 잘 춰서 파이보는 정말 재미있었어!")
         break
@@ -195,7 +195,7 @@ def Play_Ghost(user_name):
         
         break
         
-    behavior_list.do_praise_S()
+    behavior_list.do_compliment_S()
     while True:
         text_to_speech(f"{wm.word(user_name, 0)}는 최고의 유령댄서였어~")
         
@@ -220,8 +220,6 @@ def Play_Ghost(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

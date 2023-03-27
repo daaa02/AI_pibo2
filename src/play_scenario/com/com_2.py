@@ -61,10 +61,10 @@ def Play_Magic(user_name):
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.2 놀이 설명
@@ -102,13 +102,13 @@ def Play_Magic(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -163,7 +163,7 @@ def Play_Magic(user_name):
             user_said == input("답변 : ")
             break
 
-        behavior_list.do_praise_S()
+        behavior_list.do_compliment_S()
         while True:
             text_to_speech(f"그렇구나. {wm.word(user_name, 0)}는 표현을 정말 잘하는 것 같아.")
             break
@@ -208,7 +208,7 @@ def Play_Magic(user_name):
                         behavior_list.do_agree()
                         start()
                     else:
-                        behavior_list.do_praise_L()
+                        behavior_list.do_compliment_L()
                         while True:
                             text_to_speech(f"{wm.word(user_name, 0)}가 오늘 동물 표현을 정말 실감나게 잘 했어~ 진짜 동물이 나타난 줄 알고 깜짝 놀랐어!")
                             break
@@ -253,7 +253,7 @@ def Play_Magic(user_name):
 
         behavior_list.do_photo()
         time.sleep(5)
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
+        tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_camera.mp3", out='local', volume=-1500, background=False)
 
         # 2.7 다음 놀이 제안
         behavior_list.do_question_L()

@@ -44,9 +44,7 @@ def Play_Spider(user_name):
     while True:
         time.sleep(1)
         text_to_speech("이번 놀이는 거미줄을 만들 털실이 필요해~")
-        time.sleep(1)
         text_to_speech("털실이 없으면 끈으로 해도 좋아.")
-        time.sleep(1)
         text_to_speech("준비가 되면 준비 됐다고 말해줘~")
         break
 
@@ -71,7 +69,6 @@ def Play_Spider(user_name):
     behavior_list.do_explain_B()
     while True:
         text_to_speech("털실을 길게 풀어서 거미줄을 만들거야~")
-        time.sleep(1)
         text_to_speech("식탁이나 책상 밑에 들어가서 다리 사이에 줄을 걸치는 거야.")
         break
 
@@ -193,7 +190,6 @@ def Play_Spider(user_name):
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("조심조심 집중해서 통과하는 모습이 정말 멋있었어.")
-                    time.sleep(1)
                     text_to_speech(f"{wm.word(user_name, 0)}는 뭐든 잘 할 수 있는 아이 같아!")
                     break
             else:
@@ -233,7 +229,7 @@ def Play_Spider(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech("정말 재미있는 거미줄 놀이였어.")
                 break
@@ -287,8 +283,6 @@ def Play_Spider(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

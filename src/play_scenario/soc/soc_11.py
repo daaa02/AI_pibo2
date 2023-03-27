@@ -58,10 +58,10 @@ def Play_Body(user_name):
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.2 놀이 설명
@@ -99,13 +99,13 @@ def Play_Body(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_B()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_B()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -149,7 +149,7 @@ def Play_Body(user_name):
                     if answer == 'DONE':
                         behavior_list.do_joy_A()
                         while True:
-                            time.sleep(2)
+                            time.sleep(1)
                             text_to_speech("일어서서 그림자를 보자! 사람 모습 그대로 그려졌는 걸?")
                             break
                     else:
@@ -174,7 +174,7 @@ def Play_Body(user_name):
                             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                             if answer == 'DONE':
-                                behavior_list.do_praise_L()
+                                behavior_list.do_compliment_L()
                                 while True:
                                     time.sleep(3)
                                     text_to_speech(f"정말 딱 맞게 들어갔네!이번에는 역할을 바꿔보자.{wm.word(user_name, 0)}가 친구를 그리고 다 그리면 다 그렸다고 말해줘. ")
@@ -201,7 +201,7 @@ def Play_Body(user_name):
                             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                             if answer == 'DONE':
-                                behavior_list.do_praise_L()
+                                behavior_list.do_compliment_L()
                                 while True:
                                     time.sleep(3)
                                     text_to_speech("정말 똑같은 걸? 이번에도 그림자에 딱 맞게 들어갔어.")
@@ -233,7 +233,7 @@ def Play_Body(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_L()
+            behavior_list.do_compliment_L()
             while True:
                 text_to_speech("그림자를 멋지게 그리고 그림자 모양도 정말 잘 따라했어. ")
                 break
@@ -262,7 +262,7 @@ def Play_Body(user_name):
         user_said = speech_to_text()
         break
 
-    behavior_list.do_praise_S()
+    behavior_list.do_compliment_S()
     while True:
         text_to_speech("그래? 정말 열심히 따라하던걸?")
         break
@@ -282,8 +282,6 @@ def Play_Body(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

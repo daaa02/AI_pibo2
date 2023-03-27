@@ -100,13 +100,13 @@ def Play_Cup(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -133,12 +133,12 @@ def Play_Cup(user_name):
             if answer == 'DONE':
                 behavior_list.do_suggestion_S()
                 while True:
-                    time.sleep(2)
+                    time.sleep(1)
                     text_to_speech("이제 높이 쌓은 컵받침의 개수를 세어보자!")
                     break
             else:
-                behavior_list.do_waiting_B()
-                wait_for('DONE')
+                # behavior_list.do_waiting_B()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -149,7 +149,7 @@ def Play_Cup(user_name):
             user_said = speech_to_text()
             break
 
-        behavior_list.do_praise_S()
+        behavior_list.do_compliment_S()
         while True:
             text_to_speech(f"{wm.word(user_name, 0)}는 정말 수를 잘 세는구나!")
             break
@@ -169,15 +169,15 @@ def Play_Cup(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("제법인걸?")
                    
                     time.sleep(5)
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('DONE')
+                # behavior_list.do_waiting_C()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -204,8 +204,8 @@ def Play_Cup(user_name):
                     time.sleep(5)
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('YES')
+                # behavior_list.do_waiting_C()
+#                 wait_for('YES')
                 continue
             break
 
@@ -216,7 +216,7 @@ def Play_Cup(user_name):
             user_said = speech_to_text()
             break
 
-        behavior_list.do_praise_S()
+        behavior_list.do_compliment_S()
         while True:
             text_to_speech(f"굉장하다. {wm.word(user_name, 0)}는 정말 똑똑한 것 같아. ")
             break    
@@ -247,10 +247,10 @@ def Play_Cup(user_name):
                 
                 time.sleep(5)
                 break
-        else:
-            behavior_list.do_waiting_C()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_C()
+#          wait_for('DONE')
+#            continue
         break
 
     behavior_list.do_question_S()
@@ -266,7 +266,7 @@ def Play_Cup(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech(f"열심히 따라해준 {wm.word(user_name, 0)}가 최고야~ 파이보도 똑똑해진 것 같아!")
                 break
@@ -289,10 +289,10 @@ def Play_Cup(user_name):
                 text_to_speech(f"{wm.word(user_name, 0)}는 정리도 잘 하는구나!")
                 time.sleep(1)
                 break
-        else:
-            behavior_list.do_waiting_C()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_C()
+#          wait_for('DONE')
+#            continue
         break
 
     behavior_list.do_question_L()
@@ -307,17 +307,14 @@ def Play_Cup(user_name):
         user_said = speech_to_text()
         break
 
-    behavior_list.do_praise_L()
+    behavior_list.do_compliment_L()
     while True:
         text_to_speech(f"그랬구나. 파이보는 {user_name}가 열심히 놀이 하는 모습이 멋졌어~")
         break
 
     # 2.6 놀이 기록
+    text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
     behavior_list.do_stamp()
-    while True:
-        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
-        break
 
     behavior_list.do_suggestion_S()
     while True:
@@ -325,8 +322,6 @@ def Play_Cup(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

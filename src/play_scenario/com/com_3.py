@@ -59,10 +59,10 @@ def Play_Smile(user_name):
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.2 놀이 설명
@@ -100,13 +100,13 @@ def Play_Smile(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -163,14 +163,14 @@ def Play_Smile(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_L()
+                behavior_list.do_compliment_L()
                 while True:
-                    time.sleep(2)
+                    time.sleep(1)
                     text_to_speech("멋진 표지판이 완성되었네. 이제 거리에 표지판을 붙이자~")
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('DONE')
+                # behavior_list.do_waiting_C()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -190,8 +190,8 @@ def Play_Smile(user_name):
                     time.sleep(5)
                     break
             else:
-                behavior_list.do_waiting_A()
-                wait_for('YES')
+                # behavior_list.do_waiting_A()
+#                 wait_for('YES')
                 continue
             break
 
@@ -224,7 +224,7 @@ def Play_Smile(user_name):
                 break
 
                 
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech("정말 열심히 잘 표현하는 걸?")   
                 time.sleep(1)
@@ -255,7 +255,7 @@ def Play_Smile(user_name):
                         behavior_list.do_agree()
                         start()
                     else:
-                        behavior_list.do_praise_L()
+                        behavior_list.do_compliment_L()
                         while True:
                             text_to_speech("거리 이름에 따라 정말 열심히 표현했어~우리만의 멋진 동네를 만든 것 같아!")
                             break
@@ -290,7 +290,7 @@ def Play_Smile(user_name):
         text_to_speech("그랬구나. 처음해보는 건 원래 쉽지 않아.")
         break
 
-    behavior_list.do_praise_S()
+    behavior_list.do_compliment_S()
     while True:
         text_to_speech(f"하지만 {user_name} 이의 열심히 하는 모습은 정말 멋졌어!")
         break
@@ -328,8 +328,6 @@ def Play_Smile(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

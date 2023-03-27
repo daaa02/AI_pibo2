@@ -44,9 +44,7 @@ def Play_Awake(user_name):
     while True:
         time.sleep(1)
         text_to_speech("이번 놀이는 매트가 필요해.")
-        time.sleep(1)
         text_to_speech("매트가 없다면 이불을 준비해도 좋아.")
-        time.sleep(1)
         text_to_speech("준비되면 준비 됐어 라고 말해줘.")
         break
 
@@ -70,7 +68,7 @@ def Play_Awake(user_name):
     # 2.2 놀이 설명
     behavior_list.do_explain_B()
     while True:
-        text_to_speech("한 명이 누워서 잠자는 드라큘라 역할을 하는거야, 그럼 다른 친구는 발 소리를 내지 않고 조용히 드라큘라에게 다가가서 만지는 거야!")
+        text_to_speech("한 명이 누워서 잠자는 드라큘라 역할을 하는거야. 그럼 다른 친구는 발 소리를 내지 않고 조용히 드라큘라에게 다가가서 만지는 거야!")
         time.sleep(1)
         break
 
@@ -86,7 +84,6 @@ def Play_Awake(user_name):
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("드라큘라를 깨우지 않고 만지게 되면 드라큘라는 힘이 없어지고 놀이가 끝나.")
-                time.sleep(1)
                 text_to_speech("그런데 가까이 오기 전에 드라큘라가 잠에서 깨서 친구를 잡으면 수 있어.")
                 time.sleep(1)
                 text_to_speech(f"{wm.word(user_name, 0)}가 먼저 드라큘라 역할을 해보자!")
@@ -121,10 +118,7 @@ def Play_Awake(user_name):
         behavior_list.do_explain_A()
         while True:
             text_to_speech("먼저 방 가운데 매트를 깔고 드라큘라가 잘 곳을 만들어줘.")
-            time.sleep(1)
-            text_to_speech("그 다음은 출발 위치도 정해야 해.")
-            time.sleep(1)
-            text_to_speech("현관이나 화장실도 좋아.")
+            text_to_speech("그 다음은 출발 위치도 정해야 해. 현관이나 화장실도 좋아.")
             time.sleep(1)
             break
 
@@ -178,7 +172,6 @@ def Play_Awake(user_name):
                 behavior_list.do_explain_B()
                 while True:
                     text_to_speech("우와, 정말 실감났어.  이번에는 역할을 바꿔보자.")
-                    time.sleep(1)
                     text_to_speech("친구가 드라큘라가 되어서 매트에 누워봐.")
                     break
             else:
@@ -198,7 +191,6 @@ def Play_Awake(user_name):
                 behavior_list.do_explain_B()
                 while True:
                     text_to_speech("좋았어! 내가 시작하면 드라큘라에게 다가가는 거야.")
-                    time.sleep(1)
                     text_to_speech("놀이가 끝났으면 끝났어 라고 말해줘. 준비, 시작!")
                     break
             else:
@@ -230,15 +222,10 @@ def Play_Awake(user_name):
     behavior_list.do_suggestion_L()
     while True:
         text_to_speech("잠시 자리에 앉아보자.")   
-        time.sleep(1)
         text_to_speech("열심히 놀이했으니 잠시 누워서 휴식 하자! 1분 동안 휴식 시작!")
-        #time.sleep(60) 
-        break
-
-    behavior_list.do_question_S()
-    while True:
+        time.sleep(5) 
         text_to_speech("정말 편하지?")
-        break    
+        break
 
     behavior_list.do_question_S()
     while True:
@@ -253,10 +240,9 @@ def Play_Awake(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_L()
+            behavior_list.do_compliment_L()
             while True:
                 text_to_speech("정말 드라큘라 역할을 잘 했어.")
-                time.sleep(1)
                 text_to_speech("질서 있게 놀이하는 모습이 보기 좋았어.")
                 break
         break
@@ -304,8 +290,6 @@ def Play_Awake(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

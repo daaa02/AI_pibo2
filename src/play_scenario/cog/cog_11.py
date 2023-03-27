@@ -83,13 +83,13 @@ def Play_Fisherman(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -112,12 +112,12 @@ def Play_Fisherman(user_name):
             if answer == 'DONE':
                 behavior_list.do_suggestion_L()
                 while True:
-                    time.sleep(2)
+                    time.sleep(1)
                     text_to_speech(f"{wm.word(user_name, 0)}가 먼저 강을 건너는 나그네 역할을 해보자. 어부역할 친구는 상상의 강 한가운데 배를 타고 기다릴 거야.노를 젓는 흉내를 내줘.")
                     break
             else:
-                behavior_list.do_waiting_B()
-                wait_for('DONE')
+                # behavior_list.do_waiting_B()
+#                 wait_for('DONE')
                 continue
             break
         
@@ -133,7 +133,7 @@ def Play_Fisherman(user_name):
                 if answer == 'DONE':
                     behavior_list.do_suggestion_L()
                     while True:
-                        time.sleep(2)
+                        time.sleep(1)
                         text_to_speech("이제 어부한테 물어보자. “어부야, 어부야, 물이 얼마나 깊니?” 나를 따라해 봐. 시작!")
                         user_said = speech_to_text()
                         break
@@ -143,7 +143,7 @@ def Play_Fisherman(user_name):
                     continue
                 break
 
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 time.sleep(1)
                 text_to_speech("잘했어!")
@@ -163,7 +163,7 @@ def Play_Fisherman(user_name):
                 user_said = speech_to_text()
                 break
 
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 time.sleep(1)
                 text_to_speech("잘 따라했어!")
@@ -186,9 +186,9 @@ def Play_Fisherman(user_name):
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
-                        behavior_list.do_praise_S()
+                        behavior_list.do_compliment_S()
                         while True:
-                            time.sleep(2)
+                            time.sleep(1)
                             text_to_speech("정말 잘 했어. 무사히 건너왔어.")
                             
                             break
@@ -215,9 +215,9 @@ def Play_Fisherman(user_name):
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
-                        behavior_list.do_praise_S()
+                        behavior_list.do_compliment_S()
                         while True:
-                            time.sleep(2)
+                            time.sleep(1)
                             text_to_speech("두 사람 모두 상상의 강을 열심히 건넜어!")
                             break
                     else:
@@ -243,7 +243,7 @@ def Play_Fisherman(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech(f"열심히 놀이해 준 {wm.word(user_name, 0)}가 최고야~ 정말 신났어!")
                 break
@@ -270,11 +270,8 @@ def Play_Fisherman(user_name):
         break
 
     # 2.6 놀이 기록
+    text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
     behavior_list.do_stamp()
-    while True:
-        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
-        break
 
     behavior_list.do_suggestion_S()
     while True:
@@ -282,8 +279,6 @@ def Play_Fisherman(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

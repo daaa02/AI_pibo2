@@ -60,10 +60,10 @@ def Play_Horse(user_name):
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
         
 
@@ -103,13 +103,13 @@ def Play_Horse(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_B()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_B()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -137,8 +137,8 @@ def Play_Horse(user_name):
                     break
                 
             else:
-                behavior_list.do_waiting_B()
-                wait_for('DONE')
+                # behavior_list.do_waiting_B()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -160,7 +160,7 @@ def Play_Horse(user_name):
             #행동인식 - 사진, 영상 촬영
             break
 
-        behavior_list.do_praise_S()
+        behavior_list.do_compliment_S()
         while True:
             text_to_speech("정말 말처럼 잘 걷는걸?")
             break
@@ -178,14 +178,14 @@ def Play_Horse(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("정말 빠른 걸? ")
                     break
                 
             else:
-                behavior_list.do_waiting_B()
-                wait_for('DONE')
+                # behavior_list.do_waiting_B()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -207,14 +207,14 @@ def Play_Horse(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("말을 잘 이끌어 주었나보네. 이번에도 빨리 도착했어!")
                     break
                 
             else:
-                behavior_list.do_waiting_B()
-                wait_for('DONE')
+                # behavior_list.do_waiting_B()
+#                 wait_for('DONE')
                 continue
             break
     start()
@@ -233,7 +233,7 @@ def Play_Horse(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_L()
+            behavior_list.do_compliment_L()
             while True:
                 text_to_speech("말을 정말 실감나게 잘 흉내냈어. 장애물도 잘 피하던 걸?")
                 break
@@ -280,8 +280,6 @@ def Play_Horse(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

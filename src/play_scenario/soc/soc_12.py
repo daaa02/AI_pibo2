@@ -82,13 +82,13 @@ def Play_Blind(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_B()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_B()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -119,8 +119,8 @@ def Play_Blind(user_name):
                     text_to_speech("빠르게 도착했는걸?")
                     break
             else:
-                behavior_list.do_waiting_A()
-                wait_for('DONE')
+                # behavior_list.do_waiting_A()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -148,7 +148,7 @@ def Play_Blind(user_name):
             user_said = speech_to_text()
             break
 
-        behavior_list.do_praise_L()
+        behavior_list.do_compliment_L()
         while True:
             
             text_to_speech(f"{wm.word(user_name, 0)}는 정말 설명을 잘해주는 구나! 눈이 안보여도 {(places[0])}이 어떻게 생겼는지 알 것 같아!")   
@@ -168,7 +168,7 @@ def Play_Blind(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech("친절하게 알려줘서 고마워!")
                 break
@@ -182,12 +182,12 @@ def Play_Blind(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
         if answer == 'AGAIN':#어려웠어...
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech("그래도 정말 실감나게 잘 알려줬는걸? ")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech(f"{wm.word(user_name, 0)} 덕분에 목적지를 잘 상상할 수 있었어!!")
                 break
@@ -217,8 +217,6 @@ def Play_Blind(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

@@ -99,13 +99,13 @@ def Play_Ruler(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -132,14 +132,14 @@ def Play_Ruler(user_name):
             number = NLP.nlp_number(user_said=user_said, dic=Dic)
 
             if number != 0 :
-                behavior_list.do_praise_L()
+                behavior_list.do_compliment_L()
                 while True:
-                    time.sleep(2)
+                    time.sleep(1)
                     text_to_speech(f"우와. {wm.word(user_name, 0)}는 큰 숫자도 잘 읽는구나!")
                     break
             else:
-                behavior_list.do_waiting_B()
-                wait_for(number != 0)
+                # behavior_list.do_waiting_B()
+#                 wait_for(number != 0)
                 continue
             break
 
@@ -157,14 +157,14 @@ def Play_Ruler(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'YES':
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("우와, 정말 잘 찾았네!")
                     
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('YES')
+                # behavior_list.do_waiting_C()
+#                 wait_for('YES')
                 continue
             break
 
@@ -177,14 +177,14 @@ def Play_Ruler(user_name):
             number = NLP.nlp_number(user_said=user_said, dic=Dic)
 
             if number != 0 :
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("좋았어. 처음 해 보는데 정말 잘 하네!")
                     
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for(number != 0)
+                # behavior_list.do_waiting_C()
+#                 wait_for(number != 0)
                 continue
             break
 
@@ -202,14 +202,14 @@ def Play_Ruler(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'YES':
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("이번에도 잘 찾았네!")
                     
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('YES')
+                # behavior_list.do_waiting_C()
+#                 wait_for('YES')
                 continue
             break
 
@@ -222,14 +222,14 @@ def Play_Ruler(user_name):
             number = NLP.nlp_number(user_said=user_said, dic=Dic)
 
             if number != 0 :
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("역시 길이를 정말 잘 재는구나!")
                     
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for(number != 0)
+                # behavior_list.do_waiting_C()
+#                 wait_for(number != 0)
                 continue
             break
 
@@ -253,8 +253,8 @@ def Play_Ruler(user_name):
                     text_to_speech("지우개를 던져서 50cm와 80cm 사이에 떨어뜨리면 돼.")
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('DONE')
+                # behavior_list.do_waiting_C()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -273,8 +273,8 @@ def Play_Ruler(user_name):
                     text_to_speech("한번에 못 넣어도 괜찮아.")
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('DONE')
+                # behavior_list.do_waiting_C()
+#                 wait_for('DONE')
                 continue
             break        
 
@@ -287,14 +287,14 @@ def Play_Ruler(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech(f"굉장해.어려웠을 텐데 {wm.word(user_name, 0)}는 힘을 잘 조절하는 구나?")
                     
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('DONE')
+                # behavior_list.do_waiting_C()
+#                 wait_for('DONE')
                 continue
             break    
     start()
@@ -313,7 +313,7 @@ def Play_Ruler(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech(f"열심히 놀이해 준 {wm.word(user_name, 0)}가 최고야~ 길이를 재 보는 경험이 정말 특별한 것 같아!")
                 break
@@ -333,17 +333,14 @@ def Play_Ruler(user_name):
         user_said = speech_to_text()
         break
 
-    behavior_list.do_praise_L()
+    behavior_list.do_compliment_L()
     while True:
         text_to_speech(f"그랬구나. 파이보는 {user_name}가 줄자를 다루는 모습이 멋졌어~")
         break
 
     # 2.6 놀이 기록
+    text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
     behavior_list.do_stamp()
-    while True:
-        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
-        break
 
     behavior_list.do_suggestion_S()
     while True:
@@ -351,8 +348,6 @@ def Play_Ruler(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

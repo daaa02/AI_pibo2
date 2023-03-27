@@ -69,9 +69,7 @@ def Play_Bear(user_name):
     behavior_list.do_explain_B()
     while True:
         text_to_speech("이번 놀이에는 곰역할과 사람역할이 있어.")
-        time.sleep(1)
         text_to_speech("사람은 자고있는 곰에게 몰래 다가가서 곰을 흔들어 깨울거야.")
-        time.sleep(1)
         text_to_speech("그전에 곰에게 들키지 않게 조용이 움직여야 돼.")
         break
 
@@ -87,7 +85,6 @@ def Play_Bear(user_name):
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("먼저 동굴을 만들고 그 안에 곰이 들어 갈 거야.")
-                time.sleep(1)
                 text_to_speech("곰은 다가오는 사람의 발자국 소리를 듣고 있다가 가까이 오면 잡는 거야.")
                 break
         else:
@@ -119,8 +116,7 @@ def Play_Bear(user_name):
     def start():
         behavior_list.do_explain_A()
         while True:
-            text_to_speech("먼저 방 가운데에 베개를 쌓고 이불을 덮어서 동굴을 만들어줘.")           
-            time.sleep(1)
+            text_to_speech("먼저 방 가운데에 베개를 쌓고 이불을 덮어서 동굴을 만들어줘.")   
             text_to_speech("그 다음은 출발 위치도 정해야 해.")
             break
 
@@ -162,7 +158,6 @@ def Play_Bear(user_name):
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("정말 떨린다. 겨울잠을 자는 곰을 깨우러 조심스레 다가가 보자!")
-                    time.sleep(1)
                     text_to_speech("내가 시작 하면 출발 하는거야. 준비, 시~작!")
                     break
             else:
@@ -182,7 +177,8 @@ def Play_Bear(user_name):
                 behavior_list.do_agree()
                 while True:
                     text_to_speech("그랬구나!")
-                    start()
+                    break       # 230220 수정
+                    # start()   # 왜 여기있음?
             else:
                 behavior_list.do_waiting_A()
                 wait_for('YES')
@@ -191,8 +187,7 @@ def Play_Bear(user_name):
 
         behavior_list.do_explain_A()
         while True:
-            text_to_speech("이번엔 사람과 곰 역할을 바꿔보자.")           
-            time.sleep(1)
+            text_to_speech("이번엔 사람과 곰 역할을 바꿔보자.")        
             text_to_speech("곰은 동굴 속에 들어가서 잠에 들고, 사람은 파이보와 함께 출발지에 서있자.")
             break
 
@@ -227,6 +222,7 @@ def Play_Bear(user_name):
                 behavior_list.do_joy_A()
                 while True:
                     text_to_speech("정말 재미있다!")
+                    break
                     # start()
             else:
                 behavior_list.do_waiting_A()
@@ -234,7 +230,7 @@ def Play_Bear(user_name):
                 continue
             break
 
-        start()
+    start()
 
     # 2.4 놀이 완료
     behavior_list.do_question_S()
@@ -250,7 +246,7 @@ def Play_Bear(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech(f"파이보는 곰에게 들킬까봐 엄청 긴장했는데, {wm.word(user_name, 0)}는 정말 씩씩하게 잘 하던걸?")
                 break
@@ -303,8 +299,6 @@ def Play_Bear(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

@@ -59,10 +59,10 @@ def Play_Parcel(user_name):
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.2 놀이 설명
@@ -100,13 +100,13 @@ def Play_Parcel(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -136,15 +136,15 @@ def Play_Parcel(user_name):
           answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
           if answer == 'DONE':
-             behavior_list.do_praise_S()
+             behavior_list.do_compliment_S()
              while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech(f"정말 맛있어 보이는 {wm.word(fruit, 0)}다.")
                 break
-          else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+  #       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
           break
     
 
@@ -159,7 +159,7 @@ def Play_Parcel(user_name):
           if answer == 'YES':
             behavior_list.do_suggestion_L()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech(f"좋아.이제 훌라후프를 바닥에 놓고 훌라후프 바깥에 {wm.word(user_name, 0)}가 서.")
                 break
           else:
@@ -183,9 +183,9 @@ def Play_Parcel(user_name):
           answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
           if answer == 'YES':
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("정말 빠르게 배달했는걸?")
                 break
           else:
@@ -209,7 +209,7 @@ def Play_Parcel(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
             else:
-                behavior_list.do_praise_S()
+                behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("과일 택배를 열심히 배달했어. 고생했어!")
                     break
@@ -273,8 +273,6 @@ def Play_Parcel(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

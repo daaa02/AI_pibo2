@@ -61,10 +61,10 @@ def Play_Salad(user_name):
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.2 놀이 설명
@@ -103,13 +103,13 @@ def Play_Salad(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -132,14 +132,14 @@ def Play_Salad(user_name):
             if answer == 'DONE':
                 behavior_list.do_suggestion_L()
                 while True:
-                    time.sleep(2)
+                    time.sleep(1)
                     text_to_speech(f"좋아.  파이보가 {wm.word(user_name, 0)}가 생각한 과일을 맞춰볼게.")
                     text_to_speech("맞췄으면 카드를 파이보에게 보여주고한 칸씩 옆자리로 옮기면 돼. 시작해보자!")
                     #행동인식 - 사진, 영상 촬영
                     break
             else:
-                behavior_list.do_waiting_A()
-                wait_for('DONE')
+                # behavior_list.do_waiting_A()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -200,7 +200,7 @@ def Play_Salad(user_name):
             behavior_list.do_agree()
             start()
         else:
-            behavior_list.do_praise_L()
+            behavior_list.do_compliment_L()
             while True:
                 text_to_speech(f"{wm.word(user_name, 0)}는 정말 다양한 과일 이름을 알고 있구나! 멋지다~")
                 break
@@ -252,8 +252,6 @@ def Play_Salad(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

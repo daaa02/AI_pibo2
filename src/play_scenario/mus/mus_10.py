@@ -45,7 +45,6 @@ def Play_Tennis(user_name):
     while True:
         time.sleep(1)
         text_to_speech("이번 놀이는 풍선과 풍선을 칠 막대기가 필요해~")
-        time.sleep(1)
         text_to_speech("막대기는 종류에 상관 없이 여러 개를 준비하면 좋아.")
         time.sleep(1)
         text_to_speech("준비가 되면 준비 됐다고 말해줘")
@@ -72,7 +71,6 @@ def Play_Tennis(user_name):
     behavior_list.do_explain_B()
     while True:
         text_to_speech("풍선으로 테니스 공을 만들고 테니스 치듯이 공을 주고 받아 볼거야.")
-        time.sleep(1)
         text_to_speech("공이 상대방 땅에 떨어지면 내가 1점을 얻고, 내 땅에 떨어지면 상대가 1점을 얻어.")
         break
 
@@ -154,7 +152,6 @@ def Play_Tennis(user_name):
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("우와 정말 잘 하는걸? 이제 테니스채를 한번 바꿔보자.")
-                    time.sleep(1)
                     text_to_speech("손에 움켜쥘 수 있는 도구를 가져와.")  
                     time.sleep(1)
                     text_to_speech("신문지를 돌돌 말아 새로 만들어도 좋아.")
@@ -229,7 +226,7 @@ def Play_Tennis(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_L()
+                behavior_list.do_compliment_L()
                 while True:
                     text_to_speech("정말 멋진 경기였어.")
                     time.sleep(1)
@@ -247,17 +244,12 @@ def Play_Tennis(user_name):
     behavior_list.do_suggestion_L()
     while True:
         text_to_speech("이제 자리에 앉아보자.")   
-        time.sleep(1)
         text_to_speech("경기 하느라 테니스 치느라 팔에 힘을 많이 주었으니 양 손으로 꾹꾹 눌러볼거야.")
-        time.sleep(1)
         text_to_speech("10초 동안 마사지 시작!")
-        #time.sleep(10) 
+        time.sleep(5)
+        text_to_speech("팔이 편해졌지?") 
         break
 
-    behavior_list.do_question_S()
-    while True:
-        text_to_speech("팔이 편해졌지?")
-        break
 
     behavior_list.do_question_S()
     while True:
@@ -272,7 +264,7 @@ def Play_Tennis(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech("정말 멋진 풍선 테니스였어.")
                 break
@@ -297,7 +289,7 @@ def Play_Tennis(user_name):
         break
 
 
-    behavior_list.do_praise_L()
+    behavior_list.do_compliment_L()
     while True:
         text_to_speech(f"{wm.word(user_name, 0)}는 팔 힘도 세고 테니스 경기도 열심히 잘 했어. 정말 자랑스러워~")
         break
@@ -315,8 +307,6 @@ def Play_Tennis(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

@@ -85,13 +85,13 @@ def Play_Stork(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_B()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_B()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -147,7 +147,7 @@ def Play_Stork(user_name):
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'YES':
-                        behavior_list.do_praise_S()
+                        behavior_list.do_compliment_S()
                         while True:
                             text_to_speech("정말 잘 알아채는 걸?또 해보자!")
                             break
@@ -209,7 +209,7 @@ def Play_Stork(user_name):
                         return start_1()                    
                         
                 elif i==2:
-                    behavior_list.do_praise_S()
+                    behavior_list.do_compliment_S()
                     while True:
                     #행동인식 - 사진, 영상 촬영
                         text_to_speech("황새 역할도 재미있게 잘 하는걸?")
@@ -231,7 +231,7 @@ def Play_Stork(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_L()
+            behavior_list.do_compliment_L()
             while True:
                 text_to_speech(f"{wm.word(user_name, 0)}는 다양한 신체 부위 명칭을 알고 있구나? 대단해~")
                 break
@@ -290,8 +290,6 @@ def Play_Stork(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

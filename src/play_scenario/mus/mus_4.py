@@ -44,9 +44,7 @@ def Play_Toe(user_name):
     while True:
         time.sleep(1)
         text_to_speech("이번 놀이는 훌라후프, 휴지나 신문지, 줄이 필요해~")
-        time.sleep(1)
         text_to_speech("줄 대신 스카프나 천을 가져와도 좋아.")
-        time.sleep(1)
         text_to_speech("준비가 되면 준비 됐다고 말해줘~")
         break
 
@@ -183,15 +181,9 @@ def Play_Toe(user_name):
                 continue
             break
 
-        behavior_list.do_explain_B()
-        while True:
-            text_to_speech("이긴 사람은 이겼다 라고 말해줘.")
-            time.sleep(5)
-            break
-
         behavior_list.do_waiting_B()
         while True:
-            text_to_speech("둘 다 이겼으면 둘 다 이겼다 라고 말해줘. 준비~ 시작!")
+            text_to_speech("이긴 사람은 이겼다 라고 말해줘. 둘 다 이겼으면 둘 다 이겼다 라고 말해줘. 준비~ 시작!")
 
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
@@ -214,14 +206,12 @@ def Play_Toe(user_name):
     behavior_list.do_suggestion_L()
     while True:
         text_to_speech("이제 자리에 앉아보자.")   
-        time.sleep(1)
         text_to_speech("발가락 힘을 많이 사용했으니 발가락도 쉬게 하자!") 
         break
 
     behavior_list.do_explain_A()
     while True:
         text_to_speech("손가락으로 하나씩 발가락을 누르는거야.") 
-        time.sleep(1)
         text_to_speech("준비 됐으면 준비 됐어 라고 말해줘.")
         break
 
@@ -233,9 +223,8 @@ def Play_Toe(user_name):
         if answer == 'DONE':
             behavior_list.do_suggestion_L()
             while True:
-                time.sleep(1)
                 text_to_speech("좋아. 시작! 10초 간 열심히 마사지 해보자.")
-                #time.sleep(10)
+                time.sleep(5)
                 text_to_speech("정말 편안하겠다.")
                 break
         else:
@@ -257,7 +246,7 @@ def Play_Toe(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech("정말 멋진 발가락 놀이였어.")
                 break
@@ -274,7 +263,7 @@ def Play_Toe(user_name):
 
         break
 
-    behavior_list.do_praise_S()
+    behavior_list.do_compliment_S()
     while True:
         text_to_speech("오늘 놀이에서 어려운 게 있었어?")
         break
@@ -310,8 +299,6 @@ def Play_Toe(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

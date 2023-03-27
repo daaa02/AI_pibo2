@@ -44,9 +44,7 @@ def Play_Chef(user_name):
     while True:
         time.sleep(1)
         text_to_speech("이번 놀이는 나무주걱, 테이프, 소프트볼이 필요해~")
-        time.sleep(1)
         text_to_speech("소프트볼이 없으면 풍선을 작게 불어서 묶어도 돼.")
-        time.sleep(1)
         text_to_speech("준비가 되면 준비 됐다고 말해줘~")
         break
 
@@ -87,7 +85,6 @@ def Play_Chef(user_name):
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("좋았어! 요리사는 체력 연습도 할 수 있어.")
-                time.sleep(1)
                 text_to_speech("주걱 위에 풍선을 올려 놓고 앉았다 일어서는 연습을 하는 거야.")
                 break
         else:
@@ -120,7 +117,6 @@ def Play_Chef(user_name):
         behavior_list.do_explain_A()
         while True:
             text_to_speech("우선 목표점과 출발선을 정해야 해.")
-            time.sleep(1)
             text_to_speech("출발할 위치에 테이프를 붙이고, 도착할 목표점에도 테이프를 붙이면 돼.")
             break
 
@@ -154,7 +150,6 @@ def Play_Chef(user_name):
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("우와 정말 빠른걸? 이제 체력 연습을 해보자.")
-                    time.sleep(1)
                     text_to_speech("주걱 위에 공을 올리고 앉았다 일어나는 거야!")
                     break
             else:
@@ -174,9 +169,7 @@ def Play_Chef(user_name):
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("좋았어! 내가 천천히 열까지 셀 동안 해보는 거야.")
-                    time.sleep(1)
                     text_to_speech("중간에 공을 떨어뜨리면 다시 시작해도 돼.")
-                    time.sleep(1)
                     text_to_speech("몇 번 성공했는지 세었다가 알려줘. 그럼 준비~ 시작!")
                     break
             else:
@@ -197,7 +190,7 @@ def Play_Chef(user_name):
 
             break
 
-        behavior_list.do_praise_L()
+        behavior_list.do_compliment_L()
         while True:
             text_to_speech("익숙하지 않았을 텐데 대단해!")
             time.sleep(1)
@@ -210,17 +203,11 @@ def Play_Chef(user_name):
     behavior_list.do_suggestion_L()
     while True:
         text_to_speech("이제 자리에 앉아보자.")   
-        time.sleep(1)
         text_to_speech("주걱을 꼭 쥐느라 손목 힘을 많이 사용했으니 손목을 부드럽게 돌려 봐.")
-        time.sleep(1)
         text_to_speech("10초 동안 마사지 시작!")
-        #time.sleep(10) 
-        break
-
-    behavior_list.do_question_S()
-    while True:
+        time.sleep(5) 
         text_to_speech("손목이 좀 편안해졌지?")
-        break    
+        break
 
     behavior_list.do_question_S()
     while True:
@@ -235,7 +222,7 @@ def Play_Chef(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech("정말 멋진 요리사 훈련 놀이였어.")
                 break
@@ -261,7 +248,7 @@ def Play_Chef(user_name):
 
         break
 
-    behavior_list.do_praise_S()
+    behavior_list.do_compliment_S()
     while True:
         text_to_speech("그랬구나. 열심히 하는 모습이 보기 좋았어!")
         break
@@ -298,8 +285,6 @@ def Play_Chef(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

@@ -83,13 +83,13 @@ def Play_Robot(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_B()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_B()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -121,9 +121,9 @@ def Play_Robot(user_name):
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
-                        behavior_list.do_praise_L()
+                        behavior_list.do_compliment_L()
                         while True:
-                            time.sleep(2)
+                            time.sleep(1)
                             text_to_speech("조종을 정말 잘하는걸? 이번에는 역할을 바꿔보자. ")
                             print("*** 2회차 ***")
                             i=i+1
@@ -146,9 +146,9 @@ def Play_Robot(user_name):
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
                     if answer == 'DONE':
-                        behavior_list.do_praise_L()
+                        behavior_list.do_compliment_L()
                         while True:
-                            time.sleep(2)
+                            time.sleep(1)
                             text_to_speech("로봇 흉내를 정말 잘 내는 걸? 정말 빠르게 도착했어.")
                             
                             break
@@ -175,7 +175,7 @@ def Play_Robot(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_L()
+            behavior_list.do_compliment_L()
             while True:
                 text_to_speech(" 정말 멋진 로봇과 조종사였어. 친구와 환상의 짝꿍이야!")
                 break
@@ -198,7 +198,7 @@ def Play_Robot(user_name):
         user_said = speech_to_text()
         break
 
-    behavior_list.do_praise_L()
+    behavior_list.do_compliment_L()
     while True:
         text_to_speech(f"그렇구나. 그렇지만 {wm.word(user_name, 0)}는 두가지 역할을 모두 잘 해냈어!")
 
@@ -229,8 +229,6 @@ def Play_Robot(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

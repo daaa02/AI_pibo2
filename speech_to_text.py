@@ -30,8 +30,12 @@ from __future__ import division
 
 import re
 import sys
+import time
+
+from multiprocessing import Process
 
 from google.cloud import speech
+import google
 
 import pyaudio
 from six.moves import queue
@@ -54,7 +58,6 @@ asound.snd_lib_error_set_handler(c_error_handler)
 ###############################
 
 # Audio recording parameters
-RATE = 44100
 RATE = 44100 # 기존 16000 에서 "OSError: [Errno -9997] Invalid sample rate" 발생
 CHUNK = int(RATE / 10)  # 100ms
 
@@ -130,9 +133,10 @@ def listen_print_loop(responses):
     num_chars_printed = 0
     for response in responses:
         if not response.results:
-            continue
+            continue       
 
         result = response.results[0]
+                
         if not result.alternatives:
             continue
 
@@ -140,16 +144,19 @@ def listen_print_loop(responses):
         overwrite_chars = ' ' * (num_chars_printed - len(transcript))
 
         if not result.is_final:
-            sys.stdout.write(transcript + overwrite_chars + '\r')
-            sys.stdout.flush()
+            # sys.stdout.write(transcript + overwrite_chars + '\r')
+            # sys.stdout.flush()
+            print('답변: ' + transcript + overwrite_chars, end='\r')
             num_chars_printed = len(transcript)
+
         else:
             text = transcript + overwrite_chars
             break
             if re.search(r'\b(exit|quit)\b', transcript, re.I):
                 print('Exiting..')
                 break
-            num_chars_printed = 0
+            num_chars_printed = 0    
+            
     return text
 
 
@@ -170,18 +177,20 @@ def speech_to_text(timeout=10):
 
     with MicrophoneStream(RATE, CHUNK) as stream:
         audio_generator = stream.generator()
-        print("\n 답변을 시작해주세요. ")
+        print("\n답변: ", end='\r')
         requests = (speech.StreamingRecognizeRequest(audio_content=content)
                     for content in audio_generator)
 
         responses = client.streaming_recognize(streaming_config, requests, timeout=timeout)
-
+        
         # Now, put the transcription responses to use.
         stt_out = listen_print_loop(responses)
-        print('\n')
+        print('답변:', stt_out)
+    
+        # print('\n')
     return stt_out
-
 
 if __name__ == '__main__':
     speech_to_text()
+        
 # [END speech_transcribe_streaming_mic]

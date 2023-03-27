@@ -44,9 +44,7 @@ def Play_Pocket(user_name):
     while True:
         time.sleep(1)
         text_to_speech("이번 놀이는 양말과 양말에 넣을 곡식이 필요해~")
-        time.sleep(1)
         text_to_speech("쌀이나 콩이면 좋아.")
-        time.sleep(1)
         text_to_speech("준비가 되면 준비 됐다고 말해줘~")
         break
 
@@ -71,7 +69,6 @@ def Play_Pocket(user_name):
     behavior_list.do_explain_B()
     while True:
         text_to_speech("곡식을 넣은 양말은 개미가 열심히 일 해서 마련한 식량이야.")
-        time.sleep(1)
         text_to_speech("곡식 주머니를 조심히 떨어트리지 않고 머리나 어깨에 얹고 운반하는 거야.")
         break
 
@@ -99,9 +96,7 @@ def Play_Pocket(user_name):
         behavior_list.do_explain_B()
         while True:
             text_to_speech("먼저 곡식주머니를 만들어보자.")
-            time.sleep(1)
             text_to_speech("양말에 곡식을 넣은 다음 발목을 묶어줘.")
-            time.sleep(1)
             text_to_speech("그 다음은 어디까지 곡식주머니를 옮길지 목표점을 정해.")
             break
 
@@ -176,14 +171,15 @@ def Play_Pocket(user_name):
                 behavior_list.do_explain_B()
                 while True:
                     text_to_speech("좋아 시작한다~ 처음은~ 배!")
-                    #time.sleep(5)
+                    time.sleep(3)
                     text_to_speech("다음은~ 머리!")
-                    #time.sleep(5)
+                    time.sleep(3)
                     text_to_speech("손등!")
-                    #time.sleep(5)
+                    time.sleep(3)
                     text_to_speech("팔!")
-                    #time.sleep(5)
+                    time.sleep(3)
                     text_to_speech("마지막은 무릎 사이!~")
+                    time.sleep(3)
                     break
             else:
                 behavior_list.do_waiting_B()
@@ -200,7 +196,7 @@ def Play_Pocket(user_name):
 
             break
 
-        behavior_list.do_praise_S()
+        behavior_list.do_compliment_S()
         while True:
             text_to_speech("와 정말 대단하다.")
             break
@@ -211,19 +207,13 @@ def Play_Pocket(user_name):
     behavior_list.do_suggestion_L()
     while True:
         text_to_speech("이제 자리에 앉아보자.")   
-        time.sleep(1)
         text_to_speech("곡식 주머니가 닿았던 곳을 구석구석 마사지 해보자!")
-        time.sleep(1)
         text_to_speech("손가락으로 톡톡톡 배, 머리, 팔, 다리를 두드려 보는거야.")
-        time.sleep(1)
         text_to_speech("10초 동안 마사지 시작!")
-        #time.sleep(10) 
+        time.sleep(3)
+        text_to_speech("정말 시원해 졌지?") 
         break
 
-    behavior_list.do_question_S()
-    while True:
-        text_to_speech("정말 시원해 졌지?")
-        break
 
     behavior_list.do_question_S()
     while True:
@@ -238,7 +228,7 @@ def Play_Pocket(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_S()
+            behavior_list.do_compliment_S()
             while True:
                 text_to_speech("개미의 식량을 잘 지켜냈어. 정말 멋져~")
                 break
@@ -264,7 +254,7 @@ def Play_Pocket(user_name):
 
         break
 
-    behavior_list.do_praise_L()
+    behavior_list.do_compliment_L()
     while True:
         text_to_speech("그래도 멋지게 해냈어.")
         time.sleep(1)
@@ -284,8 +274,6 @@ def Play_Pocket(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

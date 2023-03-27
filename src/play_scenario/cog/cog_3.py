@@ -101,13 +101,13 @@ def Play_Cup(user_name):
         if answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
-                time.sleep(2)
+                time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-        else:
-            behavior_list.do_waiting_A()
-            wait_for('DONE')
-            continue
+#       else:
+#          behavior_list.do_waiting_A()
+#          wait_for('DONE')
+#            continue
         break
 
     # 2.3 놀이 시작
@@ -135,12 +135,12 @@ def Play_Cup(user_name):
             if answer == 'DONE':
                 behavior_list.do_explain_A()
                 while True:
-                    time.sleep(2)
+                    time.sleep(1)
                     text_to_speech("좋아. 이제 종이컵을 골인 시키는거야. 한번에 못 넣으면 또 던져도 돼.")
                     break
             else:
-                behavior_list.do_waiting_B()
-                wait_for('DONE')
+                # behavior_list.do_waiting_B()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -152,15 +152,15 @@ def Play_Cup(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'YES':
-                behavior_list.do_praise_L()
+                behavior_list.do_compliment_L()
                 while True:
-                    time.sleep(2)
+                    time.sleep(1)
                     #행동인식-사진,영상 촬영
                     text_to_speech("와, 원래 처음에는 어려운데 잘하는걸?")
                     break
             else:
-                behavior_list.do_waiting_B()
-                wait_for('YES')
+                # behavior_list.do_waiting_B()
+#                 wait_for('YES')
                 continue
             break
 
@@ -176,7 +176,7 @@ def Play_Cup(user_name):
             user_said = speech_to_text()
             break
 
-        behavior_list.do_praise_L()
+        behavior_list.do_compliment_L()
         while True:
             text_to_speech(f"좋은 생각이야! 어떤 모양이든 {user_name}만의 탑을 쌓아봐.")
             
@@ -191,7 +191,7 @@ def Play_Cup(user_name):
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
             if answer == 'DONE':
-                behavior_list.do_praise_L()
+                behavior_list.do_compliment_L()
                 while True:
                     #행동인식-사진,영상 촬영
                     text_to_speech("잘했어! 정말 멋지다.")
@@ -199,8 +199,8 @@ def Play_Cup(user_name):
                     time.sleep(5)
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('DONE')
+                # behavior_list.do_waiting_C()
+#                 wait_for('DONE')
                 continue
             break
 
@@ -232,8 +232,8 @@ def Play_Cup(user_name):
                     time.sleep(5)
                     break
             else:
-                behavior_list.do_waiting_C()
-                wait_for('DONE')
+                # behavior_list.do_waiting_C()
+#                 wait_for('DONE')
                 continue
             break
          
@@ -250,7 +250,7 @@ def Play_Cup(user_name):
                 text_to_speech("그래 또 하자!")
                 start()
         else:
-            behavior_list.do_praise_L()
+            behavior_list.do_compliment_L()
             while True:
                 text_to_speech("종이컵 놀이 정말 잘하더라. 파이보도 그렇게 잘 하고 싶어.")
                 break
@@ -276,11 +276,8 @@ def Play_Cup(user_name):
         break
 
     # 2.6 놀이 기록
+    text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
     behavior_list.do_stamp()
-    while True:
-        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 똑똑 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
-        break
 
     behavior_list.do_suggestion_S()
     while True:
@@ -288,8 +285,6 @@ def Play_Cup(user_name):
         break
 
     behavior_list.do_photo()
-    time.sleep(5)
-    tts.play(filename="/home/pi/AI_pibo2/src/data/audio/사진기소리.mp3", out='local', volume=-1500, background=False)
 
     # 2.7 다음 놀이 제안
     behavior_list.do_question_L()

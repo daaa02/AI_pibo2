@@ -32,7 +32,7 @@ def do_question_L():
     ex_1. Thread motion, Thread oled ==> motion + oled 동시 실행
     ex_2. Thread(target=<어디 스크립트.어느 함수>, args=(있으면))
     """
-    audio.play(filename="/home/pi/AI_pibo2/src/data/audio/물음표소리1.wav", out='local', volume=-1000, background=False)
+    audio.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_question1.wav", out='local', volume=-1000, background=False)
     m = Thread(target=motion.set_motion, args=("m_question_L", 1))      # "동작 이름", n번 반복
     o = Thread(target=oled.o_question(), args=())
 
@@ -48,7 +48,7 @@ def do_question_L():
 
 
 def do_question_S():
-    audio.play(filename="/home/pi/AI_pibo2/src/data/audio/물음표소리1.wav", out='local', volume=-1000, background=False)
+    audio.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_question1.wav", out='local', volume=-1000, background=False)
     m = Thread(target=motion.set_motion, args=("m_question_S", 1))
     o = Thread(target=oled.o_question(), args=())
 
@@ -94,7 +94,7 @@ def do_suggestion_S():
 
 
 def do_explain_A():
-    m = Thread(target=motion.set_motion, args=("m_explain_A", 5))
+    m = Thread(target=motion.set_motion, args=("m_explain_A", 1))
     o = Thread(target=oled.o_explain, args=())
 
     m.daemon = True
@@ -109,7 +109,7 @@ def do_explain_A():
 
 
 def do_explain_B():
-    m = Thread(target=motion.set_motion, args=("m_explain_B", 5))
+    m = Thread(target=motion.set_motion, args=("m_explain_B", 1))
     o = Thread(target=oled.o_explain, args=())
 
     m.daemon = True
@@ -124,31 +124,33 @@ def do_explain_B():
 
 
 def do_photo():
-    eye.e_photo()
+    # eye.e_photo()
     t = Thread(target=oled.o_photo, args=(), daemon=True)
     t.start()
     while True:
         motion.set_motion(name="m_photo-1", cycle=1)
         break
+    audio.audio_play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_camera.mp3", out='local', volume=-1500, background=True)
     while True:
         motion.set_motion(name="m_photo-2", cycle=1)
         break
 
 
 def do_stamp():
-    eye.e_stamp()
+    # eye.e_stamp()
     t = Thread(target=oled.o_stamp, args=(), daemon=True)
     t.start()
     while True:
         motion.set_motion(name="m_stamp-1", cycle=1)        
         break
+    audio.audio_play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_stamp2.wav", out='local', volume=-1500, background=True)
     while True:
         motion.set_motion(name="m_stamp-2", cycle=1)        
         break
 
 
 def do_waiting_A():
-    m = Thread(target=motion.set_motion, args=("m_waiting_A", 10))
+    m = Thread(target=motion.set_motion, args=("m_waiting_A", 1))
     o = Thread(target=oled.o_waiting(), args=())
 
     m.daemon = True
@@ -163,7 +165,7 @@ def do_waiting_A():
 
 
 def do_waiting_B():
-    m = Thread(target=motion.set_motion, args=("m_waiting_B", 10))
+    m = Thread(target=motion.set_motion, args=("m_waiting_B", 1))
     o = Thread(target=oled.o_waiting(), args=())
 
     m.daemon = True
@@ -178,7 +180,7 @@ def do_waiting_B():
 
 
 def do_waiting_C():
-    m = Thread(target=motion.set_motion, args=("m_waiting_C", 10))
+    m = Thread(target=motion.set_motion, args=("m_waiting_C", 1))
     o = Thread(target=oled.o_waiting(), args=())
 
     m.daemon = True
@@ -192,8 +194,8 @@ def do_waiting_C():
         break
 
 
-def do_praise_L():
-    audio.play(filename="/home/pi/AI_pibo2/src/data/audio/경쾌한음악.wav", out='local', volume=-1000, background=False)
+def do_compliment_L():
+    audio.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cheerful2.wav", out='local', volume=-1000, background=False)
     m = Thread(target=motion.set_motion, args=("m_praise_L", 1))
     o = Thread(target=oled.o_compliment, args=())
 
@@ -204,12 +206,12 @@ def do_praise_L():
     o.start()
 
     while True:
-        eye.e_praise()
+        eye.e_compliment()
         break
 
 
-def do_praise_S():
-    audio.play(filename="/home/pi/AI_pibo2/src/data/audio/경쾌한음악.wav", out='local', volume=-1000, background=False)
+def do_compliment_S():
+    audio.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cheerful2.wav", out='local', volume=-1000, background=False)
     m = Thread(target=motion.set_motion, args=("m_praise_S", 1))
     o = Thread(target=oled.o_compliment, args=())
 
@@ -220,12 +222,12 @@ def do_praise_S():
     o.start()
 
     while True:
-        eye.e_praise()
+        eye.e_compliment()
         break
 
 
 def do_agree():
-    audio.play(filename="/home/pi/AI_pibo2/src/data/audio/딩동댕3.wav", out='local', volume=-1000, background=False)
+    audio.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_correct3.wav", out='local', volume=-1000, background=False)
     m = Thread(target=motion.set_motion, args=("m_agree", 1))
     o = Thread(target=oled.o_agree(), args=())
 
@@ -241,7 +243,8 @@ def do_agree():
 
 
 def do_joy_A():
-    audio.play(filename="/home/pi/AI_pibo2/src/data/audio/기분좋음.mp3", out='local', volume=-1000, background=False)
+    print("aaaa")
+    # audio.play(filename="/home/pi/AI_pibo2/src/data/audio/기분좋음.mp3", out='local', volume=-1000, background=False)
     m = Thread(target=motion.set_motion, args=("m_joy_A", 2))
     o = Thread(target=oled.o_joy(), args=())
 
@@ -257,8 +260,8 @@ def do_joy_A():
     
 
 def do_joy_B():
-    audio.play(filename="/home/pi/AI_pibo2/src/data/audio/기분좋음.mp3", out='local', volume=-1000, background=False)
-    m = Thread(target=motion.set_motion, args=("m_joy_B", 2))
+    # audio.play(filename="/home/pi/AI_pibo2/src/data/audio/기분좋음.mp3", out='local', volume=-1000, background=False)
+    m = Thread(target=motion.set_motion, args=("m_joy_B", 1))
     o = Thread(target=oled.o_joy(), args=())
 
     m.daemon = True
@@ -273,7 +276,7 @@ def do_joy_B():
 
 
 def do_sad():
-    audio.play(filename="/home/pi/AI_pibo2/src/data/audio/슬픈소리.wav", out='local', volume=-1000, background=False)
+    audio.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_sad.wav", out='local', volume=-1000, background=False)
     m = Thread(target=motion.set_motion, args=("m_sad", 1))
     o = Thread(target=oled.o_sad(), args=())
 
