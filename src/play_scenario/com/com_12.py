@@ -240,11 +240,8 @@ def Play_Salad(user_name):
     
 
     # 2.6 놀이 기록
+    text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 술술 스탬프를 찍어줄게.")
     behavior_list.do_stamp()
-    while True:
-        text_to_speech(f"{wm.word(user_name, 0)}가 열심히 놀이를 했으니, 오늘은 술술 스탬프를 찍어줄게.")
-        tts.play(filename="/home/pi/AI_pibo2/src/data/audio/스탬프소리2.wav", out='local', volume=-1500, background=False)
-        break
 
     behavior_list.do_suggestion_L()
     while True:
