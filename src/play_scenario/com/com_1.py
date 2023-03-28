@@ -59,10 +59,10 @@ def Play_Hoop(user_name):
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
-#       else:
-#          behavior_list.do_waiting_A()
-#          wait_for('DONE')
-#            continue
+        else:
+        #  behavior_list.do_waiting_A()
+            wait_for('DONE')
+            continue
         break
 
     # 2.2 놀이 설명
@@ -85,7 +85,7 @@ def Play_Hoop(user_name):
                 text_to_speech("입으로 바람을 불기 힘들면 도구를 사용해서 바람을 일으켜도 좋아")
                 break
         else:
-            behavior_list.do_waiting_A()
+            # behavior_list.do_waiting_A()
             wait_for('YES')
             continue
         break
@@ -103,10 +103,10 @@ def Play_Hoop(user_name):
                 time.sleep(1)
                 text_to_speech("그래, 시작하자!")
                 break
-#       else:
+        else:
 #          behavior_list.do_waiting_A()
-#          wait_for('DONE')
-#            continue
+            wait_for('DONE')
+            continue
         break
 
     # 2.3 놀이 시작
@@ -145,7 +145,7 @@ def Play_Hoop(user_name):
                     break
             else:
                 # behavior_list.do_waiting_C()
-#                 wait_for('DONE')
+                wait_for('DONE')
                 continue
             break
 

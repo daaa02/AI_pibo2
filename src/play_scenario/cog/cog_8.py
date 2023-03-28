@@ -189,24 +189,30 @@ def Play_Sound(user_name):
 
     start()
 
+    # # 2.4 놀이 완료
+    # behavior_list.do_question_S()
+    # while True:
+    #     text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
+
+    #     user_said = speech_to_text()
+    #     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+    #     if answer == 'AGAIN':
+    #         behavior_list.do_agree()
+    #         while True:
+    #             text_to_speech("그래 또 하자!")
+    #             start()
+    #     else:
+    #         behavior_list.do_compliment_S()
+    #         while True:
+    #             text_to_speech(f"열심히 놀이해 준 {wm.word(user_name, 0)}가 최고야~ 파이보도 다양한 소리를 알게 된 것 같아!")
+    #             break
+    #     break
+    
     # 2.4 놀이 완료
-    behavior_list.do_question_S()
+    behavior_list.do_compliment_S()
     while True:
-        text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
-
-        user_said = speech_to_text()
-        answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-        if answer == 'AGAIN':
-            behavior_list.do_agree()
-            while True:
-                text_to_speech("그래 또 하자!")
-                start()
-        else:
-            behavior_list.do_compliment_S()
-            while True:
-                text_to_speech(f"열심히 놀이해 준 {wm.word(user_name, 0)}가 최고야~ 파이보도 다양한 소리를 알게 된 것 같아!")
-                break
+        text_to_speech(f"열심히 놀이해 준 {wm.word(user_name, 0)}가 최고야~ 파이보도 다양한 소리를 알게 된 것 같아!")
         break
 
     # 2.5 마무리 대화

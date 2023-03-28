@@ -23,7 +23,7 @@ wm = WordManage()
 tts = TextToSpeech()
 
 global i
-i=1;
+i=1
 def text_to_speech(text):
     filename = "tts.wav"
     print("\n" + text + "\n")
@@ -60,10 +60,10 @@ def Play_Pizza(user_name):
                 time.sleep(1)
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
-#       else:
-#          behavior_list.do_waiting_A()
-#          wait_for('DONE')
-#            continue
+        else:
+        #  behavior_list.do_waiting_A()
+            wait_for('DONE')
+            continue
         break
 
     # 2.2 놀이 설명
@@ -86,7 +86,7 @@ def Play_Pizza(user_name):
                 text_to_speech("피자 도우를 반죽하는 단계에서는 친구 등을 살살 주무르면서 반죽을 표현할 수 있어.")
                 break
         else:
-            behavior_list.do_waiting_A()
+            # behavior_list.do_waiting_A()
             wait_for('YES')
             continue
         break
@@ -104,10 +104,10 @@ def Play_Pizza(user_name):
                 time.sleep(1)
                 text_to_speech("그래 시작하자!")
                 break
-#       else:
+        else:
 #          behavior_list.do_waiting_A()
-#          wait_for('DONE')
-#            continue
+            wait_for('DONE')
+            continue
         break
 
     # 2.3 놀이 시작
@@ -118,121 +118,183 @@ def Play_Pizza(user_name):
             text_to_speech(f"바닥에 매트를 깔고 {wm.word(user_name, 0)}가 먼저 엎드려줘.  친구는 {wm.word(user_name, 0)} 옆에 앉아서 등에 손을 올리면 돼. ")
             break
         
-        def start_1():
-            global i   
-            behavior_list.do_waiting_B()
-            while True:
-                text_to_speech("준비가 다 됐으면 준비 됐어 라고 말해줘~")
-
-                user_said = speech_to_text()
-                answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-                if answer == 'DONE':
-                    behavior_list.do_joy_A()
-                    while True:
-                        time.sleep(1)
-                        text_to_speech(" 좋아.  시작한다!")
-                        break
-                else:
-                    behavior_list.do_waiting_A()
-                    wait_for('DONE')
-                    continue
-                break
-
-            behavior_list.do_explain_A()
-            while True:
-                #행동인식-사진, 영상 촬영
-                text_to_speech("피자 레시피를 알려줄게.")
-                time.sleep(1)
-                text_to_speech("먼저 피자 도우를 만들어 주세요.")
-                break
-
-            behavior_list.do_explain_A()
-            while True:
-                #행동인식-사진, 영상 촬영
-                time.sleep(10)#요리 효과음
-                text_to_speech("토마토 소스를 발라주세요.")
-                
-                break
-
-            behavior_list.do_explain_A()
-            while True:
-                #행동인식-사진, 영상 촬영
-                time.sleep(10)#요리 효과음
-                text_to_speech("원하는 토핑을 말하고 토핑을 올려 주세요.")
-                
-                break
-
-            behavior_list.do_explain_A()
-            while True:
-                #행동인식-사진, 영상 촬영
-                time.sleep(10)#요리 효과음
-                text_to_speech("치즈를 뿌려주세요.")
-                
-                break
-
-            behavior_list.do_explain_A()
-            while True:
-                #행동인식-사진, 영상 촬영
-                time.sleep(10)#요리 효과음
-                text_to_speech("피자를 오븐에 데워주세요.")
-                
-                break
-
-            
-            if i == 1:
-
-                behavior_list.do_joy_A()
-                while True:
-                    #행동인식-사진, 영상 촬영
-                    time.sleep(10)#요리 효과음
-                    text_to_speech("맛있는 피자가 완성됐어~ ")
-                    
-                    break
-
-                behavior_list.do_suggestion_L()
-                while True:
-                    text_to_speech(f"이번에는 역할을 바꿔보자.친구가 매트에 엎드리면 {wm.word(user_name, 0)}가 피자를 만들어줘. ")
-                    print("*** 2회차 ***")
-                    i=i+1
-                    start_1()
-                    break
-                
-                    
-                    
-                
-        
-            elif i==2:
-                behavior_list.do_joy_A()
-                while True:
-                    time.sleep(10)#요리 효과음
-                    
-                    text_to_speech("맛있는 피자 완성! 진짜 피자 냄새가 나는 것만 같아!")
-                    break
-        start_1()    
-
-    start()   
-
-       # 2.4 놀이 완료
-    behavior_list.do_question_S()
-    while True:
-            text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
+        behavior_list.do_waiting_B()
+        while True:
+            text_to_speech("준비가 다 됐으면 준비 됐어 라고 말해줘~")
 
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'AGAIN':
-                behavior_list.do_agree()
-                text_to_speech("그래 또 하자!")
-                start()
-            else:
-                behavior_list.do_compliment_L()
+            if answer == 'DONE':
+                behavior_list.do_joy_A()
                 while True:
-                    text_to_speech("피자 만들기를 멋지게 표현했어. 최고의 요리사였어~")
+                    time.sleep(1)
+                    text_to_speech(" 좋아. 시작한다!")
                     break
+            else:
+                # behavior_list.do_waiting_A()
+                wait_for('DONE')
+                continue
             break
 
-         
+        behavior_list.do_explain_A()
+        while True:
+            #행동인식-사진, 영상 촬영
+            text_to_speech("피자 레시피를 알려줄게.")
+            time.sleep(1)
+            text_to_speech("먼저 피자 도우를 만들어 주세요.")
+            time.sleep(2)
+            break
+
+        behavior_list.do_explain_A()
+        while True:
+            #행동인식-사진, 영상 촬영
+            text_to_speech("토마토 소스를 발라주세요.")
+            tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
+            break
+
+        behavior_list.do_explain_A()
+        while True:
+            #행동인식-사진, 영상 촬영
+            text_to_speech("토핑을 올려 주세요.")
+            tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
+            break
+
+        behavior_list.do_explain_A()
+        while True:
+            #행동인식-사진, 영상 촬영
+            text_to_speech("치즈를 뿌려주세요.")
+            tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
+            break
+
+        behavior_list.do_explain_A()
+        while True:
+            #행동인식-사진, 영상 촬영
+            text_to_speech("피자를 오븐에 데워주세요.")
+            tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_oven.wav")            
+            break
+        
+        behavior_list.do_joy_A()
+        while True:
+            tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cheerful1.wav")
+            text_to_speech("맛있는 피자 완성! 진짜 피자 냄새가 나는 것만 같아!")
+            break
+        
+        # def start_1():
+        #     global i   
+        #     behavior_list.do_waiting_B()
+        #     while True:
+        #         text_to_speech("준비가 다 됐으면 준비 됐어 라고 말해줘~")
+
+        #         user_said = speech_to_text()
+        #         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+        #         if answer == 'DONE':
+        #             behavior_list.do_joy_A()
+        #             while True:
+        #                 time.sleep(1)
+        #                 text_to_speech(" 좋아.  시작한다!")
+        #                 break
+        #         else:
+        #             # behavior_list.do_waiting_A()
+        #             wait_for('DONE')
+        #             continue
+        #         break
+
+        #     behavior_list.do_explain_A()
+        #     while True:
+        #         #행동인식-사진, 영상 촬영
+        #         text_to_speech("피자 레시피를 알려줄게.")
+        #         time.sleep(1)
+        #         text_to_speech("먼저 피자 도우를 만들어 주세요.")
+        #         break
+
+        #     behavior_list.do_explain_A()
+        #     while True:
+        #         #행동인식-사진, 영상 촬영
+        #         tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
+        #         text_to_speech("토마토 소스를 발라주세요.")
+                
+        #         break
+
+        #     behavior_list.do_explain_A()
+        #     while True:
+        #         #행동인식-사진, 영상 촬영
+        #         tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
+        #         text_to_speech("원하는 토핑을 말하고 토핑을 올려 주세요.")
+                
+        #         break
+
+        #     behavior_list.do_explain_A()
+        #     while True:
+        #         #행동인식-사진, 영상 촬영
+        #         tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
+        #         text_to_speech("치즈를 뿌려주세요.")
+                
+        #         break
+
+        #     behavior_list.do_explain_A()
+        #     while True:
+        #         #행동인식-사진, 영상 촬영
+        #         time.sleep(10)#요리 효과음
+        #         text_to_speech("피자를 오븐에 데워주세요.")
+                
+        #         break
+
+            
+        #     if i == 1:
+
+        #         behavior_list.do_joy_A()
+        #         while True:
+        #             #행동인식-사진, 영상 촬영
+        #             time.sleep(10)#요리 효과음
+        #             text_to_speech("맛있는 피자가 완성됐어~ ")
+                    
+        #             break
+
+        #         behavior_list.do_suggestion_L()
+        #         while True:
+        #             text_to_speech(f"이번에는 역할을 바꿔보자.친구가 매트에 엎드리면 {wm.word(user_name, 0)}가 피자를 만들어줘. ")
+        #             print("*** 2회차 ***")
+        #             i=i+1
+        #             start_1()
+        #             break
+        
+        #     elif i==2:
+        #         behavior_list.do_joy_A()
+        #         while True:
+        #             time.sleep(10)#요리 효과음
+                    
+        #             text_to_speech("맛있는 피자 완성! 진짜 피자 냄새가 나는 것만 같아!")
+        #             break
+        # start_1()    
+
+    start()   
+
+    # # 2.4 놀이 완료
+    # behavior_list.do_question_S()
+    # while True:
+    #         text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
+
+    #         user_said = speech_to_text()
+    #         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+    #         if answer == 'AGAIN':
+    #             behavior_list.do_agree()
+    #             text_to_speech("그래 또 하자!")
+    #             start()
+    #         else:
+    #             behavior_list.do_compliment_L()
+    #             while True:
+    #                 text_to_speech("피자 만들기를 멋지게 표현했어. 최고의 요리사였어~")
+    #                 break
+    #         break
+
+    # 2.4 놀이 완료
+    behavior_list.do_compliment_L()
+    while True:
+        text_to_speech("피자 만들기를 멋지게 표현했어. 최고의 요리사였어~")
+        break
 
 
     # 2.5 마무리 대화

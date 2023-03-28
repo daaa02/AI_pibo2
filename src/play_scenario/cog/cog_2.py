@@ -227,32 +227,35 @@ def Play_Mirror(user_name):
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("이제 내가 열을 셀 게. 하나, 둘, 셋, 넷, 다섯, 여섯, 일곱, 여덟, 아홉, 열! 이제 다 셌다.")
-                
-                
                 break
         else:
             behavior_list.do_waiting_C()
             wait_for('YES')
             continue
         break
+        
+    # behavior_list.do_question_S()
+    # while True:
+    #     text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
 
-    behavior_list.do_question_S()
+    #     user_said = speech_to_text()
+    #     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
+
+    #     if answer == 'AGAIN':
+    #         behavior_list.do_agree()
+    #         while True:
+    #             text_to_speech("그래 또 하자!")
+    #             start()
+    #     else:
+    #         behavior_list.do_compliment_S()
+    #         while True:
+    #             text_to_speech("정말 훌륭한 거울이었어. 서로를 관찰하는 모습이 보기 좋았어.")
+    #             break
+    #     break
+
+    behavior_list.do_compliment_S()
     while True:
-        text_to_speech("한 번 더 해볼까? 또 하고 싶으면 또 하자라고 말해줘.")
-
-        user_said = speech_to_text()
-        answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
-
-        if answer == 'AGAIN':
-            behavior_list.do_agree()
-            while True:
-                text_to_speech("그래 또 하자!")
-                start()
-        else:
-            behavior_list.do_compliment_S()
-            while True:
-                text_to_speech("정말 훌륭한 거울이었어. 서로를 관찰하는 모습이 보기 좋았어.")
-                break
+        text_to_speech("정말 훌륭한 거울이었어. 서로를 관찰하는 모습이 보기 좋았어.")
         break
 
     # 2.5 마무리 대화

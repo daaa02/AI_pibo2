@@ -60,7 +60,7 @@ def Play_Tissue(user_name):
                 text_to_speech("좋았어. 놀이 방법을 알려줄게!")
                 break
         else:
-            behavior_list.do_waiting_A()
+            # behavior_list.do_waiting_A()
             wait_for('DONE')    # DONE 답변 들어올 때까지 stt open 반복
             continue
         break
