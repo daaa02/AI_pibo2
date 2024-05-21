@@ -54,7 +54,7 @@ def Play_Pizza(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -80,7 +80,7 @@ def Play_Pizza(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_B()
             while True:
                 text_to_speech("피자 도우를 반죽하는 단계에서는 친구 등을 살살 주무르면서 반죽을 표현할 수 있어.")
@@ -98,7 +98,7 @@ def Play_Pizza(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -125,7 +125,7 @@ def Play_Pizza(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_joy_A()
                 while True:
                     time.sleep(1)
@@ -150,33 +150,33 @@ def Play_Pizza(user_name):
         while True:
             #행동인식-사진, 영상 촬영
             text_to_speech("토마토 소스를 발라주세요.")
-            tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
+            tts.play(filename="/home/pi/Pibo_Package_02/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
             break
 
         behavior_list.do_explain_A()
         while True:
             #행동인식-사진, 영상 촬영
             text_to_speech("토핑을 올려 주세요.")
-            tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
+            tts.play(filename="/home/pi/Pibo_Package_02/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
             break
 
         behavior_list.do_explain_A()
         while True:
             #행동인식-사진, 영상 촬영
             text_to_speech("치즈를 뿌려주세요.")
-            tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
+            tts.play(filename="/home/pi/Pibo_Package_02/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
             break
 
         behavior_list.do_explain_A()
         while True:
             #행동인식-사진, 영상 촬영
             text_to_speech("피자를 오븐에 데워주세요.")
-            tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_oven.wav")            
+            tts.play(filename="/home/pi/Pibo_Package_02/Pibo_Conversation/data/behavior/audio/sound_oven.wav")            
             break
         
         behavior_list.do_joy_A()
         while True:
-            tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cheerful1.wav")
+            tts.play(filename="/home/pi/Pibo_Package_02/Pibo_Conversation/data/behavior/audio/sound_cheerful1.wav")
             text_to_speech("맛있는 피자 완성! 진짜 피자 냄새가 나는 것만 같아!")
             break
         
@@ -189,7 +189,7 @@ def Play_Pizza(user_name):
         #         user_said = speech_to_text()
         #         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        #         if answer == 'DONE':
+        #         if answer == 'DONE' or answer == 'YES':
         #             behavior_list.do_joy_A()
         #             while True:
         #                 time.sleep(1)
@@ -212,7 +212,7 @@ def Play_Pizza(user_name):
         #     behavior_list.do_explain_A()
         #     while True:
         #         #행동인식-사진, 영상 촬영
-        #         tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
+        #         tts.play(filename="/home/pi/Pibo_Package_02/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
         #         text_to_speech("토마토 소스를 발라주세요.")
                 
         #         break
@@ -220,7 +220,7 @@ def Play_Pizza(user_name):
         #     behavior_list.do_explain_A()
         #     while True:
         #         #행동인식-사진, 영상 촬영
-        #         tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
+        #         tts.play(filename="/home/pi/Pibo_Package_02/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
         #         text_to_speech("원하는 토핑을 말하고 토핑을 올려 주세요.")
                 
         #         break
@@ -228,7 +228,7 @@ def Play_Pizza(user_name):
         #     behavior_list.do_explain_A()
         #     while True:
         #         #행동인식-사진, 영상 촬영
-        #         tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
+        #         tts.play(filename="/home/pi/Pibo_Package_02/Pibo_Conversation/data/behavior/audio/sound_cup.wav")
         #         text_to_speech("치즈를 뿌려주세요.")
                 
         #         break

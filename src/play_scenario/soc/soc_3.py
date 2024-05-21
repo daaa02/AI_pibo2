@@ -55,7 +55,7 @@ def Play_Newspaper(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -81,7 +81,7 @@ def Play_Newspaper(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_B()
             while True:
                 text_to_speech("노래가 끝나고 다시 시작될 때마다 신문지를 반으로 접어서 땅이 좁아지게 만들 거야. 점점 어렵겠지?")
@@ -99,7 +99,7 @@ def Play_Newspaper(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -144,7 +144,7 @@ def Play_Newspaper(user_name):
                     user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                    if answer == 'DONE':
+                    if answer == 'DONE' or answer == 'YES':
                         behavior_list.do_compliment_S()
                         while True:
                             time.sleep(1)

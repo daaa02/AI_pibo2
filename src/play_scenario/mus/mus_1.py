@@ -55,7 +55,7 @@ def Play_Balloon(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -83,7 +83,7 @@ def Play_Balloon(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech(f"좋아. {wm.word(user_name, 0)}가 좋아하는 색깔의 풍선을 골라봐.")
@@ -101,7 +101,7 @@ def Play_Balloon(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
@@ -154,7 +154,7 @@ def Play_Balloon(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("자, 그럼 시~작! 내가 열을 셀 동안 해봐. ")
@@ -186,7 +186,7 @@ def Play_Balloon(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("자, 그럼 시~작! 내가 열을 셀 동안 해봐. ")

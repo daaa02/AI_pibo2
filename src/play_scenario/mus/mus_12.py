@@ -53,7 +53,7 @@ def Play_Spider(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -80,7 +80,7 @@ def Play_Spider(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("그 다음엔 거미줄에 닿지 않게 조심하면서 거미줄 사이를 지나가 볼 거야")
@@ -98,7 +98,7 @@ def Play_Spider(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
@@ -126,7 +126,7 @@ def Play_Spider(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("다 했으면 다 했어 라고 말해줘.")
@@ -152,7 +152,7 @@ def Play_Spider(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("꼼꼼하게 잘 했어! 이번엔  거미줄 사이를 지나서 통과해 보자.")
@@ -186,7 +186,7 @@ def Play_Spider(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("조심조심 집중해서 통과하는 모습이 정말 멋있었어.")

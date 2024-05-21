@@ -53,7 +53,7 @@ def Play_Toe(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -80,7 +80,7 @@ def Play_Toe(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("좋았어! 손가락 대신에 발가락을 이용하여 물건을 집는다고 생각하면 돼.")
@@ -98,7 +98,7 @@ def Play_Toe(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
@@ -125,7 +125,7 @@ def Play_Toe(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_explain_A()
                 while True:
                     text_to_speech("잘했어! 이젠 발가락으로 휴지를 집어 올려서 훌라후프 안에 넣어봐~")
@@ -144,7 +144,7 @@ def Play_Toe(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_explain_A()
                 while True:
                     text_to_speech("우와 정말 빠른걸? 이번엔 발가락 씨름을 해보자.")
@@ -169,7 +169,7 @@ def Play_Toe(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_explain_A()
                 while True:
                     text_to_speech("좋았어! 내가 시작이라고 말하면 줄을 당기는 거야.")
@@ -188,7 +188,7 @@ def Play_Toe(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_joy_A()
                 while True:
                     text_to_speech("우와, 두 사람 다 막상막하였어!")
@@ -220,7 +220,7 @@ def Play_Toe(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_suggestion_L()
             while True:
                 text_to_speech("좋아. 시작! 10초 간 열심히 마사지 해보자.")

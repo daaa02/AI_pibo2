@@ -64,7 +64,7 @@ def Play_Stork(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("정답을 못맞추면 황새가 콕콕 찌르는 속도가 빨라질거야. 황새는 사람이 아프지 않게 살살 찔러야해. ")
@@ -82,7 +82,7 @@ def Play_Stork(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -113,7 +113,7 @@ def Play_Stork(user_name):
                     user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                    if answer == 'DONE':
+                    if answer == 'DONE' or answer == 'YES':
                         behavior_list.do_explain_B()
                         while True:
                             
@@ -146,7 +146,7 @@ def Play_Stork(user_name):
                     user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                    if answer == 'YES':
+                    if answer == 'YES' or answer == 'DONE':
                         behavior_list.do_compliment_S()
                         while True:
                             text_to_speech("정말 잘 알아채는 걸?또 해보자!")
@@ -187,7 +187,7 @@ def Play_Stork(user_name):
                     user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                    if answer == 'YES':
+                    if answer == 'YES' or answer == 'DONE':
                         behavior_list.do_joy_A()
                         while True:
                             text_to_speech("정말 빠르다~")

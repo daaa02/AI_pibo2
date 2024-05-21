@@ -55,7 +55,7 @@ def Play_Magic(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -81,7 +81,7 @@ def Play_Magic(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_B()
             while True:
                 text_to_speech("마법사가 ‘그대로 멈춰라’라고 말하면 제자리에서 멈춰야 돼.마법사 역할은 한 번씩 돌아가면서 해보자.")
@@ -99,7 +99,7 @@ def Play_Magic(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -250,7 +250,7 @@ def Play_Magic(user_name):
 
         behavior_list.do_photo()
         time.sleep(5)
-        tts.play(filename="/home/pi/Pibo_Conversation/data/behavior/audio/sound_camera.mp3", out='local', volume=-1500, background=False)
+        tts.play(filename="/home/pi/Pibo_Package_02/Pibo_Conversation/data/behavior/audio/sound_camera.mp3", out='local', volume=-1500, background=False)
 
         # 2.7 다음 놀이 제안
         behavior_list.do_question_L()

@@ -62,7 +62,7 @@ def Play_Fisherman(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("좋았어! 함께 상상의 강을 건너보자. 강은 수영해서 갈 수도 있고, 노를 저어 갈 수도 있어.")
@@ -80,7 +80,7 @@ def Play_Fisherman(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -109,7 +109,7 @@ def Play_Fisherman(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     time.sleep(1)
@@ -130,7 +130,7 @@ def Play_Fisherman(user_name):
                 user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                if answer == 'DONE':
+                if answer == 'DONE' or answer == 'YES':
                     behavior_list.do_suggestion_L()
                     while True:
                         time.sleep(1)
@@ -185,7 +185,7 @@ def Play_Fisherman(user_name):
                     user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                    if answer == 'DONE':
+                    if answer == 'DONE' or answer == 'YES':
                         behavior_list.do_compliment_S()
                         while True:
                             time.sleep(1)
@@ -214,7 +214,7 @@ def Play_Fisherman(user_name):
                     user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                    if answer == 'DONE':
+                    if answer == 'DONE' or answer == 'YES':
                         behavior_list.do_compliment_S()
                         while True:
                             time.sleep(1)

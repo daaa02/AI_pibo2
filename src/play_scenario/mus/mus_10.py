@@ -55,7 +55,7 @@ def Play_Tennis(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -82,7 +82,7 @@ def Play_Tennis(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("좋았어! 중간에 찬스를 써서 다른 테니스채로 바꿔 보거나, 상대방의 테니스채를 서로 바꿔서 쳐 볼거야.")
@@ -100,7 +100,7 @@ def Play_Tennis(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
@@ -128,7 +128,7 @@ def Play_Tennis(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("좋아! 이젠 풍선을 쳐서 상대방에게 보내보자~")
@@ -169,7 +169,7 @@ def Play_Tennis(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("좋았어! 한쪽이 먼저 10점을 얻으면 ‘10점 찬스’라고 외쳐줘. 준비~ 시작!")
@@ -206,7 +206,7 @@ def Play_Tennis(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("이제 마지막 5점이야. 15점을 먼저 얻는 사람이 승리 하는거야.")
@@ -225,7 +225,7 @@ def Play_Tennis(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_compliment_L()
                 while True:
                     text_to_speech("정말 멋진 경기였어.")

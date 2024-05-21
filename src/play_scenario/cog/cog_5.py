@@ -53,7 +53,7 @@ def Play_Cup(user_name):
         user_said = speech_to_text()    # stt open
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)   # stt 결과 처리 (NLP.py 참고)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -79,7 +79,7 @@ def Play_Cup(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("좋았어! 컵받침을 쌓고 모양을 만든 뒤에는 컵받침의 개수를 세어 볼 거야.")
@@ -97,7 +97,7 @@ def Play_Cup(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -130,7 +130,7 @@ def Play_Cup(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_S()
                 while True:
                     time.sleep(1)
@@ -168,7 +168,7 @@ def Play_Cup(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("제법인걸?")
@@ -196,7 +196,7 @@ def Play_Cup(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'YES':
+            if answer == 'YES' or answer == 'DONE':
                 behavior_list.do_suggestion_S()
                 while True:
                     text_to_speech("좋았어. 재밌는 모양으로 만들어보자.")
@@ -240,7 +240,7 @@ def Play_Cup(user_name):
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
         time.sleep(60)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_suggestion_S()
             while True:
                 text_to_speech("1분이 지났어. 정말 대단해!")
@@ -283,7 +283,7 @@ def Play_Cup(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 text_to_speech(f"{wm.word(user_name, 0)}는 정리도 잘 하는구나!")

@@ -53,7 +53,7 @@ def Play_Bear(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -81,7 +81,7 @@ def Play_Bear(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("먼저 동굴을 만들고 그 안에 곰이 들어 갈 거야.")
@@ -100,7 +100,7 @@ def Play_Bear(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
@@ -127,7 +127,7 @@ def Play_Bear(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_explain_A()
                 while True:
                     text_to_speech("이제 역할을 나누자. 사람과 곰 역할이 있어.")
@@ -154,7 +154,7 @@ def Play_Bear(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("정말 떨린다. 겨울잠을 자는 곰을 깨우러 조심스레 다가가 보자!")
@@ -173,7 +173,7 @@ def Play_Bear(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'YES':
+            if answer == 'YES' or answer == 'DONE':
                 behavior_list.do_agree()
                 while True:
                     text_to_speech("그랬구나!")
@@ -199,7 +199,7 @@ def Play_Bear(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_S()
                 while True:
                     text_to_speech("좋아. 준비, 시~작!")
@@ -218,7 +218,7 @@ def Play_Bear(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'YES':
+            if answer == 'YES' or answer == 'DONE':
                 behavior_list.do_joy_A()
                 while True:
                     text_to_speech("정말 재미있다!")

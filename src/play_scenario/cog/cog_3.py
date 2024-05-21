@@ -53,7 +53,7 @@ def Play_Cup(user_name):
         user_said = speech_to_text()    # stt open
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)   # stt 결과 처리 (NLP.py 참고)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -79,7 +79,7 @@ def Play_Cup(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("놀이 전에 먼저 종이컵의 생김새는 어떤지 살펴보자.")
@@ -98,7 +98,7 @@ def Play_Cup(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -132,7 +132,7 @@ def Play_Cup(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_explain_A()
                 while True:
                     time.sleep(1)
@@ -151,7 +151,7 @@ def Play_Cup(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'YES':
+            if answer == 'YES' or answer == 'DONE':
                 behavior_list.do_compliment_L()
                 while True:
                     time.sleep(1)
@@ -190,7 +190,7 @@ def Play_Cup(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_compliment_L()
                 while True:
                     #행동인식-사진,영상 촬영
@@ -222,7 +222,7 @@ def Play_Cup(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_explain_A()
                 while True:
                     

@@ -54,7 +54,7 @@ def Play_Mirror(user_name):
         user_said = speech_to_text()    # stt open
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)   # stt 결과 처리 (NLP.py 참고)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -83,7 +83,7 @@ def Play_Mirror(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("이제 친구를 바라봐. 서로 마주 보고 섰니?")
@@ -101,7 +101,7 @@ def Play_Mirror(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -128,7 +128,7 @@ def Play_Mirror(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_S()
                 while True:
                     time.sleep(1)
@@ -147,7 +147,7 @@ def Play_Mirror(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_agree()
                 while True:
                     time.sleep(1)
@@ -186,7 +186,7 @@ def Play_Mirror(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_compliment_S()
                 while True:
                     text_to_speech("역할을 바꿔도 정말 잘 하는걸?")
@@ -223,7 +223,7 @@ def Play_Mirror(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("이제 내가 열을 셀 게. 하나, 둘, 셋, 넷, 다섯, 여섯, 일곱, 여덟, 아홉, 열! 이제 다 셌다.")

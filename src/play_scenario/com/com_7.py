@@ -56,7 +56,7 @@ def Play_Treasure(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -83,7 +83,7 @@ def Play_Treasure(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_B()
             while True:
                 text_to_speech("동물 마법은 10초동안 유지되고, 한 번 마법을 건 동물로는 또 마법을 걸 수 없어.")
@@ -101,7 +101,7 @@ def Play_Treasure(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -128,7 +128,7 @@ def Play_Treasure(user_name):
                 user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                if answer == 'DONE':
+                if answer == 'DONE' or answer == 'YES':
                     behavior_list.do_suggestion_L()
                     while True:
                         time.sleep(1)
@@ -196,7 +196,7 @@ def Play_Treasure(user_name):
                         user_said = speech_to_text()
                         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                        if answer == 'YES':
+                        if answer == 'YES' or answer == 'DONE':
                             behavior_list.do_compliment_S()
                             while True:
                                 time.sleep(1)
@@ -227,7 +227,7 @@ def Play_Treasure(user_name):
                         user_said = speech_to_text()
                         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                        if answer == 'YES':
+                        if answer == 'YES' or answer == 'DONE':
                             behavior_list.do_compliment_S()
                             while True:
                                 time.sleep(1)

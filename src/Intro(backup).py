@@ -102,7 +102,7 @@ class Intro:
         #             user_said = speech_to_text()
         #             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
         # 
-        #             if answer == 'YES':
+        #             if answer == 'YES' or answer == 'DONE':
         #                 behavior_list.do_joy()
         #                 while True:
         #                     text_to_speech("재미있겠다!")
@@ -116,7 +116,7 @@ class Intro:
         #                     user_said = speech_to_text()
         #                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
         # 
-        #                     if answer == 'YES':
+        #                     if answer == 'YES' or answer == 'DONE':
         #                         behavior_list.do_joy()
         #                         while True:
         #                             text_to_speech("재미있겠다!")
@@ -143,7 +143,7 @@ class Intro:
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'YES':
+            if answer == 'YES' or answer == 'DONE':
                 behavior_list.do_joy()
                 while True:
                     text_to_speech("재미있겠다!")
@@ -157,7 +157,7 @@ class Intro:
                     user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                    if answer == 'YES':
+                    if answer == 'YES' or answer == 'DONE':
                         behavior_list.do_joy()
                         while True:
                             text_to_speech("재미있겠다!")

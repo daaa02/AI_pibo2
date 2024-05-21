@@ -54,7 +54,7 @@ def Play_Clean(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -80,7 +80,7 @@ def Play_Clean(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_B()
             while True:
                 text_to_speech("세차 코스는 절약코스, 기본코스, 강력 코스가 있어. 코스에 따라서 강도가 달라질거야.")
@@ -99,7 +99,7 @@ def Play_Clean(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -128,7 +128,7 @@ def Play_Clean(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_explain_A()
                 while True:
                     time.sleep(1)
@@ -147,7 +147,7 @@ def Play_Clean(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_joy_A()
                 while True:
                     tts.play(filename="/home/pi/AI_pibo2/src/data/audio/세차장놀이_경적소리.mp3", out='local', volume=-1000, background=False)
@@ -208,7 +208,7 @@ def Play_Clean(user_name):
                 user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                if answer == 'DONE':
+                if answer == 'DONE' or answer == 'YES':
                     i=i+1
 
                     start()

@@ -52,7 +52,7 @@ def Play_King(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -77,7 +77,7 @@ def Play_King(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("왕이 된 친구는 왕관을 다른 친구에게 주면서 왕 역할을 양보할 수도 있어.")
@@ -95,7 +95,7 @@ def Play_King(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -122,7 +122,7 @@ def Play_King(user_name):
                     user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                    if answer == 'DONE':
+                    if answer == 'DONE' or answer == 'YES':
                         behavior_list.do_joy_A()
                         while True:
                             time.sleep(3)

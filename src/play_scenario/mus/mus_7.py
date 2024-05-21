@@ -53,7 +53,7 @@ def Play_Awake(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -80,7 +80,7 @@ def Play_Awake(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("드라큘라를 깨우지 않고 만지게 되면 드라큘라는 힘이 없어지고 놀이가 끝나.")
@@ -101,7 +101,7 @@ def Play_Awake(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
@@ -129,7 +129,7 @@ def Play_Awake(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_explain_B()
                 while True:
                     text_to_speech("친구는 출발 위치로 가고 파이보랑 드라큘라는 매트로 가자.")
@@ -149,7 +149,7 @@ def Play_Awake(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_explain_B()
                 while True:
                     text_to_speech("좋았어! 내가 시작하면 드라큘라에게 다가가는 거야.")
@@ -168,7 +168,7 @@ def Play_Awake(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_explain_B()
                 while True:
                     text_to_speech("우와, 정말 실감났어.  이번에는 역할을 바꿔보자.")
@@ -187,7 +187,7 @@ def Play_Awake(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_explain_B()
                 while True:
                     text_to_speech("좋았어! 내가 시작하면 드라큘라에게 다가가는 거야.")
@@ -204,7 +204,7 @@ def Play_Awake(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_joy_A()
                 while True:
                     text_to_speech("정말 흥미진진했어.")

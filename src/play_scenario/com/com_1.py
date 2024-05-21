@@ -53,7 +53,7 @@ def Play_Hoop(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -79,7 +79,7 @@ def Play_Hoop(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_B()
             while True:
                 text_to_speech("입으로 바람을 불기 힘들면 도구를 사용해서 바람을 일으켜도 좋아")
@@ -97,7 +97,7 @@ def Play_Hoop(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -137,7 +137,7 @@ def Play_Hoop(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_compliment_L()
                 while True:
                     time.sleep(1)
@@ -158,7 +158,7 @@ def Play_Hoop(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_S()
                 while True:
                     text_to_speech("좋아. 이번에는 그림 모양대로 종이를 오리자")
@@ -177,7 +177,7 @@ def Play_Hoop(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("그럼 이제 훌라후프를 바닥에 놓고 주변에 동물그림을 뿌려놓자.")
@@ -209,7 +209,7 @@ def Play_Hoop(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_compliment_L()
                 while True:
                     text_to_speech("우와~ 우리만의 동물원이 완성된 것 같아. 멋지다~!")

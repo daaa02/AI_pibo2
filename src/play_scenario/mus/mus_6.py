@@ -52,7 +52,7 @@ def Play_Flower(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -81,7 +81,7 @@ def Play_Flower(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_joy_A()
             while True:
                 text_to_speech("좋았어!")
@@ -106,7 +106,7 @@ def Play_Flower(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(2)
@@ -132,7 +132,7 @@ def Play_Flower(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_question_S()
                 while True:
                     text_to_speech("좋았어! 움직인 사람 있어?")
@@ -148,7 +148,7 @@ def Play_Flower(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'YES':
+            if answer == 'YES' or answer == 'DONE':
                 behavior_list.do_suggestion_L()
                 while True:
                     text_to_speech("움직인 사람은 술래에게 가서 손가락을 걸어.")
@@ -162,7 +162,7 @@ def Play_Flower(user_name):
                     text_to_speech("술래는 다시 구호를 외쳐줘.")
                     start()
                     break
-            elif answer == 'DONE':
+            elif answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggesion_L()
                 while True:
                     text_to_speech("와, 정말 잘한다. 파이보도 그렇게 빨리 움직일 수 있으면 좋겠어.")

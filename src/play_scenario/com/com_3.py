@@ -53,7 +53,7 @@ def Play_Smile(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -79,7 +79,7 @@ def Play_Smile(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_B()
             while True:
                 text_to_speech("거리 이름은 수영하는 거리도 될 수 있고, 등산하는 거리, 피아노 치는 거리 거리처럼 다양하게 지을 수 있어.")
@@ -97,7 +97,7 @@ def Play_Smile(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -162,7 +162,7 @@ def Play_Smile(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_compliment_L()
                 while True:
                     time.sleep(1)
@@ -182,7 +182,7 @@ def Play_Smile(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'YES':
+            if answer == 'YES' or answer == 'DONE':
                 behavior_list.do_question_S()
                 while True:
                     text_to_speech("좋았어. 먼저 어떤 거리로 가볼까?")
@@ -210,7 +210,7 @@ def Play_Smile(user_name):
                 user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                if answer == 'DONE':
+                if answer == 'DONE' or answer == 'YES':
                     behavior_list.do_suggestion_S()
                     while True:
                         text_to_speech("이제 거리 이름처럼 흉내 내 보자!")

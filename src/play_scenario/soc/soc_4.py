@@ -53,7 +53,7 @@ def Play_Wool(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -79,7 +79,7 @@ def Play_Wool(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_B()
             while True:
                 time.sleep(1)
@@ -97,7 +97,7 @@ def Play_Wool(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -129,7 +129,7 @@ def Play_Wool(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_compliment_L()
                 while True:
                     time.sleep(1)
@@ -153,7 +153,7 @@ def Play_Wool(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'YES':
+            if answer == 'YES' or answer == 'DONE':
                 behavior_list.do_compliment_L()
                 while True:
                     time.sleep(1)
@@ -172,7 +172,7 @@ def Play_Wool(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_S()
                 while True:
                     time.sleep(1)
@@ -192,7 +192,7 @@ def Play_Wool(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_compliment_S()
                 while True:
                     time.sleep(1)
@@ -234,7 +234,7 @@ def Play_Wool(user_name):
         user_said == speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
         #어려웠어가 없음 일단은 DONE으로 넣겠음
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_agree()
             while True:
                 text_to_speech(f"그랬구나. 원래 뒤로 걷는건 쉽지 않아. 하지만 오늘 {wm.word(user_name, 0)}는 조심조심 잘 걷던걸?")

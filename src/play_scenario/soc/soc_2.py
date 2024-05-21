@@ -52,7 +52,7 @@ def Play_Newspaper(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -78,7 +78,7 @@ def Play_Newspaper(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech("신문지를 겹쳐서 찢으면 비를 많이 만들 수 있어. 찢다가 끊어지지 않게 조심해야 해.")
@@ -96,7 +96,7 @@ def Play_Newspaper(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -126,7 +126,7 @@ def Play_Newspaper(user_name):
                     user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                    if answer == 'DONE':
+                    if answer == 'DONE' or answer == 'YES':
                         behavior_list.do_suggestion_L()
                         while True:
                             time.sleep(3)
@@ -149,7 +149,7 @@ def Play_Newspaper(user_name):
                 user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                if answer == 'DONE':
+                if answer == 'DONE' or answer == 'YES':
                         behavior_list.do_suggestion_L()
                         while True:
                             time.sleep(3)

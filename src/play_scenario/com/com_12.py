@@ -55,7 +55,7 @@ def Play_Salad(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -81,7 +81,7 @@ def Play_Salad(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_B()
             while True:
                 text_to_speech(f"{wm.word(user_name, 0)}가 고른 과일을 파이보가 맞출 때마다 옆 방석으로 한칸씩 움직이면 돼. ")
@@ -100,7 +100,7 @@ def Play_Salad(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -129,12 +129,12 @@ def Play_Salad(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                 behavior_list.do_suggestion_L()
                 while True:
                     time.sleep(1)
                     text_to_speech(f"좋아.  파이보가 {wm.word(user_name, 0)}가 생각한 과일을 맞춰볼게.")
-                    text_to_speech("맞췄으면 카드를 파이보에게 보여주고한 칸씩 옆자리로 옮기면 돼. 시작해보자!")
+                    text_to_speech("맞췄으면 카드를 파이보에게 보여주고 한 칸씩 옆자리로 옮기면 돼. 시작해보자!")
                     #행동인식 - 사진, 영상 촬영
                     break
             else:
@@ -153,12 +153,12 @@ def Play_Salad(user_name):
             if 1<=i<6:
                 behavior_list.do_question_S()
                 while True:
-                    text_to_speech(f"{random.choice(fruit)}!맞췄어?")#랜덤과일이름
+                    text_to_speech(f"{random.choice(fruit)}! 맞췄어?")#랜덤과일이름
                     #행동인식 - 사진, 영상 촬영       
                     user_said = speech_to_text()
                     answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                    if answer == 'YES':
+                    if answer == 'YES' or answer == 'DONE':
                         behavior_list.do_joy_A()
                         while True:
                             
@@ -172,7 +172,7 @@ def Play_Salad(user_name):
                             text_to_speech("다시 맞춰 볼게.")
                             return start_1()
                      
-            elif i==6:
+            elif i==3:
                 behavior_list.do_joy_A()
                 while True:
                     text_to_speech("처음 자리로 돌아왔어! 정말 빨리 도착했는 걸? ")

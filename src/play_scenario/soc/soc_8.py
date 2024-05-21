@@ -52,7 +52,7 @@ def Play_Indian(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -77,7 +77,7 @@ def Play_Indian(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'YES':
+        if answer == 'YES' or answer == 'DONE':
             behavior_list.do_explain_A()
             while True:
                 text_to_speech(" 담요가 흘러 내리면 빨래집게로 고정해도 돼.")
@@ -96,7 +96,7 @@ def Play_Indian(user_name):
         user_said = speech_to_text()
         answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-        if answer == 'DONE':
+        if answer == 'DONE' or answer == 'YES':
             behavior_list.do_joy_A()
             while True:
                 time.sleep(1)
@@ -123,7 +123,7 @@ def Play_Indian(user_name):
                 user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                if answer == 'DONE':
+                if answer == 'DONE' or answer == 'YES':
                     behavior_list.do_compliment_S()
                     while True:
                         time.sleep(3)
@@ -147,7 +147,7 @@ def Play_Indian(user_name):
                 user_said = speech_to_text()
                 answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-                if answer == 'DONE':
+                if answer == 'DONE' or answer == 'YES':
                     behavior_list.do_joy_A()
                     while True:
                         time.sleep(3)
@@ -167,7 +167,7 @@ def Play_Indian(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'DONE':
+            if answer == 'DONE' or answer == 'YES':
                     behavior_list.do_joy_A()
                     while True:
                         time.sleep(3)
@@ -186,7 +186,7 @@ def Play_Indian(user_name):
             user_said = speech_to_text()
             answer = NLP.nlp_answer(user_said=user_said, dic=Dic)
 
-            if answer == 'YES':
+            if answer == 'YES' or answer == 'DONE':
                     behavior_list.do_joy_A()
                     while True:
                         time.sleep(3)
